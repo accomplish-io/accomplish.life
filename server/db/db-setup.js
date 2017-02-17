@@ -18,6 +18,19 @@ var User = db.define('User', {
 });
 
 var Goal = db.define('Goal', {
+  goalName: Sequelize.STRING,
+  public: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true
+  },
+  complete: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true
+  },
+  start: {
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.NOW
+  }
 });
 
 var Backer = db.define('Backer', {
