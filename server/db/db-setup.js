@@ -1,5 +1,13 @@
 var Sequelize = require('sequelize');
-var db = new Sequelize('users', 'goals', '');
+var db = new Sequelize('accomplish', 'root', '');
+
+Sequelize.authenticate()
+  .then(function(err) {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(function (err) {
+    console.log('Unable to connect to the database:', err);
+  });
 
 var User = db.define('User', {
   nameFirst: Sequelize.STRING,
