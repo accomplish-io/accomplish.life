@@ -1,0 +1,8 @@
+{
+  "name": "accomplish.life",
+  "version": "1.0.0",
+  "description": "Application for setting and tracking personal goals",
+  "dependencies": {
+    "express": "^4.14.1"
+  }
+}
