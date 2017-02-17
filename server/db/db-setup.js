@@ -38,6 +38,16 @@ var Backer = db.define('Backer', {
   backerEmail: Sequelize.STRING,
 });
 
+Goal.belongsTo(User);
+User.hasMany(Goal);
+
+Backer.belongsTo(Goal);
+Goal.hasMany(Backer);
+
+User.sync();
+Goal.sync();
+Backer.sync();
+
 exports.User = User;
 exports.Goal = Goal;
 exports.Backer = Backer;
