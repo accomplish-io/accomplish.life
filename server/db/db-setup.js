@@ -44,6 +44,9 @@ User.hasMany(Goal);
 Backer.belongsTo(Goal);
 Goal.hasMany(Backer);
 
+Backer.belongsTo(User);
+User.hasMany(Backer);
+
 User.sync();
 Goal.sync();
 Backer.sync();
