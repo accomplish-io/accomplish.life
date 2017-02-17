@@ -34,6 +34,8 @@ var Goal = db.define('Goal', {
 });
 
 var Backer = db.define('Backer', {
+  backerName: Sequelize.STRING,
+  backerEmail: Sequelize.STRING,
 });
 
 exports.User = User;
