@@ -1,8 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Accomplish life</title>
+  <head>
+
+    <meta charset="UTF-8">
+      <!-- AUTH0 Viewport settings-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Accomplish life</title>
+
+    <!-- Angular -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+    <!-- UI Router -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
+    <!-- Auth0 -->
+    <script src="bower_components/auth0-lock/build/lock.js"></script>
+    <script src="bower_components/angular-lock/dist/angular-lock.js"></script>
+    <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
+
+    <!-- Program Files -->
+    <script type="text/javascript" src="app/auth/auth0-variables.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/app.run.js"></script>
+    <script type="text/javascript" src="app/auth/auth.js"></script>
+    <script type="text/javascript" src="app/dashboard/dashboard.js"></script>
+    <script type="text/javascript" src="app/goal-complete/goal-complete.js"></script>
+    <script type="text/javascript" src="app/goal-details/goal-details.js"></script>
+    <script type="text/javascript" src="app/goal-new/goal-new.js"></script>
+    <script type="text/javascript" src="app/services/auth.js"></script>
+    <script type="text/javascript" src="app/services/user.js"></script>
+
 </head>
 
   <body>
@@ -10,18 +36,26 @@
     <div class="nav-wrapper blue">
       <a>Accomplish</a>
 
-      <ul style="margin-right: 140px;" ng-controller="AuthCtrl">
-        <li>Home</li>
+      <ul style="margin-right: 140px;">
+        <li><a ui-sref="home">Home</a></li>
         <li>Add a Goal</li>
         <li>Overall Progress</li>
         <li>Account Settings</li>
-        <li>Sign Out</li>
+        <a ui-sref="auth">Auth</a>
       </ul>
 
   </nav>
-  <!-- Angular -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
-  <!-- Angular Route -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
+
+  <body  ng-app="app">
+
+  <button><a ui-sref="home">Home</a></button>
+  <button><a ui-sref="auth">Auth0</a></button>
+
+
+  <div class="container">
+    <div ui-view></div>
+  </div>
+
+
   </body>
 </html>

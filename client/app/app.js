@@ -1,35 +1,58 @@
-angular.module('accomplish', [
+angular.module('app', [
   'dashboard',
   'auth',
   'new',
   'complete',
   'details',
-  'ngRoute'
+  'auth0.lock',
+  'angular-jwt',
+  'ui.router',
   ])
-.config(function($routeProvider) {
-  $routeProvider
-  // TODO: add username :id to '/'?
-  .when('/', {
-    templateUrl: 'dashboard/dashboard.html',
-    controller: 'DashboardCtrl'
-  })
-  .when('/auth', {
-    templateUrl: 'auth/auth.html',
-    controller: 'AuthCtrl'
-  })
-  .when('/new', {
-    templateUrl: 'goal-new/goal-new.html',
-    controller: 'NewCtrl'
-  })
+.config(config)
+
+config.$inject = ['$stateProvider', 'lockProvider', '$urlRouterProvider'];
+
+
+  function config($stateProvider, lockProvider, $urlRouterProvider) {
+
+    $stateProvider
+      .state('home', {
+        url: '/home',
+        controller: 'DashboardCtrl',
+        templateUrl: './app/dashboard/dashboard.html',
+        controllerAs: 'vm'
+      })
+      .state('auth', {
+        url: '/auth',
+        controller: 'AuthCtrl',
+        templateUrl: './app/auth/auth.html',
+        controllerAs: 'vm'
+      })
+      .state('/new', {
+        url: '/new',
+        controller: 'NewCtrl',
+        templateUrl: './app/goal-new/goal-new.html',
+        controllerAs: 'vm'
+      })
   // TODO: add goal :id to route?
-  .when('/complete', {
-    templateUrl: 'goal-complete/goal-complete.html',
-    controller: 'CompleteCtrl'
-  })
+      .state('/complete', {
+        url: '/auth',
+        controller: 'CompleteCtrl',
+        templateUrl: './app/goal-complete/goal-complete.html',
+        controllerAs: 'vm'
+      })
   // TODO: add goal :id to route?
-  .when('/details', {
-    templateUrl: 'goal-details/goal-details.html',
-    controller: 'DetailsCtrl'
-  })
-  .otherwise({ redirectTo: '/' });
-});
+      .state('/details', {
+        url: '/auth',
+        controller: 'DetailsCtrl',
+        templateUrl: './app/goal-details/goal-details.html',
+        controllerAs: 'vm'
+      });
+
+    lockProvider.init({
+      clientID: AUTH0_CLIENT_ID,
+      domain: AUTH0_DOMAIN
+    });
+
+    $urlRouterProvider.otherwise('/home');
+  }
