@@ -16,10 +16,10 @@ module.exports = function(app, express, db) {
       });
   });
 
-  app.put('/api/users/.userId', function(req, res) {
+  app.put('/api/users/:userId', function(req, res) {
     db.User.findOne({
       where: {
-       .userId: req.params.userId
+       userId: req.params.userId
       }
     })
       .then(function(user) {
@@ -28,10 +28,10 @@ module.exports = function(app, express, db) {
       });
   });
 
-  app.get('/api/users/.userId', function(req, res) {
+  app.get('/api/users/:userId', function(req, res) {
     db.User.findOne({
       where: {
-       .userId: req.params.userId
+       userId: req.params.userId
       }
     })
       .then(function(user) {
@@ -39,10 +39,10 @@ module.exports = function(app, express, db) {
       });
   });
 
-  app.get('/api/goals/.userId', function(req, res) {
+  app.get('/api/goals/:userId', function(req, res) {
     db.Goal.findAll({
       where: {
-       .userId: req.params.userId
+       userId: req.params.userId
       }
     })
       .then(function(results) {
@@ -50,7 +50,7 @@ module.exports = function(app, express, db) {
       });
   });
 
-  app.post('/api/goals/.userId', function(req, res) {
+  app.post('/api/goals/:userId', function(req, res) {
     db.User.findOne({
       where: {
         email: req.params.email
@@ -58,7 +58,7 @@ module.exports = function(app, express, db) {
     })
       .then(function(user) {
         db.Goal.create({
-         .userId: req.params.userId,
+         userId: req.params.userId,
           // rest of schema
         })
           .then(function(goal) {
