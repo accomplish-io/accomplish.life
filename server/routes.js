@@ -47,10 +47,10 @@ module.exports = function(app, express, db) {
       });
   });
 
-  app.post('/api/goals/:userId', function(req, res) {
+  app.post('/api/goals/:email', function(req, res) {
     db.User.findOne({
       where: {
-        email: req.params.userId
+        email: req.params.email
       }
     })
       .then(function(user) {

@@ -11,7 +11,6 @@
         method: 'POST',
         url: 'api/auth',
         data: {
-          name: name,
           email: email
         }
       });
