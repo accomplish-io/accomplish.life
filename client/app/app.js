@@ -10,10 +10,10 @@ angular.module('app', [
   ])
 .config(config)
 
-config.$inject = ['$stateProvider', 'lockProvider', '$urlRouterProvider'];
+config.$inject = ['$stateProvider', 'lockProvider', '$urlRouterProvider', 'jwtOptionsProvider'];
 
 
-  function config($stateProvider, lockProvider, $urlRouterProvider) {
+  function config($stateProvider, lockProvider, $urlRouterProvider, jwtOptionsProvider) {
 
     $stateProvider
       .state('home', {
@@ -35,15 +35,25 @@ config.$inject = ['$stateProvider', 'lockProvider', '$urlRouterProvider'];
         controllerAs: 'vm'
       })
   // TODO: add goal :id to route?
+<<<<<<< HEAD
       .state('complete', {
         url: '/auth',
+=======
+      .state('/complete', {
+        url: '/complete',
+>>>>>>> add jwt functions
         controller: 'CompleteCtrl',
         templateUrl: './app/goal-complete/goal-complete.html',
         controllerAs: 'vm'
       })
   // TODO: add goal :id to route?
+<<<<<<< HEAD
       .state('details', {
         url: '/auth',
+=======
+      .state('/details', {
+        url: '/details',
+>>>>>>> add jwt functions
         controller: 'DetailsCtrl',
         templateUrl: './app/goal-details/goal-details.html',
         controllerAs: 'vm'
