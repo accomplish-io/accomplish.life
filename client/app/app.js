@@ -54,5 +54,16 @@ config.$inject = ['$stateProvider', 'lockProvider', '$urlRouterProvider'];
       domain: AUTH0_DOMAIN
     });
 
+     jwtOptionsProvider.config({
+      tokenGetter: ['options', function (options) {
+        if (options && options.url.substr(options.url.length - 5) == '.html') {
+          return null;
+        }
+        return localStorage.getItem('id_token');
+      }],
+      whiteListedDomains: ['localhost'],
+      unauthenticatedRedirectPath: '/auth'
+    });
+
     $urlRouterProvider.otherwise('/home');
   }
