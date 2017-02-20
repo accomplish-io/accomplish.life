@@ -12,8 +12,6 @@ angular.module('new', [])
       })
   });
 
-  // console.log(GoalFactory.getUserGoals(vm.user.email));
-
   vm.addGoal = function() {
     GoalFactory.createGoal(vm.goal, vm.payload.email);
     vm.goal = '';
