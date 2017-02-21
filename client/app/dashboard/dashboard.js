@@ -8,6 +8,7 @@
       var vm = this;
 
 
+
       // Get user details from auth
       lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
         vm.payload = profile;
@@ -32,6 +33,7 @@
         console.log('fire');
         goal.subsDisplayed = !goal.subsDisplayed;
       };
+
 
       vm.toggleAdd = function (goal) {
         goal.addDisplayed = !goal.addDisplayed;
@@ -84,4 +86,5 @@
       };
   });
 })();
+
 
