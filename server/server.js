@@ -10,7 +10,12 @@ if(!process.env.PORT) {
   app.use(morgan('dev'));
 }
 
-app.use(bodyParser.urlencoded({ extended: true }));
+// var authCheck = jwt({
+//   secret: new Buffer('2J7MDMkOhZ28NCErCzVJBMDfBgJU2EugMgyFg2bgMpctYfK36jgZCa_9ARFd2BPH', 'base64'),
+//   audience: 'ZqYpGZq0b47l5w3GkYDYCh9aBZY2BocC'
+// });
+
+encoded({ extended: true });
 app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/../client'));
