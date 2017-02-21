@@ -33,13 +33,14 @@
 
   // update goal completion status
   vm.completeGoal = function(goal) {
-    GoalFactory.updateGoal(goal.id, {complete: true});
-      // .then(function() {
-      //   GoalFactory.getOneGoal(goal.id);
-      // })
-      // .then(function(gotGoal) {
-      //   console.log(gotGoal);
-      // })
+    GoalFactory.updateGoal(goal.id, {complete: true})
+      .then(function() {
+        // dynamically reload goals on page
+        GoalFactory.getUserGoals(vm.payload.email)
+          .then(goals => {
+            vm.goals = goals.data;
+          });
+      });
   };
 
   vm.test = function() {
