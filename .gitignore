@@ -2,3 +2,4 @@ node_modules/
 .log
 client/app/auth/auth0-variables.js
 client/bower_components
+dist/
