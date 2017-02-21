@@ -7,6 +7,7 @@
 
       var vm = this;
 
+<<<<<<< 151866ff9bd724f3049bbcb627e3fc4827b66136
       // Get user details from auth
       lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
         vm.payload = profile;
@@ -25,6 +26,13 @@
             vm.goals = goals.data;
           });
       });
+=======
+    lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
+      vm.payload = profile;
+      GoalFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
+        .then(user => {
+          vm.user = user.data[0]
+>>>>>>> Integrate add goal into dashboard controller
 
       // Open up sub-goals
       vm.toggleSubs = function (goal) {
@@ -81,7 +89,6 @@
               });
           });
       };
-
   });
 })();
 
