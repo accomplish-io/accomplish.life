@@ -1,9 +1,19 @@
+<<<<<<< a677aa078a3fef1cd0159db6f239096381b01ab7
 <h3>Goals</h3>
+=======
+
+<p>Dashboard View</p>
+
+<button class="btn btn-primary" ng-click="vm.test()">Test Things</button>
+<!-- Modal Trigger -->
+<div>---------------------</div>
+>>>>>>> No changes
 <div class="col">
     <!-- Modal Trigger -->
     <a class="btn" data-target="newGoalModal" modal>Add a goal</a>
 </div>
 
+<<<<<<< a677aa078a3fef1cd0159db6f239096381b01ab7
 <br>
 
 <!-- Current Goals -->
@@ -30,6 +40,16 @@
         </form>
      </div>
       <div ng-show="goal.subsDisplayed">
+=======
+<div ng-repeat="goal in vm.goals | filter:{complete: false, GoalId: null}">
+    <div class="collapsible-header" style="padding-right: 0px">
+      <ul class="collection with-header">
+        <li class="collection-header">
+          <input ng-click="vm.completeGoal(goal)" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}"/>
+          <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
+          <a ><i class="right material-icons" style="margin: 0px 15px 0px 0px;">settings</i></a>
+        </li>
+>>>>>>> No changes
         <div ng-repeat="sub in vm.goals | filter: {GoalId: goal.id}">
           <li class="collection-item">
             <input ng-click="vm.completeGoal(sub)" type="checkbox" id="{{sub.id}}" ng-checked="{{sub.complete}}"/>
