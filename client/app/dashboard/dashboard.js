@@ -87,30 +87,30 @@
       [28]
     ];
 
-    $scope.labels = ['2006'];
-    $scope.series = ['Actual Progress', 'Expected Progress'];
+  $scope.labels = ['2006'];
+  $scope.series = ['Actual Progress', 'Expected Progress'];
 
-    $scope.options = {
-      scales: {
-        yAxes: [
-          {
+  $scope.options = {
+    scales: {
+      yAxes: [
+        {
+          display: true
+        }
+      ],
+      xAxes: [
+        {
+          display: true,
+          ticks: {
+            beginAtZero: true,
+            max: 100
+          },
+          gridLines: {
             display: false
           }
-        ],
-        xAxes: [
-          {
-            display: true,
-            ticks: {
-              beginAtZero: true,
-              max: 100
-            },
-            gridLines: {
-              display: false
-            }
-          }
-        ],
-      }
-    };
+        }
+      ],
+    }
+  };
 
 });
 }());
