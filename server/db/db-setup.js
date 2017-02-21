@@ -67,9 +67,10 @@ var Backer = db.define('Backer', {
 var GoalBacker = db.define('GoalBacker', {
 });
 
+
 var Session = db.define('Session', {
   start: Sequelize.DATE,
-  end: Sequelize.END
+  end: Sequelize.DATE
 });
 
 var GoalSession = db.define('GoalSession', {
@@ -108,7 +109,6 @@ GoalSession.sync();
 
 exports.User = User;
 exports.Goal = Goal;
-exports.Type = Type;
 exports.Frequency = Frequency;
 exports.Backer = Backer;
 exports.GoalBacker = GoalBacker;
