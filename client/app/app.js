@@ -7,6 +7,7 @@ angular.module('app', [
   'auth0.lock',
   'angular-jwt',
   'ui.router',
+  'chart.js'
   ])
 .config(config)
 
