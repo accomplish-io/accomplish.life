@@ -1,6 +1,9 @@
 
 <h3>Goals</h3>
 
+<button class="btn btn-primary" ng-click="vm.test()">Test Things</button>
+<!-- Modal Trigger -->
+<div>---------------------</div>
 <div class="col">
     <!-- Modal Trigger -->
     <a class="btn" data-target="newGoalModal" modal>Add a goal</a>
@@ -10,6 +13,9 @@
 
 <!-- Current Goals -->
 <div ng-repeat="goal in vm.goals | filter:{complete: false, GoalId: null}">
+  <canvas id="base" class="chart-horizontal-bar"
+    chart-data="data" chart-labels="labels" chart-options="options">
+  </canvas>
   <div class="collapsible-header" style="padding-right: 0px">
     <ul class="collection with-header">
       <li class="collection-header">
