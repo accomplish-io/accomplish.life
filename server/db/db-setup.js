@@ -60,6 +60,14 @@ var Frequency = db.define('Frequency', {
   weekNum: Sequelize.INTEGER
 });
 
+var Progress = db.define('Progress', {
+  number: Sequelize.DECIMAL(10, 2),
+  date: {
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.NOW
+  }
+});
+
 var Backer = db.define('Backer', {
   backerName: Sequelize.STRING,
   backerEmail: Sequelize.STRING,
@@ -81,6 +89,9 @@ User.hasMany(Goal);
 
 Goal.belongsTo(Frequency);
 Frequency.hasMany(Goal);
+
+Progress.belongsTo(Goal);
+Goal.hasMany(Progress);
 
 GoalBacker.belongsTo(Goal);
 Goal.hasMany(Backer);
