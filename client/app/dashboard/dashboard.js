@@ -82,12 +82,7 @@
           });
       };
 
-  $scope.data = [
-      [65],
-      [28]
-    ];
 
-  $scope.labels = ['2006'];
   $scope.series = ['Actual Progress', 'Expected Progress'];
 
   $scope.options = {
