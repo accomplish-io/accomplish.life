@@ -20,6 +20,7 @@
           .then(goals => {
             goals.data.forEach(goal =>{
               goal.subsDisplayed = true;
+              goal.addDisplayed = false;
             });
             vm.goals = goals.data;
           });
@@ -28,25 +29,37 @@
       // Open up sub-goals
       vm.toggleSubs = function (goal) {
         console.log('fire');
-        console.log(goal);
-        for (var i = 0; i < vm.goals.length; i++){
-          if (vm.goals[i].id === goal.id) {
-            console.log(vm.goals[i]);
-            vm.goals[i].subsDisplayed = !vm.goals[i].subsDisplayed;
-            console.log(vm.goals[i]);
-            return;
-          }
-        }
+        goal.subsDisplayed = !goal.subsDisplayed;
       };
-      // Not currently working
-      vm.toggleSubs = vm.toggleSubs.bind(this);
+
+      vm.toggleAdd = function (goal) {
+        goal.addDisplayed = !goal.addDisplayed;
+      }
+
+      vm.deleteGoal = function(id) {
+        GoalFactory.deleteGoal(id)
+        .then(function() {
+            GoalFactory.getUserGoals(vm.payload.email)
+              .then(goals => {
+                goals.data.forEach(goal =>{
+                  goal.subsDisplayed = true;
+                  goal.addDisplayed = false;
+                });
+                vm.goals = goals.data;
+              });
+          });
+      }
 
       // Add the entered goal into the database
-      vm.addGoal = function() {
-        GoalFactory.createGoal(vm.goal, vm.payload.email)
+      vm.addGoal = function(id) {
+        GoalFactory.createGoal(vm.goal, vm.payload.email, id)
           .then(function() {
             GoalFactory.getUserGoals(vm.payload.email)
               .then(goals => {
+                goals.data.forEach(goal =>{
+                  goal.subsDisplayed = true;
+                  goal.addDisplayed = false;
+                });
                 vm.goals = goals.data;
               });
           });
@@ -60,6 +73,10 @@
           .then(function() {
             GoalFactory.getUserGoals(vm.payload.email)
               .then(goals => {
+                goals.data.forEach(goal =>{
+                  goal.subsDisplayed = true;
+                  goal.addDisplayed = false;
+                });
                 vm.goals = goals.data;
               });
           });
