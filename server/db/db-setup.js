@@ -15,9 +15,9 @@ var User = db.define('User', {
   authId: Sequelize.STRING,
   email: Sequelize.STRING,
   phone: Sequelize.STRING,
-  public: {
+  confidential: {
     type: Sequelize.BOOLEAN,
-    defaultValue: true
+    defaultValue: false
   },
   start: {
     type: Sequelize.DATE,
@@ -27,9 +27,9 @@ var User = db.define('User', {
 
 var Goal = db.define('Goal', {
   goalName: Sequelize.STRING,
-  public: {
+  confidential: {
     type: Sequelize.BOOLEAN,
-    defaultValue: true
+    defaultValue: false
   },
   start: {
     type: Sequelize.DATE,
@@ -41,7 +41,8 @@ var Goal = db.define('Goal', {
   complete: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
-  }
+  },
+  feeling: Sequelize.STRING
 });
 
 var Frequency = db.define('Frequency', {
