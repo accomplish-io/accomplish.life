@@ -15,9 +15,9 @@ var User = db.define('User', {
   authId: Sequelize.STRING,
   email: Sequelize.STRING,
   phone: Sequelize.STRING,
-  public: {
+  confidential: {
     type: Sequelize.BOOLEAN,
-    defaultValue: true
+    defaultValue: false
   },
   start: {
     type: Sequelize.DATE,
@@ -27,9 +27,9 @@ var User = db.define('User', {
 
 var Goal = db.define('Goal', {
   goalName: Sequelize.STRING,
-  public: {
+  confidential: {
     type: Sequelize.BOOLEAN,
-    defaultValue: true
+    defaultValue: false
   },
   start: {
     type: Sequelize.DATE,
@@ -41,7 +41,8 @@ var Goal = db.define('Goal', {
   complete: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
-  }
+  },
+  feeling: Sequelize.STRING
 });
 
 var Frequency = db.define('Frequency', {
@@ -57,6 +58,14 @@ var Frequency = db.define('Frequency', {
   monthly: Sequelize.BOOLEAN,
   monthDay: Sequelize.INTEGER,
   weekNum: Sequelize.INTEGER
+});
+
+var Progress = db.define('Progress', {
+  number: Sequelize.DECIMAL(10, 2),
+  date: {
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.NOW
+  }
 });
 
 var Backer = db.define('Backer', {
@@ -81,6 +90,9 @@ User.hasMany(Goal);
 Goal.belongsTo(Frequency);
 Frequency.hasMany(Goal);
 
+Progress.belongsTo(Goal);
+Goal.hasMany(Progress);
+
 GoalBacker.belongsTo(Goal);
 Goal.hasMany(Backer);
 
@@ -101,6 +113,7 @@ Goal.hasOne(Goal, {as: 'parent'});
 User.sync();
 Goal.sync();
 Frequency.sync();
+Progress.sync();
 Backer.sync();
 GoalBacker.sync();
 Session.sync();
@@ -109,6 +122,7 @@ GoalSession.sync();
 exports.User = User;
 exports.Goal = Goal;
 exports.Frequency = Frequency;
+exports.Progress = Progress;
 exports.Backer = Backer;
 exports.GoalBacker = GoalBacker;
 exports.Session = Session;
