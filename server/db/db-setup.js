@@ -67,7 +67,6 @@ var Backer = db.define('Backer', {
 var GoalBacker = db.define('GoalBacker', {
 });
 
-
 var Session = db.define('Session', {
   start: Sequelize.DATE,
   end: Sequelize.DATE
