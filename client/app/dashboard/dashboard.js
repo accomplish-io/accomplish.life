@@ -17,7 +17,11 @@
         });
       GoalFactory.getUserGoals(vm.payload.email)
         .then(goals => {
+          goals.data.forEach(goal =>{
+            goal.subsDisplayed = true;
+          });
           vm.goals = goals.data;
+          console.log(vm.goals);
         });
     });
 
@@ -25,10 +29,14 @@
       GoalFactory.createGoal(vm.goal, vm.payload.email).then(function() {
         GoalFactory.getUserGoals(vm.payload.email)//reloads the goals dynamically
           .then(goals => {
+            goals.data.forEach(goal =>{
+              goal.subsDisplayed = true;
+            });
             vm.goals = goals.data;
           });
       });
     vm.goal = '';
+    vm.sub = null;
   }
 
   // update goal completion status
@@ -38,14 +46,33 @@
         // dynamically reload goals on page
         GoalFactory.getUserGoals(vm.payload.email)
           .then(goals => {
+            goals.data.forEach(goal =>{
+              goal.subsDisplayed = true;
+            });
             vm.goals = goals.data;
           });
       });
   };
 
+  vm.toggleSubs = function (goal) {
+    console.log('fire');
+    console.log(goal);
+    for (var i = 0; i < vm.goals.length; i++){
+      if (vm.goals[i].id === goal.id) {
+        console.log(vm.goals[i]);
+        vm.goals[i].subsDisplayed = !vm.goals[i].subsDisplayed;
+        console.log(vm.goals[i])
+        return;
+      }
+    }
+  };vm.toggleSubs =vm.toggleSubs.bind(this);
+
   vm.test = function() {
     GoalFactory.getUserGoals(vm.payload.email)//reloads the goals dynamically
           .then(goals => {
+            goals.data.forEach(goal =>{
+              goal.subsDisplayed = true;
+            });
             vm.goals = goals.data;
           });
   }
