@@ -1,7 +1,7 @@
 <h3>Goals</h3>
 <div class="col">
     <!-- Modal Trigger -->
-    <a class='btn' data-target='newGoalModal' modal>Add a goal</a>
+    <a class="btn" data-target="newGoalModal" modal>Add a goal</a>
 </div>
 
 <br>
@@ -15,12 +15,12 @@
         <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
         <!-- TODO: Create link to settings/update -->
         <!-- <a> -->
-          <i ng-click='vm.toggleSubs(goal)' class="material-icons right" style="margin: 0px 15px 0px 0px;">settings</i>
-          <i ng-click='vm.deleteGoal(goal.id)' class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i>
-          <a class='btn right' ng-click='vm.toggleAdd(goal)' style="margin: 0px 15px 0px 0px;">Add subgoal</a>
+          <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 0px 15px 0px 0px;">settings</i>
+          <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i>
+          <a class="btn right" ng-click="vm.toggleAdd(goal)" style="margin: 0px 15px 0px 0px;">Add subgoal</a>
         <!-- </a> -->
       </li>
-      <div ng-show='goal.addDisplayed' class="row">
+      <div ng-show="goal.addDisplayed" class="row">
         <form ng-submit="vm.addGoal(goal.id)">
           <div class="row">
             <div class="input-field">
@@ -29,10 +29,10 @@
           </div>
         </form>
      </div>
-      <div ng-show='goal.subsDisplayed'>
+      <div ng-show="goal.subsDisplayed">
         <div ng-repeat="sub in vm.goals | filter: {GoalId: goal.id}">
           <li class="collection-item">{{sub.goalName}}
-          <i ng-click='vm.deleteGoal(sub.id)' class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i></li>
+          <i ng-click="vm.deleteGoal(sub.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i></li>
         </div>
       </div>
     </ul>
