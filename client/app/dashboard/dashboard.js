@@ -65,7 +65,9 @@
         return;
       }
     }
-  };vm.toggleSubs =vm.toggleSubs.bind(this);
+  };
+  //not currently working  
+  vm.toggleSubs =vm.toggleSubs.bind(this);
 
   vm.test = function() {
     GoalFactory.getUserGoals(vm.payload.email)//reloads the goals dynamically
