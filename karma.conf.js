@@ -12,10 +12,29 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-    'https://cdn.auth0.com/js/lock/10.8/lock.min.js',
-      'spec/**/*Spec.js',
-      'client/**/**/*.js'
-
+      "https://code.jquery.com/jquery-3.1.1.slim.min.js",
+      "https://code.jquery.com/jquery-3.1.1.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css",
+      "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js",
+      "client/bower_components/auth0-lock/build/lock.js",
+      "client/bower_components/angular-lock/dist/angular-lock.js",
+      "client/bower_components/angular-jwt/dist/angular-jwt.js",
+      "client/app/auth/auth0-variables.js",
+      'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-mocks.js',
+      "client/app/app.js",
+      "client/app/GoalFactory.js",
+      "client/app/app.run.js",
+      "client/app/auth/auth.js",
+      "client/app/dashboard/dashboard.js",
+      "client/app/goal-complete/goal-complete.js",
+      "client/app/goal-details/goal-details.js",
+      "client/app/goal-new/goal-new.js",
+      "client/app/services/auth.js",
+      "client/app/services/user.js",
+      'spec/controllerSpec.js'
     ],
 
 
