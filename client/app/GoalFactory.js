@@ -59,7 +59,7 @@
     const updateGoal = (id, data) =>
       $http({
         method: 'PUT',
-        url: `api/goals/${id}`,
+        url: `api/goal/${id}`,
         data: data
       });
 
