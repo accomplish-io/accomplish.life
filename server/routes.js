@@ -81,8 +81,13 @@ module.exports = function(app, express, db) {
 
   app.delete('/api/goal/:id', function(req, res) {
     db.Goal.destroy({
-      where: { id: req.params.id }
+      where: { GoalId: req.params.id }
     })
+      .then(function() {
+        db.Goal.destroy({
+          where: { id: req.params.id }
+        });
+      })
       .then(function() {
         res.send('Task deleted');
       });
