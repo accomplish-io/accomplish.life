@@ -19,7 +19,7 @@
         GoalFactory.getUserGoals(vm.payload.email)
           .then(goals => {
             goals.data.forEach(goal =>{
-              goal.subsDisplayed = true;
+              goal.subsDisplayed = false;
               goal.addDisplayed = false;
             });
             vm.goals = goals.data;
@@ -38,7 +38,7 @@
 
       vm.deleteGoal = function(id) {
         GoalFactory.deleteGoal(id)
-        .then(function() {
+          .then(function() {
             GoalFactory.getUserGoals(vm.payload.email)
               .then(goals => {
                 goals.data.forEach(goal =>{
@@ -68,8 +68,9 @@
       };
 
       // Update goal completion status
-      vm.completeGoal = function(goal) {
-        GoalFactory.updateGoal(goal.id, {complete: true})
+      vm.updateCompleteGoal = function(goal) {
+        goal.complete = !goal.complete;
+        GoalFactory.updateGoal(goal.id, {complete: goal.complete})
           .then(function() {
             GoalFactory.getUserGoals(vm.payload.email)
               .then(goals => {
