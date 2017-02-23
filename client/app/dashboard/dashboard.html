@@ -15,13 +15,13 @@
         <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
           <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i>
           <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 0px 15px 0px 0px;">swap_vertical_circle</i>
-          <a class="btn right" ng-click="vm.toggleAdd(goal)" style="margin: 0px 15px 0px 0px;">Add subgoal</a>
+          <i ng-click="vm.toggleAdd(goal)" class="material-icons right" style="margin: 0px 15px 0px 0px;">library_add</i>
       </li>
       <div ng-show="goal.addDisplayed" class="row">
         <form ng-submit="vm.addGoal(goal.id)">
           <div class="row">
             <div class="input-field" style="margin: 0px 40px 0px 40px;">
-              <input ng-model="vm.goal" placeholder="Add a New Goal" required>
+              <input ng-model="vm.goal" placeholder="Add a New Sub-Goal" required>
             </div>
           </div>
         </form>
