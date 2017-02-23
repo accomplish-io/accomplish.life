@@ -10,17 +10,18 @@
 <div ng-repeat="goal in vm.goals | filter:{complete: false, GoalId: null}">
   <div class="collapsible-header" style="padding-right: 0px">
     <ul class="collection with-header">
+      <span>
       <li class="collection-header">
-        <canvas id="base" class="chart-horizontal-bar" chart-data="vm.data" chart-labels="vm.labels" chart-options="vm.options"></canvas>
-        <br/>
         <input ng-click="vm.updateCompleteGoal(goal)" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}"/>
         <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
-          <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i>
-          <i ng-click="vm.toggleAdd(goal)" class="material-icons right" style="margin: 0px 15px 0px 0px;">library_add</i>
+        <canvas id="base" height="20" width=" 180" class="chart-horizontal-bar" chart-data="vm.data" chart-labels="vm.labels" chart-options="vm.options" style="height: 40px"></canvas>
+          <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">delete</i>
+          <i ng-click="vm.toggleAdd(goal)" class="material-icons right" style="margin: 10px 15px 10px 0px;">library_add</i>
           <span ng-if="goal.hasChildren">
-            <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 0px 15px 0px 0px;">swap_vertical_circle</i>
+            <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 10px 15px 10px 0px;">swap_vertical_circle</i>
           </span>
       </li>
+      </br>
       <div ng-show="goal.addDisplayed" class="row">
         <form ng-submit="vm.addGoal(goal.id)">
           <div class="row">
