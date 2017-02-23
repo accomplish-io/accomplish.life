@@ -15,35 +15,36 @@
           .then(user => {
             vm.user = user.data[0];
           });
-      // Get user goals and render on page
-      GoalFactory.getUserGoals(vm.payload.email)
-        .then(goals => {
-          vm.prepGoals(goals);
-          goals.data.forEach(goal => {
-            goal.subsDisplayed = false;
-          });
-          return Promise.all(goals.data.map(function(value) {
-            return GoalFactory.getProgress(value.id);
-          }));
-        })
-        .then(progress => {
-          var data = progress.map(function(value) {
-            return {
-              goal: value.data[0].GoalId,
-              progress: value.data.reduce(function(prev, next) {
-                return angular.isNumber(next.number) ? prev + next.number : prev;
-              }, 0)
-            };
-          });
-          var progress = data.reduce(function(prev, next) {
-            prev[next.goal] = next.progress;
-            return prev;
-          }, {});
-          vm.goals.forEach(function(value) {
-            value.progress = [progress[value.id], Math.random() * 100];
-          });
-        });
 
+        // Get user goals and render on page
+        GoalFactory.getUserGoals(vm.payload.email)
+          .then(goals => {
+            vm.prepGoals(goals);
+            goals.data.forEach(goal => {
+              goal.subsDisplayed = false;
+            });
+            return Promise.all(goals.data.map(function(value) {
+              return GoalFactory.getProgress(value.id);
+            }));
+          })
+          .then(progress => {
+            var data = progress.map(function(value) {
+              return {
+                goal: value.data[0].GoalId,
+                progress: value.data.reduce(function(prev, next) {
+                  return angular.isNumber(next.number) ? prev + next.number : prev;
+                }, 0)
+              };
+            });
+            var progress = data.reduce(function(prev, next) {
+              prev[next.goal] = next.progress;
+              return prev;
+            }, {});
+            vm.goals.forEach(function(value) {
+              value.progress = [progress[value.id], Math.random() * 100];
+            });
+          });
+      });
 
       vm.prepGoals = goals => {
         goals.data.forEach(goal => {
