@@ -42,7 +42,7 @@
             GoalFactory.getUserGoals(vm.payload.email)
               .then(goals => {
                 goals.data.forEach(goal => {
-                  goal.subsDisplayed = true;
+                  // goal.subsDisplayed = true;
                   goal.addDisplayed = false;
                 });
                 vm.goals = goals.data;
