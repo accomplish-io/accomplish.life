@@ -16,37 +16,49 @@
             vm.user = user.data[0];
           });
 
-      // Get user goals and render on page
-      GoalFactory.getUserGoals(vm.payload.email)
-        .then(goals => {
-          vm.goals = goals.data;
-          return Promise.all(goals.data.map(function(value) {
-            return GoalFactory.getProgress(value.id);
+        // Get user goals and render on page
+        GoalFactory.getUserGoals(vm.payload.email)
+          .then(goals => {
+            vm.prepGoals(goals);
+            goals.data.forEach(goal => {
+              goal.subsDisplayed = false;
+            });
+            return Promise.all(goals.data.map(function(value) {
+              return GoalFactory.getProgress(value.id);
+            }));
           })
-          );
-        }).then(progress => {
-          var data = progress.map(function(value) {
-            return {
-              goal: value.data[0].GoalId,
-              progress: value.data.reduce(function(prev, next) {
-                return angular.isNumber(next.number) ? prev + next.number : prev;
-              }, 0)
-            };
+          .then(progress => {
+            var data = progress.map(function(value) {
+              return {
+                goal: value.data[0].GoalId,
+                progress: value.data.reduce(function(prev, next) {
+                  return angular.isNumber(next.number) ? prev + next.number : prev;
+                }, 0)
+              };
+            });
+            var progress = data.reduce(function(prev, next) {
+              prev[next.goal] = next.progress;
+              return prev;
+            }, {});
+            vm.goals.forEach(function(value) {
+              value.progress = [progress[value.id], Math.random() * 100];
+            });
           });
-          var progress = data.reduce(function(prev, next) {
-            prev[next.goal] = next.progress;
-            return prev;
-          }, {});
-          vm.goals.forEach(function(value) {
-            value.progress = [progress[value.id], Math.random() * 100];
-          });
-          console.log(vm.goals);
-          vm.goals.forEach(goal =>{
-            goal.subsDisplayed = true;
-            goal.addDisplayed = false;
-          });
-        });
       });
+
+      vm.prepGoals = goals => {
+        goals.data.forEach(goal => {
+          if(goal.GoalId !== null) {
+            goals.data.forEach(parent => {
+              if (parent.id === goal.GoalId) {
+                parent.hasChildren = true;
+              }
+            });
+          }
+          goal.addDisplayed = false;
+        });
+        vm.goals = goals.data;
+      };
 
       vm.data = [
         [65],
@@ -80,7 +92,6 @@
 
       // Open up sub-goals
       vm.toggleSubs = function (goal) {
-        // console.log('fire');
         goal.subsDisplayed = !goal.subsDisplayed;
       };
 
@@ -90,16 +101,12 @@
 
       vm.deleteGoal = function(id) {
         GoalFactory.deleteGoal(id)
-        .then(function() {
-          GoalFactory.getUserGoals(vm.payload.email)
-            .then(goals => {
-              goals.data.forEach(goal =>{
-                goal.subsDisplayed = true;
-                goal.addDisplayed = false;
+          .then(function() {
+            GoalFactory.getUserGoals(vm.payload.email)
+              .then(function(goals) {
+                vm.prepGoals(goals);
               });
-              vm.goals = goals.data;
-            });
-        });
+          });
       };
 
       // Add the entered goal into the database
@@ -107,12 +114,8 @@
         GoalFactory.createGoal(vm.goal, vm.payload.email, id)
           .then(function() {
             GoalFactory.getUserGoals(vm.payload.email)
-              .then(goals => {
-                goals.data.forEach(goal =>{
-                  goal.subsDisplayed = true;
-                  goal.addDisplayed = false;
-                });
-                vm.goals = goals.data;
+              .then(function(goals) {
+                vm.prepGoals(goals);
               });
           });
         // Reset entry field
@@ -120,16 +123,13 @@
       };
 
       // Update goal completion status
-      vm.completeGoal = function(goal) {
-        GoalFactory.updateGoal(goal.id, {complete: true})
+      vm.updateCompleteGoal = function(goal) {
+        goal.complete = !goal.complete;
+        GoalFactory.updateGoal(goal.id, {complete: goal.complete})
           .then(function() {
             GoalFactory.getUserGoals(vm.payload.email)
-              .then(goals => {
-                goals.data.forEach(goal =>{
-                  goal.subsDisplayed = true;
-                  goal.addDisplayed = false;
-                });
-                vm.goals = goals.data;
+              .then(function(goals) {
+                vm.prepGoals(goals);
               });
           });
       };
