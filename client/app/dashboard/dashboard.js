@@ -82,30 +82,5 @@
           });
       };
 
-
-  $scope.series = ['Actual Progress', 'Expected Progress'];
-
-  $scope.options = {
-    scales: {
-      yAxes: [
-        {
-          display: true
-        }
-      ],
-      xAxes: [
-        {
-          display: true,
-          ticks: {
-            beginAtZero: true,
-            max: 100
-          },
-          gridLines: {
-            display: false
-          }
-        }
-      ],
-    }
-  };
-
-});
-}());
+  });
+})();
