@@ -61,7 +61,7 @@ var Frequency = db.define('Frequency', {
 });
 
 var Progress = db.define('Progress', {
-  number: Sequelize.DECIMAL(10, 2),
+  number: Sequelize.INTEGER,
   date: {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW
