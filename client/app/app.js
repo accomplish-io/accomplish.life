@@ -6,9 +6,10 @@ angular.module('app', [
   'details',
   'auth0.lock',
   'angular-jwt',
-  'ui.router'
-  ])
-.config(config)
+  'ui.router',
+  'chart.js'
+])
+.config(config);
 
 config.$inject = ['$stateProvider', 'lockProvider', '$urlRouterProvider'];
 
@@ -34,14 +35,12 @@ function config($stateProvider, lockProvider, $urlRouterProvider) {
       templateUrl: './app/goal-new/goal-new.html',
       controllerAs: 'vm'
     })
-    // TODO: add goal :id to route?
     .state('complete', {
       url: '/auth',
       controller: 'CompleteCtrl',
       templateUrl: './app/goal-complete/goal-complete.html',
       controllerAs: 'vm'
     })
-    // TODO: add goal :id to route?
     .state('details', {
       url: '/auth',
       controller: 'DetailsCtrl',
