@@ -2,7 +2,7 @@ module.exports = function(app, express, db) {
   //add routes and controller based on database endpoints
 
   app.post('/api/auth', function(req, res) {
-    console.log('Attempting to create new user');
+    //console.log('Attempting to create new user');
     //console.log('Reqest body: ', req.body);
     db.User.findOrCreate({where: {
       email: req.body.email,
@@ -42,14 +42,14 @@ module.exports = function(app, express, db) {
       }
     })
     .then(function (user) {
-      console.log(user.dataValues.id);
+      //console.log(user.dataValues.id);
       db.Goal.findAll({
         where: {
           UserId: user.dataValues.id
         }
       })
       .then(function(results) {
-        console.log('Results ******************************** ' + results);
+        //console.log('Results ******************************** ' + results);
         res.send(results);
       });
     });
@@ -98,10 +98,21 @@ module.exports = function(app, express, db) {
       });
   });
 
-  app.post('/api/progress/:id', function(req, res) {
+  app.post('/api/progress/:goal', function(req, res) {
     db.Progress.create({
-      GoalId: req.params.id,
+      GoalId: req.params.goal,
       number: req.body.number
+    })
+    .then(function(progress) {
+      res.send(progress);
+    });
+  });
+
+  app.get('/api/progress/:goal', function(req, res) {
+    db.Progress.findAll({
+      where: {
+        GoalId: req.params.goal
+      }
     })
     .then(function(progress) {
       res.send(progress);
