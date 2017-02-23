@@ -46,7 +46,8 @@ module.exports = function(app, express, db) {
       db.Goal.findAll({
         where: {
           UserId: user.dataValues.id
-        }
+        },
+        include: [db.Progress]
       })
       .then(function(results) {
         //console.log('Results ******************************** ' + results);
