@@ -5,7 +5,7 @@
     .module('dashboard', ['ui.materialize', '720kb.datepicker'])
     .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, GoalFactory) {
 
- var vm = this;
+      var vm = this;
 
       // Get user details from auth
       lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
