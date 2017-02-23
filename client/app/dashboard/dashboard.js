@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('dashboard', ['ui.materialize'])
+    .module('dashboard', ['ui.materialize', '720kb.datepicker'])
     .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, GoalFactory) {
 
       var vm = this;
@@ -84,4 +84,3 @@
 
   });
 })();
-

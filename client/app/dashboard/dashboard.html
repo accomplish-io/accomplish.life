@@ -66,16 +66,20 @@
 </div>
 
 <!-- Modal Structure -->
-<div id="newGoalModal" class="modal">
+<div id="newGoalModal" class="modal" style=" width: 85%; height: 70%; } ">
   <div class="modal-content">
     <div class="row">
-      <form ng-submit="vm.addGoal()">
         <div class="row">
           <div class="input-field">
             <input ng-model="vm.goal" placeholder="Add a New Goal" required>
           </div>
         </div>
-      </form>
+       <datepicker>
+          <input ng-model="date" type="text" placeholder="Add an end date for your goal" required/>
+       </datepicker>
    </div>
   </div>
+   <div class="right">
+        <a href="#!" ng-click="vm.addGoal()" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Goal!</a>
+    </div>
 </div>
