@@ -11,17 +11,13 @@
   <div class="collapsible-header" style="padding-right: 0px">
     <ul class="collection with-header">
       <li class="collection-header">
-
         <canvas id="base" class="chart-horizontal-bar" chart-data="vm.data" chart-labels="vm.labels" chart-options="vm.options"></canvas>
         <br/>
         <input ng-click="vm.completeGoal(goal)" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}"/>
         <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
-        <!-- TODO: Create link to settings/update -->
-        <!-- <a> -->
           <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 0px 15px 0px 0px;">settings</i>
           <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i>
           <a class="btn right" ng-click="vm.toggleAdd(goal)" style="margin: 0px 15px 0px 0px;">Add subgoal</a>
-        <!-- </a> -->
       </li>
       <div ng-show="goal.addDisplayed" class="row">
         <form ng-submit="vm.addGoal(goal.id)">
@@ -50,17 +46,12 @@
 <h3>Completed</h3>
 <div ng-repeat="goal in vm.goals | filter:{complete: true, GoalId: null}">
   <div class="collapsible-header" style="padding-right: 0px">
-
     <ul class="collection with-header">
       <li class="collection-header">
-
         <input type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}" disabled="disabled" />
         <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
-        <!-- TODO: Create link to settings/update -->
-        <!-- <a> -->
           <i class="material-icons right" style="margin: 0px 15px 0px 0px;">settings</i>
           <i ng-click='vm.deleteGoal(goal.id)' class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i>
-        <!-- </a> -->
       </li>
       <div ng-repeat="sub in vm.goals | filter: {GoalId: goal.id}">
         <li class="collection-item">{{sub.goalName}}</li>
