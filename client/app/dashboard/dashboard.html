@@ -13,12 +13,9 @@
       <li class="collection-header">
         <input ng-click="vm.updateCompleteGoal(goal)" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}"/>
         <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
-        <!-- TODO: Create link to settings/update -->
-        <!-- <a> -->
           <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i>
           <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 0px 15px 0px 0px;">swap_vertical_circle</i>
           <a class="btn right" ng-click="vm.toggleAdd(goal)" style="margin: 0px 15px 0px 0px;">Add subgoal</a>
-        <!-- </a> -->
       </li>
       <div ng-show="goal.addDisplayed" class="row">
         <form ng-submit="vm.addGoal(goal.id)">
@@ -51,11 +48,8 @@
       <li class="collection-header">
         <input ng-click="vm.updateCompleteGoal(goal)" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}"  />
         <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
-        <!-- TODO: Create link to settings/update -->
-        <!-- <a> -->
           <i ng-click='vm.deleteGoal(goal.id)' class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i>
           <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 0px 15px 0px 0px;">swap_vertical_circle</i>
-        <!-- </a> -->
       </li>
       <div ng-show="goal.subsDisplayed">
         <div ng-repeat="sub in vm.goals | filter: {GoalId: goal.id}">
@@ -63,7 +57,6 @@
             <input type="checkbox" id="{{sub.id}}" ng-checked="{{sub.complete}}" disabled="disabled" />
             <label for="{{sub.id}}" style="display: initial;">{{sub.goalName}}
             </label>
-            <!-- <i ng-click="vm.deleteGoal(sub.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i> -->
           </li>
         </div>
       </div>
