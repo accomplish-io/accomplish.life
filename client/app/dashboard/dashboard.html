@@ -15,7 +15,9 @@
         <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
           <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i>
           <i ng-click="vm.toggleAdd(goal)" class="material-icons right" style="margin: 0px 15px 0px 0px;">library_add</i>
-          <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 0px 15px 0px 0px;">swap_vertical_circle</i>
+          <span ng-if="goal.hasChildren">
+            <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 0px 15px 0px 0px;">swap_vertical_circle</i>
+          </span>
       </li>
       <div ng-show="goal.addDisplayed" class="row">
         <form ng-submit="vm.addGoal(goal.id)">
@@ -27,7 +29,7 @@
         </form>
       </div>
       <div ng-show="goal.subsDisplayed">
-        <div ng-repeat="sub in vm.goals | filter: {GoalId: goal.id}">
+        <div ng-repeat="sub in vm.goals | filter: {GoalId: goal.id}:true">
           <li class="collection-item">
             <input ng-click="vm.updateCompleteGoal(sub)" type="checkbox" id="{{sub.id}}" ng-checked="{{sub.complete}}"/>
             <label for="{{sub.id}}" style="display: initial;">{{sub.goalName}}</label>
@@ -48,10 +50,12 @@
         <input ng-click="vm.updateCompleteGoal(goal)" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}"  />
         <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
           <i ng-click='vm.deleteGoal(goal.id)' class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i>
-          <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 0px 15px 0px 0px;">swap_vertical_circle</i>
+          <span ng-if="goal.hasChildren">
+            <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 0px 15px 0px 0px;">swap_vertical_circle</i>
+          </span>
       </li>
       <div ng-show="goal.subsDisplayed">
-        <div ng-repeat="sub in vm.goals | filter: {GoalId: goal.id}">
+        <div ng-repeat="sub in vm.goals | filter: {GoalId: goal.id}:true">
           <li class="collection-item">
             <input type="checkbox" id="{{sub.id}}" ng-checked="{{sub.complete}}" disabled="disabled" />
             <label for="{{sub.id}}" style="display: initial;">{{sub.goalName}}</label>
