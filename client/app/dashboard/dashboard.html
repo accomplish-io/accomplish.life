@@ -32,10 +32,10 @@
       <div ng-show="goal.subsDisplayed">
         <div ng-repeat="sub in vm.goals | filter: {GoalId: goal.id}">
           <li class="collection-item">
-            <input ng-click="vm.completeGoal(sub)" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}"/>
-            <label for="{{goal.id}}" style="display: initial;">{{sub.goalName}}
+            <input ng-click="vm.completeGoal(sub)" type="checkbox" id="{{sub.id}}" ng-checked="{{goal.complete}}"/>
+            <label for="{{sub.id}}" style="display: initial;">{{sub.goalName}}
             </label>
-            <i ng-click='vm.deleteGoal(sub.id)' class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i>
+            <i ng-click="vm.deleteGoal(sub.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i>
           </li>
         </div>
       </div>
