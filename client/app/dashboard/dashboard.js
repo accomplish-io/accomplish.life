@@ -5,9 +5,7 @@
     .module('dashboard', ['ui.materialize', '720kb.datepicker'])
     .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, GoalFactory) {
 
-      var vm = this;
-
-
+ var vm = this;
 
       // Get user details from auth
       lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
@@ -26,14 +24,13 @@
             });
             vm.goals = goals.data;
           });
-      })
+      });
 
       // Open up sub-goals
       vm.toggleSubs = function (goal) {
         console.log('fire');
         goal.subsDisplayed = !goal.subsDisplayed;
       };
-
 
       vm.toggleAdd = function (goal) {
         goal.addDisplayed = !goal.addDisplayed;
@@ -84,7 +81,6 @@
               });
           });
       };
+
   });
 })();
-
-
