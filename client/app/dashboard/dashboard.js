@@ -153,10 +153,8 @@
         }, []);
         GoalFactory.updateGoal(goal.id, {complete: goal.complete})
           .then(function() {
-            console.log('Before .then: ', vm.displayed)
             GoalFactory.getUserGoals(vm.payload.email)
               .then(function(goals) {
-                console.log('After .then: ', vm.displayed);
                 vm.prepGoals(goals);
                 vm.goals.forEach(function(goal) {
                   if (vm.displayed.includes(goal.id)) {
