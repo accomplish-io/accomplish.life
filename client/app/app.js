@@ -6,7 +6,7 @@ angular.module('app', [
   'details',
   'auth0.lock',
   'angular-jwt',
-  'ui.router',
+  'ui.router'
   ])
 .config(config)
 
