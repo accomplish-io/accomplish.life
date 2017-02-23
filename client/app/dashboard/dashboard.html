@@ -11,6 +11,8 @@
   <div class="collapsible-header" style="padding-right: 0px">
     <ul class="collection with-header">
       <li class="collection-header">
+        <canvas id="base" class="chart-horizontal-bar" chart-data="vm.data" chart-labels="vm.labels" chart-options="vm.options"></canvas>
+        <br/>
         <input ng-click="vm.updateCompleteGoal(goal)" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}"/>
         <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
           <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i>

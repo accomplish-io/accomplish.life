@@ -10,7 +10,7 @@ if(!process.env.PORT) {
   app.use(morgan('dev'));
 }
 
-app.use(bodyParser.urlencoded({ extended: true }));
+//encoded({ extended: true });
 app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/../client'));
