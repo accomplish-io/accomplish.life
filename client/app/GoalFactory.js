@@ -89,4 +89,4 @@
       getProgress: getProgress
     };
   };
-}());
+})();
