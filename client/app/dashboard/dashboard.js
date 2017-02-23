@@ -20,9 +20,6 @@
         GoalFactory.getUserGoals(vm.payload.email)
           .then(goals => {
             vm.prepGoals(goals);
-            goals.data.forEach(goal => {
-              goal.subsDisplayed = false;
-            });
             return Promise.all(goals.data.map(function(value) {
               return GoalFactory.getProgress(value.id);
             }));
@@ -55,6 +52,7 @@
               }
             });
           }
+          goal.subsDisplayed = false;
           goal.addDisplayed = false;
         });
         vm.goals = goals.data;
@@ -100,22 +98,44 @@
       };
 
       vm.deleteGoal = function(id) {
+        vm.displayed = vm.goals.reduce(function(memo, goal) {
+          if (goal.subsDisplayed) {
+            return memo.concat([goal.id]);
+          }
+          return memo;
+        }, []);
         GoalFactory.deleteGoal(id)
           .then(function() {
             GoalFactory.getUserGoals(vm.payload.email)
               .then(function(goals) {
                 vm.prepGoals(goals);
+                vm.goals.forEach(function(goal) {
+                  if (vm.displayed.includes(goal.id)) {
+                    goal.subsDisplayed = true;
+                  }
+                });
               });
           });
       };
 
       // Add the entered goal into the database
       vm.addGoal = function(id) {
+        vm.displayed = vm.goals.reduce(function(memo, goal) {
+          if (goal.subsDisplayed) {
+            return memo.concat([goal.id]);
+          }
+          return memo;
+        }, []);
         GoalFactory.createGoal(vm.goal, vm.payload.email, id)
           .then(function() {
             GoalFactory.getUserGoals(vm.payload.email)
               .then(function(goals) {
                 vm.prepGoals(goals);
+                vm.goals.forEach(function(goal) {
+                  if (vm.displayed.includes(goal.id)) {
+                    goal.subsDisplayed = true;
+                  }
+                });
               });
           });
         // Reset entry field
@@ -125,11 +145,22 @@
       // Update goal completion status
       vm.updateCompleteGoal = function(goal) {
         goal.complete = !goal.complete;
+        vm.displayed = vm.goals.reduce(function(memo, goal) {
+          if (goal.subsDisplayed) {
+            return memo.concat([goal.id]);
+          }
+          return memo;
+        }, []);
         GoalFactory.updateGoal(goal.id, {complete: goal.complete})
           .then(function() {
             GoalFactory.getUserGoals(vm.payload.email)
               .then(function(goals) {
                 vm.prepGoals(goals);
+                vm.goals.forEach(function(goal) {
+                  if (vm.displayed.includes(goal.id)) {
+                    goal.subsDisplayed = true;
+                  }
+                });
               });
           });
       };
