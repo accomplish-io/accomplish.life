@@ -38,16 +38,45 @@
             return prev;
           }, {});
           vm.goals.forEach(function(value) {
-            value.progress = progress[value.id];
+            value.progress = [progress[value.id], Math.random() * 100];
           });
           console.log(vm.goals);
           vm.goals.forEach(goal =>{
             goal.subsDisplayed = true;
             goal.addDisplayed = false;
           });
-
         });
       });
+
+      vm.data = [
+        [65],
+        [28]
+      ];
+
+      vm.labels = ['Progress'];
+      vm.series = ['Actual Progress', 'Expected Progress'];
+
+      vm.options = {
+        scales: {
+          yAxes: [
+            {
+              display: true
+            }
+          ],
+          xAxes: [
+            {
+              display: true,
+              ticks: {
+                beginAtZero: true,
+                max: 100
+              },
+              gridLines: {
+                display: false
+              }
+            }
+          ],
+        }
+      };
 
       // Open up sub-goals
       vm.toggleSubs = function (goal) {
