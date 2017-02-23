@@ -35,14 +35,12 @@ function config($stateProvider, lockProvider, $urlRouterProvider) {
       templateUrl: './app/goal-new/goal-new.html',
       controllerAs: 'vm'
     })
-// TODO: add goal :id to route?
     .state('complete', {
       url: '/auth',
       controller: 'CompleteCtrl',
       templateUrl: './app/goal-complete/goal-complete.html',
       controllerAs: 'vm'
     })
-// TODO: add goal :id to route?
     .state('details', {
       url: '/auth',
       controller: 'DetailsCtrl',
@@ -67,4 +65,4 @@ function config($stateProvider, lockProvider, $urlRouterProvider) {
     // });
 
   $urlRouterProvider.otherwise('/home');
-}
+};
