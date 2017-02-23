@@ -63,6 +63,20 @@
         data: data
       });
 
+    const postProgress = (goalId, data) =>
+      $http({
+        method: 'POST',
+        url: `api/progress/${goalId}`,
+        data: data
+      });
+
+    const getProgress = (goalId) =>
+      $http({
+        method: 'GET',
+        url: `api/progress/${goalId}`
+      });
+
+
     return {
       findOrCreateUser: findOrCreateUser,
       findUser: findUser,
@@ -70,7 +84,9 @@
       createGoal: createGoal,
       updateGoal: updateGoal,
       deleteGoal: deleteGoal,
-      updateUser: updateUser
-    }
+      updateUser: updateUser,
+      postProgress: postProgress,
+      getProgress: getProgress
+    };
   };
 }());
