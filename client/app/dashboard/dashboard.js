@@ -17,7 +17,7 @@
           });
 
       // Get user goals and render on page
-        GoalFactory.getUserGoals(vm.payload.email)
+      GoalFactory.getUserGoals(vm.payload.email)
         .then(goals => {
           vm.goals = goals.data;
           return Promise.all(goals.data.map(function(value) {
