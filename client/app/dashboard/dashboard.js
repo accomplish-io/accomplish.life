@@ -18,7 +18,7 @@
         // Get user goals and render on page
         GoalFactory.getUserGoals(vm.payload.email)
           .then(goals => {
-            goals.data.forEach(goal =>{
+            goals.data.forEach(goal => {
               goal.subsDisplayed = false;
               goal.addDisplayed = false;
             });
@@ -41,7 +41,7 @@
           .then(function() {
             GoalFactory.getUserGoals(vm.payload.email)
               .then(goals => {
-                goals.data.forEach(goal =>{
+                goals.data.forEach(goal => {
                   goal.subsDisplayed = true;
                   goal.addDisplayed = false;
                 });
@@ -56,7 +56,7 @@
           .then(function() {
             GoalFactory.getUserGoals(vm.payload.email)
               .then(goals => {
-                goals.data.forEach(goal =>{
+                goals.data.forEach(goal => {
                   // goal.subsDisplayed = true;
                   goal.addDisplayed = false;
                 });
@@ -74,7 +74,7 @@
           .then(function() {
             GoalFactory.getUserGoals(vm.payload.email)
               .then(goals => {
-                goals.data.forEach(goal =>{
+                goals.data.forEach(goal => {
                   // goal.subsDisplayed = true;
                   goal.addDisplayed = false;
                 });
