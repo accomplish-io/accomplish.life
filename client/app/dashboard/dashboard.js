@@ -26,30 +26,8 @@
                 return angular.isNumber(next.number) ? prev + next.number : prev;
               }, 0)) / goal.number) * 100 : 70],
               [goal.due ? ((new Date() - new Date(goal.start)) / (new Date(goal.due) - new Date(goal.start))) * 100 : 50]];
-            vm.prepGoals(goals);
-            return Promise.all(goals.data.map(function(value) {
-              return GoalFactory.getProgress(value.id);
-            }));
-          })
-          .then(progress => {
-            var data = progress.map(function(value) {
-              return {
-                goal: value.data[0].GoalId,
-                progress: value.data.reduce(function(prev, next) {
-                  return angular.isNumber(next.number) ? prev + next.number : prev;
-                }, 0)
-              };
-            });
-            var progress = data.reduce(function(prev, next) {
-              prev[next.goal] = next.progress;
-              return prev;
-            }, {});
-            vm.goals.forEach(function(value) {
-              value.progress = [progress[value.id], Math.random() * 100];
             });
             vm.prepGoals(goals);
-
-            console.log(vm.goals);
           });
       });
 
