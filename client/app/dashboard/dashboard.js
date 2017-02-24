@@ -6,7 +6,7 @@
     .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, GoalFactory) {
 
       var vm = this;
-      vm.quantity=false;
+      vm.quantity = false;
       vm.test = "blank";
       // Get user details from auth
       lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
