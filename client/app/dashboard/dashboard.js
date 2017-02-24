@@ -105,13 +105,7 @@
       };
 
       vm.toggleAdd = function (goal) {
-        goal.addProgDisp =false;
         goal.addDisplayed = !goal.addDisplayed;
-      };
-
-      vm.toggleAddProgress = function (goal) {
-        goal.addDisplayed = false;
-        goal.addProgDisp = !goal.addProgDisp;
       };
 
       vm.addProgress = function (goal) {
