@@ -15,11 +15,12 @@
         <input ng-click="vm.updateCompleteGoal(goal)" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}"/>
         <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
         <canvas id="base" height="20" width=" 180" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.labels" chart-options="vm.options" style="height: 40px"></canvas>
-          <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">delete</i>
-          <i ng-click="vm.toggleAdd(goal)" class="material-icons right" style="margin: 10px 15px 10px 0px;">library_add</i>
-          <span ng-if="goal.hasChildren">
-            <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 10px 15px 10px 0px;">swap_vertical_circle</i>
-          </span>
+        <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">delete_forever</i>
+        <i ng-click="vm.sendProgress(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">insert_chart</i>
+        <i ng-click="vm.toggleAdd(goal)" class="material-icons right" style="margin: 10px 15px 10px 0px;">library_add</i>
+        <span ng-if="goal.hasChildren">
+          <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 10px 15px 10px 0px;">swap_vertical_circle</i>
+        </span>
       </li>
       </br>
       <div ng-show="goal.addDisplayed" class="row">
@@ -36,7 +37,8 @@
           <li class="collection-item">
             <input ng-click="vm.updateCompleteGoal(sub)" type="checkbox" id="{{sub.id}}" ng-checked="{{sub.complete}}"/>
             <label for="{{sub.id}}" style="display: initial;">{{sub.goalName}}</label>
-            <i ng-click="vm.deleteGoal(sub.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i>
+            <i ng-click="vm.deleteGoal(sub.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete_forever</i>
+            <i ng-if="!sub.complete" ng-click="vm.sendProgress(goal.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">insert_chart</i>
           </li>
         </div>
       </div>
@@ -52,7 +54,7 @@
       <li class="collection-header">
         <input ng-click="vm.updateCompleteGoal(goal)" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}"  />
         <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
-          <i ng-click='vm.deleteGoal(goal.id)' class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i>
+          <i ng-click='vm.deleteGoal(goal.id)' class="material-icons right" style="margin: 0px 15px 0px 0px;">delete_forever</i>
           <span ng-if="goal.hasChildren">
             <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 0px 15px 0px 0px;">swap_vertical_circle</i>
           </span>
