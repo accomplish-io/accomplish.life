@@ -12,14 +12,11 @@
     <ul class="collection with-header">
       <span>
       <li class="collection-header">
-
-        <canvas id="base" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.labels" chart-options="vm.options"></canvas>
-
-        <br/>
-
         <input ng-click="vm.updateCompleteGoal(goal)" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}"/>
         <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
-        <canvas id="base" height="20" width=" 180" class="chart-horizontal-bar" chart-data="vm.data" chart-labels="vm.labels" chart-options="vm.options" style="height: 40px"></canvas>
+
+        <canvas id="base" height="20" width=" 180" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.labels" chart-options="vm.options" style="height: 40px"></canvas>
+
           <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">delete</i>
           <i ng-click="vm.toggleAdd(goal)" class="material-icons right" style="margin: 10px 15px 10px 0px;">library_add</i>
           <span ng-if="goal.hasChildren">
