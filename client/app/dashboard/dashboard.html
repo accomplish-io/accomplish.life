@@ -1,6 +1,6 @@
 <h3>Goals</h3>
 <div class="col">
-    <!-- Modal Trigger -->
+    <!-- Add Goal Modal Trigger -->
     <a class="btn" data-target="newGoalModal" modal>Add a goal</a>
 </div>
 
@@ -71,7 +71,7 @@
   </div>
 </div>
 
-<!-- Modal Structure -->
+<!-- Add Goal Modal -->
 <div id="newGoalModal" class="modal" style=" width: 85%; height: 70%; } ">
   <div class="modal-content">
     <div class="row">
@@ -114,4 +114,18 @@
       <a href="#!" ng-click="vm.addGoal()" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Goal!</a>
     </div>
   </div>
+</div>
+
+<!-- Update Progress Modal -->
+<div id="progressModal" class="modal" style="width: 45%; height: 45%;">
+  <div class="modal-content">
+    <div class="row">
+      <div class="input-field">
+        <input ng-model="vm.goal" placeholder="Add a New Goal" required>
+      </div>
+    </div>
+  </div>
+    <div class="right">
+      <a href="#!" ng-click="vm.addGoal()" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Goal!</a>
+    </div>
 </div>
