@@ -89,12 +89,12 @@
      <!-- Dropdown Structure -->
      <ul id='goalType' class='dropdown-content'>
      <li><a>Do once</a></li>
-     <li><a>Quantify your goal</a></li>
+     <li><a ng-click="vm.quantity = true">Quantify your goal</a></li>
     </ul>
 
    </div>
 
-   <div class="row">
+   <div class="row" ng-show="vm.quantity">
   <div style="display: inline-block;">I will </div>
   <div input-field style="display: inline-block;">
     <input type="text" ng-model="vm.verb" length="20">
