@@ -11,6 +11,7 @@
       // Get user details from auth
       lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
         vm.payload = profile;
+        vm.progNum = 0;
         console.log('vm.payload ',vm.payload);
         GoalFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
           .then(user => {
@@ -25,6 +26,27 @@
                 return angular.isNumber(next.number) ? prev + next.number : prev;
               }, 0)) / goal.number) * 100 : 70],
               [goal.due ? ((new Date() - new Date(goal.start)) / (new Date(goal.due) - new Date(goal.start))) * 100 : 50]];
+            vm.prepGoals(goals);
+            console.log(goals);
+            return Promise.all(goals.data.map(function(value) {
+              return GoalFactory.getProgress(value.id);
+            }));
+          })
+          .then(progress => {
+            var data = progress.map(function(value) {
+              return {
+                goal: value.data[0].GoalId,
+                progress: value.data.reduce(function(prev, next) {
+                  return angular.isNumber(next.number) ? prev + next.number : prev;
+                }, 0)
+              };
+            });
+            var progress = data.reduce(function(prev, next) {
+              prev[next.goal] = next.progress;
+              return prev;
+            }, {});
+            vm.goals.forEach(function(value) {
+              value.progress = [progress[value.id], Math.random() * 100];
             });
             vm.prepGoals(goals);
 
@@ -40,6 +62,12 @@
                 parent.hasChildren = true;
               }
             });
+          }
+          if (goal.number === null) {
+            goal.once = true;
+          }
+          else {
+            goal.willProgress = true;
           }
           goal.subsDisplayed = false;
           goal.addDisplayed = false;
@@ -83,49 +111,65 @@
       };
 
       vm.toggleAdd = function (goal) {
+        goal.addProgDisp =false;
         goal.addDisplayed = !goal.addDisplayed;
       };
 
-      vm.deleteGoal = function(id) {
+      vm.toggleAddProgress = function (goal) {
+        goal.addDisplayed = false;
+        goal.addProgDisp = !goal.addProgDisp;
+      };
+
+      vm.addProgress = function (goal) {
+        vm.noteDisplayed();
+        GoalFactory.postProgress(vm.goal.id, vm.progNum)
+          .then(function() {
+            GoalFactory.getUserGoals(vm.payload.email)
+              .then(function(goals) {
+                vm.prepGoals(goals);
+                vm.restoreDisplayed();
+              });
+          });
+      };
+
+      vm.noteDisplayed = () => {
         vm.displayed = vm.goals.reduce(function(memo, goal) {
           if (goal.subsDisplayed) {
             return memo.concat([goal.id]);
           }
           return memo;
         }, []);
+      };
+
+      vm.restoreDisplayed = () => {
+        vm.goals.forEach(function(goal) {
+          if (vm.displayed.includes(goal.id)) {
+            goal.subsDisplayed = true;
+          }
+        });
+      }
+
+      vm.deleteGoal = function(id) {
+        vm.noteDisplayed();
         GoalFactory.deleteGoal(id)
           .then(function() {
             GoalFactory.getUserGoals(vm.payload.email)
               .then(function(goals) {
                 vm.prepGoals(goals);
-                vm.goals.forEach(function(goal) {
-                  if (vm.displayed.includes(goal.id)) {
-                    goal.subsDisplayed = true;
-                  }
-                });
+                vm.restoreDisplayed();
               });
           });
       };
 
       // Add the entered goal into the database
       vm.addGoal = function(id) {
-        vm.quantity = false;
-        vm.displayed = vm.goals.reduce(function(memo, goal) {
-          if (goal.subsDisplayed) {
-            return memo.concat([goal.id]);
-          }
-          return memo;
-        }, []);
+        vm.noteDisplayed();
         GoalFactory.createGoal(vm.goal, vm.payload.email, id)
           .then(function() {
             GoalFactory.getUserGoals(vm.payload.email)
               .then(function(goals) {
                 vm.prepGoals(goals);
-                vm.goals.forEach(function(goal) {
-                  if (vm.displayed.includes(goal.id)) {
-                    goal.subsDisplayed = true;
-                  }
-                });
+                vm.restoreDisplayed();
               });
           });
         // Reset entry field
@@ -135,22 +179,13 @@
       // Update goal completion status
       vm.updateCompleteGoal = function(goal) {
         goal.complete = !goal.complete;
-        vm.displayed = vm.goals.reduce(function(memo, goal) {
-          if (goal.subsDisplayed) {
-            return memo.concat([goal.id]);
-          }
-          return memo;
-        }, []);
+        vm.noteDisplayed();
         GoalFactory.updateGoal(goal.id, {complete: goal.complete})
           .then(function() {
             GoalFactory.getUserGoals(vm.payload.email)
               .then(function(goals) {
                 vm.prepGoals(goals);
-                vm.goals.forEach(function(goal) {
-                  if (vm.displayed.includes(goal.id)) {
-                    goal.subsDisplayed = true;
-                  }
-                });
+                vm.restoreDisplayed();
               });
           });
       };
