@@ -1,6 +1,6 @@
 <h3>Goals</h3>
 <div class="col">
-    <!-- Modal Trigger -->
+    <!-- Add Goal Modal Trigger -->
     <a class="btn" data-target="newGoalModal" modal>Add a goal</a>
 </div>
 
@@ -14,12 +14,15 @@
       <li class="collection-header">
         <input ng-click="vm.updateCompleteGoal(goal)" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}"/>
         <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
-        <canvas id="base" height="20" width=" 180" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.labels" chart-options="vm.options" style="height: 40px"></canvas>
-          <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">delete</i>
-          <i ng-click="vm.toggleAdd(goal)" class="material-icons right" style="margin: 10px 15px 10px 0px;">library_add</i>
-          <span ng-if="goal.hasChildren">
-            <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 10px 15px 10px 0px;">swap_vertical_circle</i>
-          </span>
+        <canvas id="base" height="20" width="180" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.labels" chart-options="vm.options" style="height: 40px"></canvas>
+        <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">delete_forever</i>
+        <a data-target="goalProgressModal" style="color: black;" modal>
+          <i class="material-icons right" style="margin: 10px 15px 10px 0px;">insert_chart</i>
+        </a>
+        <i ng-click="vm.toggleAdd(goal)" class="material-icons right" style="margin: 10px 15px 10px 0px;">library_add</i>
+        <span ng-if="goal.hasChildren">
+          <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 10px 15px 10px 0px;">swap_vertical_circle</i>
+        </span>
       </li>
       </br>
       <div ng-show="goal.addDisplayed" class="row">
@@ -36,7 +39,10 @@
           <li class="collection-item">
             <input ng-click="vm.updateCompleteGoal(sub)" type="checkbox" id="{{sub.id}}" ng-checked="{{sub.complete}}"/>
             <label for="{{sub.id}}" style="display: initial;">{{sub.goalName}}</label>
-            <i ng-click="vm.deleteGoal(sub.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i>
+            <i ng-click="vm.deleteGoal(sub.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete_forever</i>
+            <a ng-if="!sub.complete" data-target="subProgressModal" style="color: black;" modal>
+              <i ng-if="!sub.complete" class="material-icons right" style="margin: 0px 15px 0px 0px;">insert_chart</i>
+            </a>
           </li>
         </div>
       </div>
@@ -52,10 +58,10 @@
       <li class="collection-header">
         <input ng-click="vm.updateCompleteGoal(goal)" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}"  />
         <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
-          <i ng-click='vm.deleteGoal(goal.id)' class="material-icons right" style="margin: 0px 15px 0px 0px;">delete</i>
-          <span ng-if="goal.hasChildren">
-            <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 0px 15px 0px 0px;">swap_vertical_circle</i>
-          </span>
+        <i ng-click='vm.deleteGoal(goal.id)' class="material-icons right" style="margin: 0px 15px 0px 0px;">delete_forever</i>
+        <span ng-if="goal.hasChildren">
+          <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 0px 15px 0px 0px;">swap_vertical_circle</i>
+        </span>
       </li>
       <div ng-show="goal.subsDisplayed">
         <div ng-repeat="sub in vm.goals | filter: {GoalId: goal.id}:true">
@@ -69,48 +75,74 @@
   </div>
 </div>
 
-<!-- Modal Structure -->
+<!-- Add Goal Modal -->
 <div id="newGoalModal" class="modal" style=" width: 85%; height: 70%; } ">
   <div class="modal-content">
     <div class="row">
-        <div class="row">
-          <div class="input-field">
-            <input ng-model="vm.goal" placeholder="Add a New Goal" required>
-          </div>
+      <div class="row">
+        <div class="input-field">
+          <input ng-model="vm.goal" placeholder="Add a New Goal" required>
         </div>
+      </div>
+      <div class="row">
+        <!-- Dropdown Trigger -->
+        <a class='dropdown-button btn' href='javascript:void(0);' data-activates='goalType' dropdown data-hover="true">How will you finish your goal?</a>
+        <!-- Dropdown Structure -->
+        <ul id='goalType' class='dropdown-content'>
+          <li><a>Do once</a></li>
+          <li><a ng-click="vm.quantity = true">Quantify your goal</a></li>
+        </ul>
+      </div>
+      <div class="row" ng-show="vm.quantity">
+        <div style="display: inline-block;">I will</div>
+        <div input-field style="display: inline-block;">
+          <input type="text" ng-model="vm.verb" length="20">
+          <label>do something</label>
+        </div>
+        <span style="display: inline-block;">at least</span>
+        <div input-field style="display: inline-block;">
+          <input type="text" ng-model="vm.target" length="10">
+          <label>target</label>
+        </div>
+        <div input-field style="display: inline-block;">
+          <input type="text" ng-model="vm.units" length="10">
+          <label>units</label>
+        </div>
+      </div>
+      <datepicker>
+        <input ng-model="date" type="text" placeholder="Add an end date for your goal" required/>
+      </datepicker>
+      <div class="right">
+        <a href="#!" ng-click="vm.addGoal()" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Goal!</a>
+      </div>
     </div>
+  </div>
+</div>
+
+<!-- Update Main Goal Progress Modal -->
+<div id="goalProgressModal" class="modal" style="width: 45%; height: 45%;">
+  <div class="modal-content">
     <div class="row">
-      <!-- Dropdown Trigger -->
-      <a class='dropdown-button btn' href='javascript:void(0);' data-activates='goalType' dropdown data-hover="true">
-        How will you finish your goal?
-      </a>
-      <!-- Dropdown Structure -->
-      <ul id='goalType' class='dropdown-content'>
-        <li><a>Do once</a></li>
-        <li><a ng-click="vm.quantity = true">Quantify your goal</a></li>
-      </ul>
-    </div>
-    <div class="row" ng-show="vm.quantity">
-      <div style="display: inline-block;">I will </div>
-      <div input-field style="display: inline-block;">
-        <input type="text" ng-model="vm.verb" length="20">
-        <label>do something    </label>
-      </div>
-      <span style="display: inline-block;"> at least </span>
-      <div input-field style="display: inline-block;">
-        <input type="text" ng-model="vm.target" length="10">
-        <label> target </label>
-      </div>
-      <div input-field style="display: inline-block;">
-        <input type="text" ng-model="vm.units" length="10">
-        <label> units</label>
+      <div class="input-field">
+        <input ng-model="vm.goal" required>
       </div>
     </div>
-    <datepicker>
-      <input ng-model="date" type="text" placeholder="Add an end date for your goal" required/>
-    </datepicker>
+  </div>
     <div class="right">
       <a href="#!" ng-click="vm.addGoal()" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Goal!</a>
     </div>
+</div>
+
+<!-- Update Sub Goal Progress Modal -->
+<div id="subProgressModal" class="modal" style="width: 45%; height: 45%;">
+  <div class="modal-content">
+    <div class="row">
+      <div class="input-field">
+        <input ng-model="vm.goal" required>
+      </div>
+    </div>
   </div>
+    <div class="right">
+      <a href="#!" ng-click="vm.addGoal()" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Goal!</a>
+    </div>
 </div>
