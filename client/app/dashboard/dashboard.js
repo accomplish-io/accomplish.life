@@ -128,6 +128,7 @@
 
       // Add the entered goal into the database
       vm.addGoal = function(id) {
+        vm.quantity = false;
         vm.noteDisplayed();
         GoalFactory.createGoal(vm.goal, vm.payload.email, id)
           .then(function() {
