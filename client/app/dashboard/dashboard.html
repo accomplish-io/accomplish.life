@@ -38,7 +38,7 @@
             <input ng-click="vm.updateCompleteGoal(sub)" type="checkbox" id="{{sub.id}}" ng-checked="{{sub.complete}}"/>
             <label for="{{sub.id}}" style="display: initial;">{{sub.goalName}}</label>
             <i ng-click="vm.deleteGoal(sub.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete_forever</i>
-            <i ng-if="!sub.complete" ng-click="vm.sendProgress(goal.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">insert_chart</i>
+            <i ng-if="!sub.complete" ng-click="vm.sendProgress(sub.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">insert_chart</i>
           </li>
         </div>
       </div>
