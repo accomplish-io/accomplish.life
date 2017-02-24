@@ -89,7 +89,7 @@
         <a class='dropdown-button btn' href='javascript:void(0);' data-activates='goalType' dropdown data-hover="true">How will you finish your goal?</a>
         <!-- Dropdown Structure -->
         <ul id='goalType' class='dropdown-content'>
-          <li><a>Do once</a></li>
+          <li><a ng-click="vm.quantity = false">Do once</a></li>
           <li><a ng-click="vm.quantity = true">Quantify your goal</a></li>
         </ul>
       </div>
@@ -143,6 +143,6 @@
     </div>
   </div>
     <div class="right">
-      <a href="#!" ng-click="vm.addGoal()" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Goal!</a>
+      <a href="#!" ng-click="vm.addProgress(goal)" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Goal!</a>
     </div>
 </div>

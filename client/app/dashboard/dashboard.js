@@ -13,7 +13,9 @@
         vm.payload = profile;
         vm.progNum = 0;
         vm.goals = [];
-        console.log('vm.payload ',vm.payload);
+        vm.quantity = false;
+        vm.number = null;
+        vm.unit = "";
         GoalFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
           .then(user => {
             vm.user = user.data[0];
@@ -44,6 +46,7 @@
             });
             vm.goals = goals.data;
             vm.restoreDisplayed();
+            console.log(vm.goals);
           });
       };
 
@@ -101,6 +104,8 @@
         GoalFactory.postProgress(vm.goal.id, vm.progNum)
           .then(function() {
             vm.renderGoals();
+            vm.number = null;
+            vm.unit = "";
           });
       };
 
@@ -113,7 +118,6 @@
 
       // Add the entered goal into the database
       vm.addGoal = function(id) {
-        vm.quantity = false;
         GoalFactory.createGoal(vm.goal, vm.payload.email, id)
           .then(function() {
             vm.renderGoals()
