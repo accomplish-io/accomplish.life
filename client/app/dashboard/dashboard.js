@@ -118,12 +118,15 @@
 
       // Add the entered goal into the database
       vm.addGoal = function(id) {
-        GoalFactory.createGoal(vm.goal, vm.payload.email, id)
+        GoalFactory.createGoal(vm.goal, vm.payload.email, id, vm.date, vm.number, vm.units)
           .then(function() {
             vm.renderGoals()
           });
         // Reset entry field
         vm.goal = '';
+        vm.number = null;
+        vm.date = null;
+        vm.units = '';
       };
 
       // Update goal completion status

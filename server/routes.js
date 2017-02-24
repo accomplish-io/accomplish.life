@@ -71,7 +71,9 @@ module.exports = function(app, express, db) {
           goalName: req.body.goalName,
           public: req.body.public,
           GoalId: req.body.GoalId,
-          number: req.body.number
+          number: req.body.number,
+          units: req.body.units,
+          due: req.body.due
         })
           .then(function(goal) {
             res.send(goal);
