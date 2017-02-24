@@ -38,8 +38,9 @@
               return prev;
             }, {});
             vm.goals.forEach(function(value) {
-              value.progress = [progress[value.id], Math.random() * 100];
+              value.progress = [[progress[value.id]], [Math.random() * 100]];
             });
+            console.log(vm.goals);
           });
       });
 
