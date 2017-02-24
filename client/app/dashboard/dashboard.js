@@ -6,7 +6,8 @@
     .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, GoalFactory) {
 
       var vm = this;
-
+      vm.quantity = false;
+      vm.test = "blank";
       // Get user details from auth
       lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
         vm.payload = profile;
@@ -108,6 +109,7 @@
 
       // Add the entered goal into the database
       vm.addGoal = function(id) {
+        vm.quantity = false;
         vm.displayed = vm.goals.reduce(function(memo, goal) {
           if (goal.subsDisplayed) {
             return memo.concat([goal.id]);
