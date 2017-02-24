@@ -27,7 +27,6 @@
               }, 0)) / goal.number) * 100 : 70],
               [goal.due ? ((new Date() - new Date(goal.start)) / (new Date(goal.due) - new Date(goal.start))) * 100 : 50]];
             vm.prepGoals(goals);
-            console.log(goals);
             return Promise.all(goals.data.map(function(value) {
               return GoalFactory.getProgress(value.id);
             }));
