@@ -11,6 +11,7 @@
       // Get user details from auth
       lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
         vm.payload = profile;
+        vm.progNum = 0;
         console.log('vm.payload ',vm.payload);
         GoalFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
           .then(user => {
@@ -27,8 +28,6 @@
               [goal.due ? ((new Date() - new Date(goal.start)) / (new Date(goal.due) - new Date(goal.start))) * 100 : 50]];
             });
             vm.prepGoals(goals);
-
-            console.log(vm.goals);
           });
       });
 
@@ -86,23 +85,43 @@
         goal.addDisplayed = !goal.addDisplayed;
       };
 
-      vm.deleteGoal = function(id) {
+      vm.addProgress = function (goal) {
+        vm.noteDisplayed();
+        GoalFactory.postProgress(vm.goal.id, vm.progNum)
+          .then(function() {
+            GoalFactory.getUserGoals(vm.payload.email)
+              .then(function(goals) {
+                vm.prepGoals(goals);
+                vm.restoreDisplayed();
+              });
+          });
+      };
+
+      vm.noteDisplayed = () => {
         vm.displayed = vm.goals.reduce(function(memo, goal) {
           if (goal.subsDisplayed) {
             return memo.concat([goal.id]);
           }
           return memo;
         }, []);
+      };
+
+      vm.restoreDisplayed = () => {
+        vm.goals.forEach(function(goal) {
+          if (vm.displayed.includes(goal.id)) {
+            goal.subsDisplayed = true;
+          }
+        });
+      }
+
+      vm.deleteGoal = function(id) {
+        vm.noteDisplayed();
         GoalFactory.deleteGoal(id)
           .then(function() {
             GoalFactory.getUserGoals(vm.payload.email)
               .then(function(goals) {
                 vm.prepGoals(goals);
-                vm.goals.forEach(function(goal) {
-                  if (vm.displayed.includes(goal.id)) {
-                    goal.subsDisplayed = true;
-                  }
-                });
+                vm.restoreDisplayed();
               });
           });
       };
@@ -110,22 +129,13 @@
       // Add the entered goal into the database
       vm.addGoal = function(id) {
         vm.quantity = false;
-        vm.displayed = vm.goals.reduce(function(memo, goal) {
-          if (goal.subsDisplayed) {
-            return memo.concat([goal.id]);
-          }
-          return memo;
-        }, []);
+        vm.noteDisplayed();
         GoalFactory.createGoal(vm.goal, vm.payload.email, id)
           .then(function() {
             GoalFactory.getUserGoals(vm.payload.email)
               .then(function(goals) {
                 vm.prepGoals(goals);
-                vm.goals.forEach(function(goal) {
-                  if (vm.displayed.includes(goal.id)) {
-                    goal.subsDisplayed = true;
-                  }
-                });
+                vm.restoreDisplayed();
               });
           });
         // Reset entry field
@@ -135,22 +145,13 @@
       // Update goal completion status
       vm.updateCompleteGoal = function(goal) {
         goal.complete = !goal.complete;
-        vm.displayed = vm.goals.reduce(function(memo, goal) {
-          if (goal.subsDisplayed) {
-            return memo.concat([goal.id]);
-          }
-          return memo;
-        }, []);
+        vm.noteDisplayed();
         GoalFactory.updateGoal(goal.id, {complete: goal.complete})
           .then(function() {
             GoalFactory.getUserGoals(vm.payload.email)
               .then(function(goals) {
                 vm.prepGoals(goals);
-                vm.goals.forEach(function(goal) {
-                  if (vm.displayed.includes(goal.id)) {
-                    goal.subsDisplayed = true;
-                  }
-                });
+                vm.restoreDisplayed();
               });
           });
       };

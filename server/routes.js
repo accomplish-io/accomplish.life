@@ -24,6 +24,8 @@ module.exports = function(app, express, db) {
       });
   });
 
+  // this is a change
+
   app.get('/api/users/:email', function(req, res) {
     db.User.findOne({
       where: {
@@ -68,7 +70,8 @@ module.exports = function(app, express, db) {
           UserId: user.id,
           goalName: req.body.goalName,
           public: req.body.public,
-          GoalId: req.body.GoalId
+          GoalId: req.body.GoalId,
+          number: req.body.number
         })
           .then(function(goal) {
             res.send(goal);
