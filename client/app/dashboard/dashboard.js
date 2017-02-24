@@ -63,12 +63,6 @@
               }
             });
           }
-          if (goal.number === null) {
-            goal.once = true;
-          }
-          else {
-            goal.willProgress = true;
-          }
           goal.subsDisplayed = false;
           goal.addDisplayed = false;
         });
