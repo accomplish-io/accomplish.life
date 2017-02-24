@@ -24,6 +24,8 @@ module.exports = function(app, express, db) {
       });
   });
 
+  // this is a change
+
   app.get('/api/users/:email', function(req, res) {
     db.User.findOne({
       where: {
