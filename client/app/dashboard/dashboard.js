@@ -101,7 +101,7 @@
       };
 
       vm.addProgress = function (goal) {
-        GoalFactory.postProgress(vm.goal.id, vm.progNum)
+        GoalFactory.postProgress(goal.id, vm.progNum)
           .then(function() {
             vm.renderGoals();
             vm.number = null;
