@@ -7,7 +7,7 @@
 
       var vm = this;
       vm.quantity = false;
-      vm.test = "blank";
+      vm.test = 'blank';
       // Get user details from auth
       lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
         vm.payload = profile;
@@ -15,7 +15,7 @@
         vm.goals = [];
         vm.quantity = false;
         vm.number = null;
-        vm.unit = "";
+        vm.unit = '';
         GoalFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
           .then(user => {
             vm.user = user.data[0];
@@ -105,7 +105,7 @@
           .then(function() {
             vm.renderGoals();
             vm.number = null;
-            vm.unit = "";
+            vm.unit = '';
           });
       };
 
