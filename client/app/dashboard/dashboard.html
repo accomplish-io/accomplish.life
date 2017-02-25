@@ -10,7 +10,6 @@
 <div ng-repeat="goal in vm.goals | filter:{complete: false, GoalId: null}">
   <div class="collapsible-header" style="padding-right: 0px">
     <ul class="collection with-header">
-      <span>
       <li class="collection-header">
         <!-- Checkbox -->
         <input ng-click="vm.updateCompleteGoal(goal)" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}"/>
@@ -21,7 +20,7 @@
         <!-- Delete Goal -->
         <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">delete_forever</i>
         <!-- Add Progress -->
-        <a data-target="goalProgressModal" style="color: black;" modal>
+        <a ng-if="goal.number" ng-click="vm.progressGoal = goal" data-target="goalProgressModal" style="color: black;" modal>
           <i class="material-icons right" style="margin: 10px 15px 10px 0px;">insert_chart</i>
         </a>
         <!-- Create New Sub Goal -->
@@ -45,7 +44,7 @@
             <!-- Delete Sub Goal -->
             <i ng-click="vm.deleteGoal(sub.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete_forever</i>
             <!-- Add Progress -->
-            <a ng-if="!sub.complete" ng-click="vm.progressGoal = sub" data-target="subProgressModal" style="color: black;" modal>
+            <a ng-if="!sub.complete && sub.number" ng-click="vm.progressGoal = sub" data-target="subProgressModal" style="color: black;" modal>
               <i ng-if="!sub.complete" class="material-icons right" style="margin: 0px 15px 0px 0px;">insert_chart</i>
             </a>
           </li>
@@ -185,13 +184,18 @@
 <div id="goalProgressModal" class="modal" style="width: 45%; height: 45%;">
   <div class="modal-content">
     <div class="row">
-      <div class="input-field">
-        <input ng-model="vm.goal" required>
+      <!-- Add to Number -->
+      <div style="display: inline-block;">Add</div>
+      <div input-field style="display: inline-block;">
+        <input type="number" ng-required="number" ng-model="vm.progNum" length="10">
+        <label>Number</label>
       </div>
+      <div style="display: inline-block;">{{ vm.progressGoal.units }}</div>
     </div>
   </div>
+  <!-- Submit Button -->
   <div class="right">
-    <a href="#!" ng-click="vm.addProgress()" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Goal!</a>
+    <a href="#!" ng-click="vm.addProgress(vm.progressGoal)" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Goal!</a>
   </div>
 </div>
 
@@ -199,13 +203,16 @@
 <div id="subProgressModal" class="modal" style="width: 45%; height: 45%;">
   <div class="modal-content">
     <div class="row">
-      <label>Add</label>
-      <div class="input-field">
-        <input ng-model="vm.progNum" required>
+      <!-- Add to Number -->
+      <div style="display: inline-block;">Add</div>
+      <div input-field style="display: inline-block;">
+        <input type="number" ng-required="number" ng-model="vm.progNum" length="10">
+        <label>Number</label>
       </div>
-      <label>{{ sub.units }}</label>
+      <div style="display: inline-block;">{{ vm.progressGoal.units }}</div>
     </div>
   </div>
+  <!-- Submit Button -->
   <div class="right">
     <a href="#!" ng-click="vm.addProgress(vm.progressGoal)" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Goal!</a>
   </div>

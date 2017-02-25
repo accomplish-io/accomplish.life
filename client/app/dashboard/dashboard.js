@@ -11,7 +11,7 @@
       // Get user details from auth
       lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
         vm.payload = profile;
-        vm.progNum = 0;
+        vm.progNum = '';
         vm.goals = [];
         vm.quantity = false;
         vm.number = null;
@@ -101,10 +101,11 @@
       };
 
       vm.addProgress = function (goal) {
+        console.log(vm.progressGoal);
         GoalFactory.postProgress(goal.id, {number: vm.progNum})
           .then(function() {
             vm.renderGoals();
-            vm.progNum = 0;
+            vm.progNum = '';
             vm.number = null;
             vm.unit = '';
           });
