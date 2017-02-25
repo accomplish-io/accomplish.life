@@ -29,26 +29,49 @@ describe('Goals factory', function() {
     expect(Goals.findOrCreateUser).toBeDefined();
   });
 
-  it('should have a method `getUserGoals`', function () {
-    expect(Goals.getAll).to.be.a('function');
-  });
-
-  xit('should have a method `addOne`', function () {
-    expect(Goals.addOne).to.be.a('function');
-  });
-
-  xit('should get all links with `getAll`', function () {
+  it('should get all goals with `getUserGoals`', function () {
     var mockResponse = [
-      { title: 'Twitter',
-        url: 'https://twitter.com' },
-      { title: 'Reddit',
-        url: 'https://reddit.com/r/javascript' }
+      { goalName: 'Do a thing',
+        number: 4 },
+      { goalName: 'Read a book',
+        number: 8 }
     ];
 
-    $httpBackend.expect('GET', '/api/links').respond(mockResponse);
+    $httpBackend.expect('GET', 'api/goals/mock@mockmail.com').respond(mockResponse);
 
-    Goals.getAll().then(function (links) {
-      expect(links).to.deep.equal(mockResponse);
+    Goals.getUserGoals('mock@mockmail.com').then(function (goals) {
+      expect(goals.data).toEqual(mockResponse);
+    });
+
+
+    $httpBackend.flush();
+  });
+
+  it('should get a user with `findUser`', function () {
+    var mockResponse =
+      { name: 'Steve',
+        sweatLevel: 11 };
+
+    $httpBackend.expect('GET', 'api/users/mock@mockmail.com').respond(mockResponse);
+
+    Goals.findUser('mock@mockmail.com').then(function (goals) {
+      expect(goals.data).toEqual(mockResponse);
+    });
+    $httpBackend.flush();
+  });
+
+  it('should get a goal with `getProgress`', function () {
+    var mockResponse = [
+      { goalName: 'Do a thing',
+        number: 4 },
+      { goalName: 'Read a book',
+        number: 8 }
+    ];
+
+    $httpBackend.expect('GET', 'api/progress/mock@mockmail.com').respond(mockResponse);
+
+    Goals.getProgress('mock@mockmail.com').then(function (goals) {
+      expect(goals.data).toEqual(mockResponse);
     });
 
     $httpBackend.flush();
@@ -68,12 +91,35 @@ describe('Goals factory', function() {
       expect(resp.status).to.equal(201);
       expect(resp.data.title).to.equal('Hack Reactor Labs');
     });
-
-    $httpBackend.flush();
   });
 
 });
 
+/*
+describe('Dashboard Controller', function() {
+  var Goals, vm, $rootScope, createController, DashboardCtrl, $httpBackend;
+
+  beforeEach(angular.mock.module('app'));
+    beforeEach(inject(function(_$httpBackend_, _GoalFactory_, _DashboardCtrl_) {
+      $httpBackend = _$httpBackend_;
+      Goals = _GoalFactory_;
+      Dash = _DashboardCtrl_;
+  }));
+
+  afterEach(inject(function ($httpBackend) {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+  }));
+
+  // A simple test to verify the Goals factory exists
+  it('should exist', function() {
+    expect(Dash).toBeDefined();
+    //expect(Dash.vm.renderGoals).toBeDefined();
+  });
+
+
+});
+*/
 
 /*
   beforeEach(inject(function ($injector) {
