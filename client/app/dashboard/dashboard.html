@@ -20,7 +20,7 @@
         <!-- Delete Goal -->
         <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">delete_forever</i>
         <!-- Add Progress -->
-        <a ng-if="goal.number" ng-click="vm.progressGoal = goal" data-target="goalProgressModal" style="color: black;" modal>
+        <a ng-click="vm.progressGoal = goal" data-target="goalProgressModal" ng-style="{color: goal.number ? 'black' : '#d9d9d9'}" modal>
           <i class="material-icons right" style="margin: 10px 15px 10px 0px;">insert_chart</i>
         </a>
         <!-- Create New Sub Goal -->
@@ -44,7 +44,7 @@
             <!-- Delete Sub Goal -->
             <i ng-click="vm.deleteGoal(sub.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete_forever</i>
             <!-- Add Progress -->
-            <a ng-if="!sub.complete && sub.number" ng-click="vm.progressGoal = sub" data-target="subProgressModal" style="color: black;" modal>
+            <a ng-if="!sub.complete" ng-click="vm.progressGoal = sub" data-target="subProgressModal" ng-style="{color: goal.number ? 'black' : '#d9d9d9'}" modal>
               <i ng-if="!sub.complete" class="material-icons right" style="margin: 0px 15px 0px 0px;">insert_chart</i>
             </a>
           </li>
