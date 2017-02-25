@@ -101,9 +101,10 @@
       };
 
       vm.addProgress = function (goal) {
-        GoalFactory.postProgress(goal.id, vm.progNum)
+        GoalFactory.postProgress(goal.id, {number: vm.progNum})
           .then(function() {
             vm.renderGoals();
+            vm.progNum = 0;
             vm.number = null;
             vm.unit = '';
           });

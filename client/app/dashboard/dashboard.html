@@ -112,7 +112,7 @@
         </div>
         <span style="display: inline-block;">at least</span>
         <div input-field style="display: inline-block;">
-          <input type="text" ng-model="vm.number" length="10">
+          <input type="number" ng-required="number" ng-model="vm.number" length="10">
           <label>Target</label>
         </div>
         <div input-field style="display: inline-block;">
@@ -160,7 +160,7 @@
         </div>
         <span style="display: inline-block;">at least</span>
         <div input-field style="display: inline-block;">
-          <input type="text" ng-model="vm.number" length="10">
+          <input type="number" ng-required="number" ng-model="vm.number" length="10">
           <label>Target</label>
         </div>
         <div input-field style="display: inline-block;">
@@ -199,9 +199,11 @@
 <div id="subProgressModal" class="modal" style="width: 45%; height: 45%;">
   <div class="modal-content">
     <div class="row">
+      <label>Add</label>
       <div class="input-field">
         <input ng-model="vm.progNum" required>
       </div>
+      <label>{{ sub.units }}</label>
     </div>
   </div>
   <div class="right">
