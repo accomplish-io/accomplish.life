@@ -1,4 +1,4 @@
-module.exports = function(app, express, db) {
+module.exports = function(app, express, db, wk) {
   //add routes and controller based on database endpoints
 
   app.post('/api/auth', function(req, res) {
