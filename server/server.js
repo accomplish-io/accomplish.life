@@ -1,6 +1,6 @@
 var express = require('express');
-var bodyParser= require('body-parser');
-var path= require('path');
+var bodyParser = require('body-parser');
+var path = require('path');
 var db = require('./db/db-setup.js');
 var app = express();
 var port = process.env.PORT || 3021;
