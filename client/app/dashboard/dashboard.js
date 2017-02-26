@@ -7,15 +7,15 @@
 
       var vm = this;
       vm.quantity = false;
-      vm.test = "blank";
+      vm.test = 'blank';
       // Get user details from auth
       lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
         vm.payload = profile;
-        vm.progNum = 0;
+        vm.progNum = '';
         vm.goals = [];
         vm.quantity = false;
         vm.number = null;
-        vm.unit = "";
+        vm.unit = '';
         GoalFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
           .then(user => {
             vm.user = user.data[0];
@@ -101,11 +101,13 @@
       };
 
       vm.addProgress = function (goal) {
-        GoalFactory.postProgress(vm.goal.id, vm.progNum)
+        console.log(vm.progressGoal);
+        GoalFactory.postProgress(goal.id, {number: vm.progNum})
           .then(function() {
             vm.renderGoals();
+            vm.progNum = '';
             vm.number = null;
-            vm.unit = "";
+            vm.unit = '';
           });
       };
 

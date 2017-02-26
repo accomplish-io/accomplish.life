@@ -10,7 +10,6 @@
 <div ng-repeat="goal in vm.goals | filter:{complete: false, GoalId: null}">
   <div class="collapsible-header" style="padding-right: 0px">
     <ul class="collection with-header">
-      <span>
       <li class="collection-header">
         <!-- Checkbox -->
         <input ng-click="vm.updateCompleteGoal(goal)" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}"/>
@@ -21,7 +20,7 @@
         <!-- Delete Goal -->
         <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">delete_forever</i>
         <!-- Add Progress -->
-        <a data-target="goalProgressModal" style="color: black;" modal>
+        <a ng-click="vm.progressGoal = goal" data-target="goalProgressModal" ng-style="{color: goal.number ? 'black' : '#d9d9d9', 'pointer-events': goal.number ? 'auto' : 'none'}" modal>
           <i class="material-icons right" style="margin: 10px 15px 10px 0px;">insert_chart</i>
         </a>
         <!-- Create New Sub Goal -->
@@ -45,7 +44,7 @@
             <!-- Delete Sub Goal -->
             <i ng-click="vm.deleteGoal(sub.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete_forever</i>
             <!-- Add Progress -->
-            <a ng-if="!sub.complete" data-target="subProgressModal" style="color: black;" modal>
+            <a ng-if="!sub.complete" ng-click="vm.progressGoal = sub" data-target="subProgressModal" ng-style="{color: sub.number ? 'black' : '#d9d9d9', 'pointer-events': sub.number ? 'auto' : 'none'}" modal>
               <i ng-if="!sub.complete" class="material-icons right" style="margin: 0px 15px 0px 0px;">insert_chart</i>
             </a>
           </li>
@@ -108,16 +107,16 @@
         <!-- TODO: Make into main goal title -->
         <div input-field style="display: inline-block;">
           <input type="text" ng-model="vm.verb" length="20">
-          <label>Goal</label>
+          <label>goal</label>
         </div>
         <span style="display: inline-block;">at least</span>
         <div input-field style="display: inline-block;">
-          <input type="text" ng-model="vm.number" length="10">
-          <label>Target</label>
+          <input type="number" ng-required="number" ng-model="vm.number" length="10">
+          <label>target</label>
         </div>
         <div input-field style="display: inline-block;">
           <input type="text" ng-model="vm.units" length="10">
-          <label>Units</label>
+          <label>units</label>
         </div>
         <!-- End of TODO -->
       </div>
@@ -127,7 +126,7 @@
       </datepicker>
       <!-- Submit Button -->
       <div class="right">
-        <a href="#!" ng-click="vm.addGoal()" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Goal!</a>
+        <a href="#!" ng-click="vm.addGoal()" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Goal</a>
       </div>
     </div>
   </div>
@@ -156,16 +155,16 @@
         <!-- TODO: Make into Sub Goal title -->
         <div input-field style="display: inline-block;">
           <input type="text" ng-model="vm.verb" length="20">
-          <label>Sub Goal</label>
+          <label>sub-goal</label>
         </div>
         <span style="display: inline-block;">at least</span>
         <div input-field style="display: inline-block;">
-          <input type="text" ng-model="vm.number" length="10">
-          <label>Target</label>
+          <input type="number" ng-required="number" ng-model="vm.number" length="10">
+          <label>target</label>
         </div>
         <div input-field style="display: inline-block;">
           <input type="text" ng-model="vm.units" length="10">
-          <label>Units</label>
+          <label>units</label>
         </div>
         <!-- End of TODO -->
       </div>
@@ -175,7 +174,7 @@
       </datepicker>
       <!-- Submit Button -->
       <div class="right">
-        <a href="#!" ng-click="vm.addGoal(vm.parentGoal)" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Goal!</a>
+        <a href="#!" ng-click="vm.addGoal(vm.parentGoal)" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Sub-Goal</a>
       </div>
     </div>
   </div>
@@ -185,13 +184,18 @@
 <div id="goalProgressModal" class="modal" style="width: 45%; height: 45%;">
   <div class="modal-content">
     <div class="row">
-      <div class="input-field">
-        <input ng-model="vm.goal" required>
+      <!-- Add to Number -->
+      <div style="display: inline-block;">Add</div>
+      <div input-field style="display: inline-block;">
+        <input type="number" ng-required="number" ng-model="vm.progNum" length="10">
+        <label>number</label>
       </div>
+      <div style="display: inline-block;">{{vm.progressGoal.units}} to goal progress</div>
     </div>
   </div>
+  <!-- Submit Button -->
   <div class="right">
-    <a href="#!" ng-click="vm.addProgress()" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Goal!</a>
+    <a href="#!" ng-click="vm.addProgress(vm.progressGoal)" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Progress</a>
   </div>
 </div>
 
@@ -199,12 +203,17 @@
 <div id="subProgressModal" class="modal" style="width: 45%; height: 45%;">
   <div class="modal-content">
     <div class="row">
-      <div class="input-field">
-        <input ng-model="vm.goal" required>
+      <!-- Add to Number -->
+      <div style="display: inline-block;">Add</div>
+      <div input-field style="display: inline-block;">
+        <input type="number" ng-required="number" ng-model="vm.progNum" length="10">
+        <label>number</label>
       </div>
+      <div style="display: inline-block;">{{ vm.progressGoal.units }} to sub-goal progress</div>
     </div>
   </div>
+  <!-- Submit Button -->
   <div class="right">
-    <a href="#!" ng-click="vm.addProgress()" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Goal!</a>
+    <a href="#!" ng-click="vm.addProgress(vm.progressGoal)" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Progress</a>
   </div>
 </div>
