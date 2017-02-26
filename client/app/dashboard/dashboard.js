@@ -100,6 +100,20 @@
         goal.addDisplayed = !goal.addDisplayed;
       };
 
+      vm.toggleUpdate = function() {
+        console.log(vm.updateView);
+        vm.updateView = !vm.updateView;
+      };
+
+      vm.prepUpdate = function(goal) {
+        vm.goalDetail = goal;
+        vm.updateGoal = {};
+        vm.updateGoal.due = new Date(goal.due);
+        vm.updateGoal.number = goal.number;
+        vm.updateGoal.goalName = goal.goalName;
+        vm.updateGoal.units = goal.units;
+      };
+
       vm.addProgress = function (goal) {
         console.log(vm.progressGoal);
         GoalFactory.postProgress(goal.id, {number: vm.progNum})
@@ -131,6 +145,13 @@
         vm.date = null;
         vm.units = '';
       };
+
+      vm.updateThisGoal = function(goal) {
+        GoalFactory.updateGoal(goal.id, vm.updateGoal)
+        .then(function() {
+          vm.renderGoals();
+        });
+      }
 
       // Update goal completion status
       vm.updateCompleteGoal = function(goal) {
