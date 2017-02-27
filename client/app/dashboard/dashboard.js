@@ -160,8 +160,8 @@
         newBacker.name = vm.backerName;
         newBacker.email = vm.backerEmail;
         //Reset entry field
-        vm.backerName = "";
-        vm.backerEmail = "";
+        vm.backerName = '';
+        vm.backerEmail = '';
         vm.atLeastOneBacker = true;
         vm.showBackerInput = false;
       };
