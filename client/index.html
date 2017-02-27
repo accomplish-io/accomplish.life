@@ -60,22 +60,7 @@
 </head>
 
 <body ng-app="app">
-  <nav>
-    <div class="nav-wrapper blue" ng-controller="AuthCtrl">
-      <a href = "#" class="brand-logo">Accomplish.Life</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 140px;">
-        <button><str><a ui-sref="home">Home</a></str></button>
-        <li><a ui-sref="new">Add a Goal</a></li>
-        <li><a ui-sref="home">Overall Progress</a></li>
-        <li ><a ui-sref="auth">Log In</a></li>
-        <li ><a ui-sref="home" ng-click="authService.logout()">Log Out</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <div class="container">
-    <div ui-view></div>
-  </div>
+<div ui-view></div>
 
 </body>
 </html>

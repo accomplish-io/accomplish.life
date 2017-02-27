@@ -1,4 +1,16 @@
+  <nav>
+    <div class="nav-wrapper blue" ng-controller="AuthCtrl">
+      <a href = "#" class="brand-logo">Accomplish.Life</a>
+      <ul id="nav-mobile" class="right hide-on-small-and-down" style="margin-right: 30px;">
+        <li><a ui-sref="home">Goal Dashboard</a></li>
+        <li ><a ng-if="vm.displayLoginButton()" ui-sref="auth">Log In</a></li>
+        <li ><a ng-if="!vm.displayLoginButton()" ui-sref="home" ng-click="authService.logout()">Log Out</a></li>
+      </ul>
+    </div>
+  </nav>
+<div class="container">
 <h3>Goals</h3>
+
 <div class="col">
     <!-- Add Main Goal Modal Trigger -->
     <a class="btn" data-target="newGoalModal" modal>Add a goal</a>
@@ -289,4 +301,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

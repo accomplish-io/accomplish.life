@@ -26,8 +26,10 @@ function config($stateProvider, lockProvider, $urlRouterProvider, jwtOptionsProv
       url: '/home',
       controller: 'DashboardCtrl',
       templateUrl: './app/dashboard/dashboard.html',
-      controllerAs: 'vm'
+      controllerAs: 'vm',
+      authenticate: true
     })
+    /*
     .state('new', {
       url: '/new',
       controller: 'NewCtrl',
@@ -46,23 +48,12 @@ function config($stateProvider, lockProvider, $urlRouterProvider, jwtOptionsProv
       templateUrl: './app/goal-details/goal-details.html',
       controllerAs: 'vm'
     });
-
+*/
   lockProvider.init({
     clientID: AUTH0_CLIENT_ID,
     domain: AUTH0_DOMAIN,
     loginState: 'auth'
   });
-
-  jwtOptionsProvider.config({
-     tokenGetter: ['options', function (options) {
-       if (options && options.url.substr(options.url.length - 5) == '.html') {
-         return null;
-       }
-       return localStorage.getItem('id_token');
-     }],
-     whiteListedDomains: ['localhost'],
-     unauthenticatedRedirectPath: '/auth'
-   });
 
   $urlRouterProvider.otherwise('/auth');
 };

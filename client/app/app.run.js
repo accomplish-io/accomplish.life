@@ -8,7 +8,7 @@
 
   run.$inject = ['$rootScope', 'authService', 'lock', 'authManager', 'jwtHelper', '$state'];
 
-  function run($rootScope, authService, lock, authManager, $state, jwtHelper) {
+  function run($rootScope, authService, lock, authManager, jwtHelper, $state) {
     // Put the authService on $rootScope so its methods
     // can be accessed from the nav bar
     $rootScope.authService = authService;
@@ -26,7 +26,7 @@
     lock.interceptHash();
 
     $rootScope.$on('$stateChangeStart', function(e, to) {
-      if (to.data && to.data.required) {
+      if (to.authenticate) {
         if (!localStorage.getItem('id_token')) {
           e.preventDefault();
           $state.go('auth');
