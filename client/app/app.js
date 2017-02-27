@@ -13,8 +13,6 @@ angular.module('app', [
 
 config.$inject = ['$stateProvider', 'lockProvider', '$urlRouterProvider', 'jwtOptionsProvider'];
 
-
-<<<<<<< HEAD
 function config($stateProvider, lockProvider, $urlRouterProvider) {
 
   $stateProvider
