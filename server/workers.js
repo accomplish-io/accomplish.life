@@ -8,8 +8,8 @@ var compareToTarget = function(progresses, target) {
   }
 
   return false;
-}
+};
 
 module.exports = {
   compareToTarget: compareToTarget
-}
+};
