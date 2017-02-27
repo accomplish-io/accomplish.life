@@ -90,6 +90,11 @@
 
 <!-- Add Goal Modal -->
 <div id="newGoalModal" class="modal" style="width: 85%; height: 70%;">
+  <!-- Submit Entire Goal -->
+  <div class="right">
+    <a ng-click="vm.addGoal()" class="btn-floating btn-large waves-effect waves-light red odal-action modal-close"><i class="material-icons">add</i></a>
+  </div>
+  <!-- Modal Form -->
   <div class="modal-content">
     <div class="row">
       <div class="row">
@@ -125,12 +130,24 @@
         <!-- End of TODO -->
       </div>
       <!-- Calendar -->
+      <div>
       <datepicker>
         <input ng-model="vm.date" type="text" placeholder="Add an end date for your goal" required/>
       </datepicker>
-      <!-- Submit Button -->
-      <div class="right">
-        <a href="#!" ng-click="vm.addGoal()" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Goal</a>
+      </div>
+      <!-- Add backers -->
+        <div>
+          <a ng-show="!vm.atLeastOneBacker" class="btn" ng-click="vm.addBacker()">Add a backer</a>
+          <a ng-show="vm.atLeastOneBacker" class="btn" ng-click="vm.addBacker()">Add another backer</a>
+          <form ng-show="vm.showBackerInput" ng-submit="vm.submitBacker()">
+            <input ng-model="vm.backerName" type="text" placeholder="Enter backer's name" required/>
+            <br>
+            <input ng-model="vm.backerEmail" type="text" placeholder="Enter backer's email"required/>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit Backer
+            <i class="material-icons right">send</i>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
