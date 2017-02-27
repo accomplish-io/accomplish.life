@@ -137,13 +137,11 @@ module.exports = function(app, express, db, wk) {
               goal.update({complete: 1});
             });
           }
-        })
-      })
+        });
+      });
     })
-    .then(function(progress) {
-      // console.log('***PROGRESS***: ', progress);
-      // SUCCESS! get rid of argument
-      res.send(progress);
+    .then(function() {
+      res.send();
     });
   });
 
