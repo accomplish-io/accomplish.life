@@ -1,5 +1,9 @@
-const autoComplete = (progresses) => {
+var autoComplete = function(progresses) {
+  var progressTotal = progresses.reduce(function(memo, item) {
+    return memo + item.number;
+  }, 0)
 
+  return progressTotal;
 }
 
 module.exports = {

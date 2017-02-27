@@ -114,7 +114,16 @@ module.exports = function(app, express, db, wk) {
       GoalId: req.params.goal,
       number: req.body.number
     })
+    .then(function() {
+      db.Progress.findAll({
+        GoalId: req.params.goal
+      })
+    })
+    .then(function(progressGoals) {
+      autoComplete(progressGoals);
+    })
     .then(function(progress) {
+      console.log('***PROGRESS***: ', progress);
       res.send(progress);
     });
   });
