@@ -13,19 +13,19 @@ angular.module('app', [
 
 config.$inject = ['$stateProvider', 'lockProvider', '$urlRouterProvider', 'jwtOptionsProvider'];
 
-function config($stateProvider, lockProvider, $urlRouterProvider) {
+function config($stateProvider, lockProvider, $urlRouterProvider, jwtOptionsProvider) {
 
   $stateProvider
-    .state('home', {
-      url: '/home',
-      controller: 'DashboardCtrl',
-      templateUrl: './app/dashboard/dashboard.html',
-      controllerAs: 'vm'
-    })
     .state('auth', {
       url: '/auth',
       controller: 'AuthCtrl',
       templateUrl: './app/auth/auth.html',
+      controllerAs: 'vm'
+    })
+    .state('home', {
+      url: '/home',
+      controller: 'DashboardCtrl',
+      templateUrl: './app/dashboard/dashboard.html',
       controllerAs: 'vm'
     })
     .state('new', {
@@ -49,19 +49,20 @@ function config($stateProvider, lockProvider, $urlRouterProvider) {
 
   lockProvider.init({
     clientID: AUTH0_CLIENT_ID,
-    domain: AUTH0_DOMAIN
+    domain: AUTH0_DOMAIN,
+    loginState: 'auth'
   });
 
-  //  jwtOptionsProvider.config({
-  //   tokenGetter: ['options', function (options) {
-  //     if (options && options.url.substr(options.url.length - 5) == '.html') {
-  //       return null;
-  //     }
-  //     return localStorage.getItem('id_token');
-  //   }],
-  //   whiteListedDomains: ['localhost'],
-  //   unauthenticatedRedirectPath: '/auth'
-  // });
+  jwtOptionsProvider.config({
+     tokenGetter: ['options', function (options) {
+       if (options && options.url.substr(options.url.length - 5) == '.html') {
+         return null;
+       }
+       return localStorage.getItem('id_token');
+     }],
+     whiteListedDomains: ['localhost'],
+     unauthenticatedRedirectPath: '/auth'
+   });
 
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/auth');
 };

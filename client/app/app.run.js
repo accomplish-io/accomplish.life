@@ -6,9 +6,9 @@
     .module('app')
     .run(run);
 
-  run.$inject = ['$rootScope', 'authService', 'lock', 'authManager'];
+  run.$inject = ['$rootScope', 'authService', 'lock', 'authManager', 'jwtHelper', '$state'];
 
-  function run($rootScope, authService, lock, authManager) {
+  function run($rootScope, authService, lock, authManager, $state, jwtHelper) {
     // Put the authService on $rootScope so its methods
     // can be accessed from the nav bar
     $rootScope.authService = authService;
@@ -24,6 +24,16 @@
 
     // Register synchronous hash parser
     lock.interceptHash();
+
+    $rootScope.$on('$stateChangeStart', function(e, to) {
+      if (to.data && to.data.required) {
+        if (!localStorage.getItem('id_token')) {
+          e.preventDefault();
+          $state.go('auth');
+        }
+      }
+    });
+
   }
 
 })();

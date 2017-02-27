@@ -101,7 +101,6 @@
       };
 
       vm.toggleUpdate = function() {
-        console.log(vm.updateView);
         vm.updateView = !vm.updateView;
       };
 
@@ -175,6 +174,7 @@
 
       // Update goal completion status
       vm.updateCompleteGoal = function(goal) {
+        vm.toggleUpdate();
         goal.complete = !goal.complete;
         GoalFactory.updateGoal(goal.id, {complete: goal.complete})
           .then(function() {
