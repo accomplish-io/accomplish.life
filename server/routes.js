@@ -1,4 +1,4 @@
-module.exports = function(app, express, db) {
+module.exports = function(app, express, db, wk) {
   //add routes and controller based on database endpoints
 
   app.post('/api/auth', function(req, res) {
@@ -114,8 +114,34 @@ module.exports = function(app, express, db) {
       GoalId: req.params.goal,
       number: req.body.number
     })
-    .then(function(progress) {
-      res.send(progress);
+    .then(function() {
+      db.Progress.findAll({
+        where: {
+          GoalId: req.params.goal
+        }
+      })
+      .then(function(progressGoals) {
+        db.Goal.findOne({
+          where: {
+            id: req.params.goal
+          }
+        })
+        .then(function(goalTarget) {
+          if (wk.compareToTarget(progressGoals, goalTarget)) {
+            db.Goal.findOne({
+              where: {
+                id: req.params.goal
+              }
+            })
+            .then(function(goal) {
+              goal.update({complete: 1});
+            });
+          }
+        });
+      });
+    })
+    .then(function() {
+      res.send();
     });
   });
 
