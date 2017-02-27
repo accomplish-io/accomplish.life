@@ -146,6 +146,26 @@
         vm.units = '';
       };
 
+      // Only show backer input field if someone wants to add a backer
+      vm.showBackerInput = false;
+      vm.atLeastOneBacker = false;
+      vm.addBacker = function() {
+        vm.showBackerInput = true;
+      };
+
+      // Submit backer's name and email
+      vm.submitBacker = function() {
+        //submit vm.backerName and vm.backerEmail
+        var newBacker = {};
+        newBacker.name = vm.backerName;
+        newBacker.email = vm.backerEmail;
+        //Reset entry field
+        vm.backerName = "";
+        vm.backerEmail = "";
+        vm.atLeastOneBacker = true;
+        vm.showBackerInput = false;
+      };
+
       vm.updateThisGoal = function(goal) {
         GoalFactory.updateGoal(goal.id, vm.updateGoal)
         .then(function() {
