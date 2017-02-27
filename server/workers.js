@@ -1,13 +1,17 @@
-var autoComplete = function(progresses) {
+var compareToTarget = function(progresses, target) {
   var progressTotal = progresses.reduce(function(memo, item) {
     return memo + item.number;
-  }, 0)
+  }, 0);
 
-  return progressTotal;
+  if (progressTotal >= target.number) {
+    return true;
+  }
+
+  return false;
 }
 
 module.exports = {
-  autoComplete: autoComplete
+  compareToTarget: compareToTarget
 }
 
 // o: if progress >= goal number, make goal complete true

@@ -110,25 +110,39 @@ module.exports = function(app, express, db, wk) {
   });
 
   app.post('/api/progress/:goal', function(req, res) {
-    console.log('***INITIAL***', req.params.goal);
     db.Progress.create({
       GoalId: req.params.goal,
       number: req.body.number
     })
     .then(function() {
-      console.log('***THEN***', req.params.goal);
       db.Progress.findAll({
         where: {
           GoalId: req.params.goal
         }
       })
       .then(function(progressGoals) {
-        // console.log('***PROGRESS GOALS***',progressGoals);
-        console.log('***AUTOCOMPLETE***', wk.autoComplete(progressGoals));
+        db.Goal.findOne({
+          where: {
+            id: req.params.goal
+          }
+        })
+        .then(function(goalTarget) {
+          if (wk.compareToTarget(progressGoals, goalTarget)) {
+            db.Goal.findOne({
+              where: {
+                id: req.params.goal
+              }
+            })
+            .then(function(goal) {
+              goal.update({complete: 1});
+            });
+          }
+        })
       })
     })
     .then(function(progress) {
       // console.log('***PROGRESS***: ', progress);
+      // SUCCESS! get rid of argument
       res.send(progress);
     });
   });
