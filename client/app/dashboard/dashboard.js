@@ -8,14 +8,17 @@
       var vm = this;
       vm.quantity = false;
       vm.test = 'blank';
+      vm.progNum = '';
+      vm.goals = [];
+      vm.quantity = false;
+      vm.number = null;
+      vm.unit = '';
       // Get user details from auth
+      vm.displayLoginButton = () =>
+      localStorage.getItem('id_token') ? false : true;
+
       lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
         vm.payload = profile;
-        vm.progNum = '';
-        vm.goals = [];
-        vm.quantity = false;
-        vm.number = null;
-        vm.unit = '';
         GoalFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
           .then(user => {
             vm.user = user.data[0];
@@ -101,7 +104,6 @@
       };
 
       vm.toggleUpdate = function() {
-        console.log(vm.updateView);
         vm.updateView = !vm.updateView;
       };
 
@@ -175,6 +177,7 @@
 
       // Update goal completion status
       vm.updateCompleteGoal = function(goal) {
+        vm.toggleUpdate();
         goal.complete = !goal.complete;
         GoalFactory.updateGoal(goal.id, {complete: goal.complete})
           .then(function() {
