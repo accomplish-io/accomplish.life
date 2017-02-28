@@ -15,6 +15,8 @@
       vm.unit = '';
       vm.barChart = {};
       vm.lineChart = {};
+      vm.existingBackers = [];
+      vm.showCollapsible = false;
       // Get user details from auth
       vm.displayLoginButton = () =>
       localStorage.getItem('id_token') ? false : true;
@@ -55,7 +57,6 @@
             });
             vm.goals = goals.data;
             vm.restoreDisplayed();
-            console.log(vm.goals);
           });
       };
 
@@ -240,6 +241,12 @@
 
       vm.addBacker = function() {
         vm.showBackerInput = true;
+        console.log('user id ', vm.user.id);
+        GoalFactory.getBackers(vm.user.id)
+        .then(function(backers){
+          console.log('Existing backers ', backers)
+          vm.existingBackers = backers.data;
+        })
       };
 
       // Submit backer's name and email
@@ -260,12 +267,22 @@
         vm.showBackerInput = false;
       };
 
+      vm.addExistingBacker = function(backer) {
+        vm.backerName = backer.backerName;
+        vm.backerEmail = backer.backerEmail;
+        vm.submitBacker();
+      };
+
+      vm.toggleCollapsible = function() {
+        vm.showCollapsible = !vm.showCollapsible;
+      };
+
       vm.updateThisGoal = function(goal) {
         GoalFactory.updateGoal(goal.id, vm.updateGoal)
         .then(function() {
           vm.renderGoals();
         });
-      }
+      };
 
       // Update goal completion status
       vm.updateCompleteGoal = function(goal) {
