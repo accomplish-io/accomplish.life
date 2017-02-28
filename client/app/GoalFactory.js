@@ -87,6 +87,13 @@
       });
     };
 
+    const getBackers = (userId) => {
+      $http({
+        method: 'GET',
+        url: `api/backers/${userId}`
+      });
+    };
+
     return {
       findOrCreateUser: findOrCreateUser,
       findUser: findUser,
@@ -97,7 +104,8 @@
       updateUser: updateUser,
       postProgress: postProgress,
       getProgress: getProgress,
-      addBacker: addBacker
+      addBacker: addBacker,
+      getBackers: getBackers
     };
   };
 })();
