@@ -169,7 +169,6 @@ module.exports = function(app, express, db, wk) {
   });
 
   app.post('/api/backers', function(req, res) {
-    console.log('******************LOOKIE WHAT WE HAVE HERE', req.body);
     db.Backer.findOrCreate({
       where: {
         backerName: req.body.name,
