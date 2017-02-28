@@ -4,7 +4,7 @@
       <ul id="nav-mobile" class="right hide-on-small-and-down" style="margin-right: 30px;">
         <li><a ui-sref="home">Goal Dashboard</a></li>
         <li ><a ng-if="vm.displayLoginButton()" ui-sref="auth">Log In</a></li>
-        <li ><a ng-if="!vm.displayLoginButton()" ui-sref="home" ng-click="authService.logout()">Log Out</a></li>
+        <li ><a ng-if="!vm.displayLoginButton()" ui-sref="auth" ng-click="authService.logout()">Log Out</a></li>
       </ul>
     </div>
   </nav>
