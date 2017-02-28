@@ -87,12 +87,12 @@
       });
     };
 
-    const getBackers = (userId) => {
+    const getBackers = (userId) =>
       $http({
         method: 'GET',
         url: `api/backers/${userId}`
       });
-    };
+
 
     return {
       findOrCreateUser: findOrCreateUser,
