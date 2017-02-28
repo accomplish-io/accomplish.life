@@ -8,7 +8,7 @@
 
   authService.$inject = ['lock', 'authManager', '$state'];
 
-  function authService(lock, authManager, $stateProvider) {
+  function authService(lock, authManager) {
 
     function login() {
       lock.show();
@@ -19,7 +19,6 @@
     function logout() {
       localStorage.removeItem('id_token');
       authManager.unauthenticate();
-      $stateProvider.go('auth');
     }
 
     // Set up the logic for when a user authenticates
