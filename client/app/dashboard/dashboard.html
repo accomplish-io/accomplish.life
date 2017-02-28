@@ -28,7 +28,7 @@
         <!-- Goal Name -->
         <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
         <!-- Data Chart -->
-        <canvas id="base" height="20" width="180" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.labels" chart-options="vm.options" style="height: 40px"></canvas>
+        <canvas id="base" height="20" width="180" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.barChart.labels" chart-options="vm.barChart.options" style="height: 40px"></canvas>
         <!-- Delete Goal -->
         <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">delete_forever</i>
         <!-- Add Progress -->
@@ -253,11 +253,16 @@
 
 <!-- Goal Details Modal vm.updateGoal-->
 
-<div id="goalDetailsModal" class="modal" style="width: 75%; height: 75%;">
+<div id="goalDetailsModal" class="modal" style="width: 85%; height: 120%;">
   <div class="modal-content">
       <h3>Goal Details</h1>
-      <div>Charts go here!</div>
+      <br>
+      <div style="width: 85%; height: 100%;">
+      <canvas id="line" height=50 width=110 class="chart chart-line" chart-data="vm.goalDetail.progressRange" chart-labels="vm.goalDetail.dateRange" chart-series="vm.lineChart.series" chart-label="Your Progress Over Time" chart-options="vm.lineChart.options"></canvas>
+      </div>
+      <br>
       <a class="btn" ng-show="!vm.updateView" ng-click="vm.toggleUpdate()">Update Goal</a>
+      <br>
       <div ng-show="vm.updateView">
         <div style="display: inline-block;">I will</div>
         <div input-field style="display: inline-block;">
@@ -278,6 +283,7 @@
         </div>
         <a class="btn modal-action modal-close waves-effect waves-green" ng-click="vm.updateThisGoal(vm.goalDetail)">Submit Changes</a>
       </div>
+      <br><br><br>
       <h4>Subgoals:</h3>
       <div ng-repeat="goal in vm.goals | filter: {GoalId: vm.goalDetail.id}:true">
       <div class="collapsible-header" style="padding-right: 0px">
@@ -288,7 +294,7 @@
             <!-- Goal Name -->
             <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
             <!-- Data Chart -->
-            <canvas id="base" height="20" width="180" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.labels" chart-options="vm.options" style="height: 40px"></canvas>
+            <canvas id="base" height="20" width="180" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.barChart.labels" chart-options="vm.barChart.options" style="height: 40px"></canvas>
             <!-- Delete Goal -->
             <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">delete_forever</i>
             <!-- Create New Sub Goal -->

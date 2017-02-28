@@ -112,7 +112,8 @@ module.exports = function(app, express, db, wk) {
   app.post('/api/progress/:goal', function(req, res) {
     db.Progress.create({
       GoalId: req.params.goal,
-      number: req.body.number
+      number: req.body.number,
+      date: req.body.date
     })
     .then(function() {
       db.Progress.findAll({
