@@ -168,6 +168,17 @@ module.exports = function(app, express, db, wk) {
       });
   });
 
+  app.get('/api/backers/:id', function(req, res) {
+    db.Backer.findAll({
+      where: {
+        UserId: req.params.id
+      }
+    })
+    .then(function(backers) {
+      res.send(backers);
+    });
+  });
+
   app.post('/api/backers', function(req, res) {
     db.Backer.findOrCreate({
       where: {
