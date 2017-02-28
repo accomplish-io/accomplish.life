@@ -167,4 +167,20 @@ module.exports = function(app, express, db, wk) {
         res.send(goal);
       });
   });
+
+  app.post('/api/backers', function(req, res) {
+    console.log('******************LOOKIE WHAT WE HAVE HERE', req.body);
+    db.Backer.findOrCreate({
+      where: {
+        backerName: req.body.name,
+        backerEmail: req.body.email,
+        GoalId: req.body.GoalId,
+        UserId: req.body.UserId
+      }
+    })
+    .then(function(backer) {
+      res.send(backer);
+    });
+  });
+
 };

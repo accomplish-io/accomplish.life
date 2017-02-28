@@ -137,6 +137,13 @@
       // Add the entered goal into the database
       vm.addGoal = function(id) {
         GoalFactory.createGoal(vm.goal, vm.payload.email, id, vm.date, vm.number, vm.units)
+          .then(function(goal) {
+            vm.currentBackers.forEach(function(backer) {
+              backer.GoalId = goal.data.id;
+              GoalFactory.addBacker(backer);
+            });
+            vm.currentBackers = [];
+          })
           .then(function() {
             vm.renderGoals()
           });
@@ -151,16 +158,22 @@
       // Only show backer input field if someone wants to add a backer
       vm.showBackerInput = false;
       vm.atLeastOneBacker = false;
+
       vm.addBacker = function() {
         vm.showBackerInput = true;
       };
 
       // Submit backer's name and email
-      vm.submitBacker = function() {
+      vm.currentBackers = [];
+
+      vm.submitBacker = function(goal) {
         //submit vm.backerName and vm.backerEmail
         var newBacker = {};
         newBacker.name = vm.backerName;
         newBacker.email = vm.backerEmail;
+        newBacker.UserId = vm.user.id;
+        vm.currentBackers.push(newBacker);
+
         //Reset entry field
         vm.backerName = '';
         vm.backerEmail = '';

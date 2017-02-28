@@ -79,6 +79,13 @@
         url: `api/progress/${goalId}`
       });
 
+    const addBacker = (backer) => {
+      $http({
+        method: 'POST',
+        url: 'api/backers',
+        data: backer
+      });
+    };
 
     return {
       findOrCreateUser: findOrCreateUser,
@@ -89,7 +96,8 @@
       deleteGoal: deleteGoal,
       updateUser: updateUser,
       postProgress: postProgress,
-      getProgress: getProgress
+      getProgress: getProgress,
+      addBacker: addBacker
     };
   };
 })();
