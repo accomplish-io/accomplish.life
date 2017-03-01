@@ -79,13 +79,13 @@
         url: `api/progress/${goalId}`
       });
 
-    const addBacker = (backer) => {
+    const addBacker = (backer) =>
       $http({
         method: 'POST',
         url: 'api/backers',
         data: backer
       });
-    };
+
 
     const getBackers = (userId) =>
       $http({
