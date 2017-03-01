@@ -241,10 +241,8 @@
 
       vm.addBacker = function() {
         vm.showBackerInput = true;
-        console.log('user id ', vm.user.id);
         GoalFactory.getBackers(vm.user.id)
-        .then(function(backers){
-          console.log('Existing backers ', backers)
+        .then(function(backers)  {
           vm.existingBackers = backers.data;
         })
       };
