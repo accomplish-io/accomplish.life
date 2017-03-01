@@ -62,21 +62,21 @@
 
       vm.createDayRange = (goal) => {
         var range = [];
-        var day = 1
-        var timeLeft = new Date(goal.due) - new Date(goal.start)
+        var day = 1;
+        var timeLeft = new Date(goal.due) - new Date(goal.start);
         var oneDay = 86400000;
         while (timeLeft > 0) {
-          range.push("Day " + day);
+          range.push('Day ' + day);
           day++;
           timeLeft -= oneDay;
         }
         return range;
-      }
+      };
 
       vm.createDateRange = (goal) => {
         var range = [];
-        var day = 1
-        var timeLeft = new Date(goal.due) - new Date(goal.start)
+        var day = 1;
+        var timeLeft = new Date(goal.due) - new Date(goal.start);
         var oneDay = 86400000;
         while (timeLeft > 0) {
           range.push(new Date(new Date(goal.start).valueOf() + (oneDay * (day - 1))).toDateString());
@@ -84,15 +84,15 @@
           timeLeft -= oneDay;
         }
         return range;
-      }
+      };
 
       vm.logger = () => {
-        console.log(vm.updateGoal)
-      }
+        console.log(vm.updateGoal);
+      };
 
       vm.createProgressRange = (goal) => {
         var range = [[]];
-        var timeLeft = new Date(goal.due) - new Date(goal.start)
+        var timeLeft = new Date(goal.due) - new Date(goal.start);
         var oneDay = 86400000;
         var i = 0;
         while (timeLeft > 0) {
@@ -117,7 +117,7 @@
           progress = progress/goal.number;
         });
         return range;
-      }
+      };
 
       vm.noteDisplayed = () => {
         vm.displayed = vm.goals.reduce(function(memo, goal) {
@@ -134,7 +134,8 @@
             goal.subsDisplayed = true;
           }
         });
-      }
+      };
+
       vm.barChart.labels = ['Progress'];
       vm.barChart.series = ['Actual Progress', 'Expected Progress'];
       vm.barChart.options = {
@@ -153,7 +154,7 @@
           ],
         }
       };
-      vm.lineChart.labels = ["January", "February", "March", "April", "May", "June", "July"];
+      vm.lineChart.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
       vm.lineChart.series = ['Series A', 'Series B'];
       vm.lineChart.data = [
         [65, 59, 80, 81, 56, 55, 40]
@@ -225,7 +226,7 @@
             vm.currentBackers = [];
           })
           .then(function() {
-            vm.renderGoals()
+            vm.renderGoals();
           });
         // Reset entry field
         vm.goal = '';
