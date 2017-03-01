@@ -101,16 +101,16 @@
 </div>
 
 <!-- Add Goal Modal -->
-<div id="newGoalModal" class="modal" style="width: 85%; height: 70%;">
+<div id="newGoalModal" class="modal" style="width: 50%; height: 160%;">
   <!-- Submit Entire Goal -->
   <div class="right">
     <a ng-click="vm.addGoal()" class="btn-floating btn-large waves-effect waves-light red modal-action modal-close"><i class="material-icons">add</i></a>
   </div>
   <!-- Modal Form -->
-  <div class="modal-content">
+  <div class="modal-content center">
     <div class="row">
       <div class="input-field">
-        <input ng-model="vm.goal" placeholder="Add a New Goal" required>
+        <input ng-model="vm.goal" placeholder="Add a New Goal" style="width: 50%;" required>
       </div>
     </div>
     <div class="row">
@@ -139,34 +139,34 @@
         <label>units</label>
       </div>
     </div>
-      <!-- Calendar -->
-
-    <datepicker>
-      <input ng-model="vm.date" type="text" placeholder="Add an end date for your goal" required/>
-    </datepicker>
-
-      <!-- Add backers -->
+    <!-- Add backers -->
     <div>
       <a ng-show="!vm.atLeastOneBacker" class="btn" ng-click="vm.addBacker()">Add a backer</a>
       <a ng-show="vm.atLeastOneBacker" class="btn" ng-click="vm.addBacker()">Add another backer</a>
       <form ng-show="vm.showBackerInput" ng-submit="vm.submitBacker()">
-        <div ng-show="!!vm.existingBackers.length" class="right">
+        <div ng-show="!!vm.existingBackers.length" class="">
         <button class="waves-effect waves-green btn btn-flat" ng-click="vm.toggleCollapsible()">Show existing backers</button>
-        <ul ng-show="vm.showCollapsible" class="collapsible popout" data-collapsible="accordion" watch>
+        <ul class="center" ng-show="vm.showCollapsible" class="collapsible popout" data-collapsible="accordion" style="margin-left: 25%; width: 50%;" watch>
           <li ng-repeat="backer in vm.existingBackers">
             <div class="collapsible-header" ng-click="vm.addExistingBacker(backer)"><i></i>{{backer.backerName}}
             </div>
           </li>
         </ul>
         </div>
-        <input ng-model="vm.backerName" type="text" placeholder="Enter backer's name" required/>
+        <input ng-model="vm.backerName" type="text" placeholder="Enter backer's name" style="width: 50%;" required/>
         <br>
-        <input ng-model="vm.backerEmail" type="text" placeholder="Enter backer's email"required/>
+        <input ng-model="vm.backerEmail" type="text" placeholder="Enter backer's email" style="width: 50%;" required/>
+        <br>
         <button class="btn waves-effect waves-light" type="submit" name="action">Submit Backer
           <i class="material-icons right">send</i>
         </button>
       </form>
     </div>
+    <!-- Calendar -->
+    <datepicker style="margin-left: 25%; width: 50%;">
+      <input ng-model="vm.date" type="text" placeholder="Add an end date for your goal" required/>
+    </datepicker>
+
   </div>
 </div>
 
