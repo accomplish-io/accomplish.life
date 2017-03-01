@@ -238,13 +238,21 @@
       // Only show backer input field if someone wants to add a backer
       vm.showBackerInput = false;
       vm.atLeastOneBacker = false;
-
+      var uniqueBackers = {};
       vm.addBacker = function() {
         vm.showBackerInput = true;
+        vm.existingBackers = [];
         GoalFactory.getBackers(vm.user.id)
         .then(function(backers)  {
-          vm.existingBackers = backers.data;
-        })
+          var allBackers = backers.data;
+          for(var i = 0; i < allBackers.length; i++) {//create an object with unique backers
+            var current = allBackers[i];
+            uniqueBackers[current.backerEmail] = current;
+          }
+          for(var unique in uniqueBackers){
+            vm.existingBackers.push(uniqueBackers[unique]);
+          }
+        });
       };
 
       // Submit backer's name and email
