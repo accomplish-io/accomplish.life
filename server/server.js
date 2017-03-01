@@ -4,7 +4,7 @@ var path = require('path');
 var db = require('./db/db-setup.js');
 var wk = require('./workers.js');
 var app = express();
-var port = process.env.PORT || 3021;
+var port = process.env.PORT || 8081;
 
 if(!process.env.PORT) {
   var morgan = require('morgan');

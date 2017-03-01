@@ -2,7 +2,8 @@ var mysql = require('mysql');
 
 var Sequelize = require('sequelize');
 
-db = new Sequelize('accomplish', 'root', '', {
+db = new Sequelize('accomplish1', 'AccomplishIO', 'hrr21brach', {
+    host: 'rds-mysql-accomplish1.cqrshccyvmut.us-east-2.rds.amazonaws.com',
     dialect: 'mysql',
     port: 3306,
     pool: {
