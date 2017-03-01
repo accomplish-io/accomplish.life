@@ -245,10 +245,9 @@
         GoalFactory.getBackers(vm.user.id)
         .then(function(backers)  {
           var allBackers = backers.data;
-          for(var i = 0; i < allBackers.length; i++) {//create an object with unique backers
-            var current = allBackers[i];
+          allBackers.forEach(function(current) {//create an object with unique backers
             uniqueBackers[current.backerEmail] = current;
-          }
+          });
           for(var unique in uniqueBackers){
             vm.existingBackers.push(uniqueBackers[unique]);
           }
