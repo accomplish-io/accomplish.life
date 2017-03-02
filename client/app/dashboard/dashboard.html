@@ -276,18 +276,18 @@
       <br>
       <a class="btn" ng-show="!vm.updateView" ng-click="vm.toggleUpdate()">Update Goal</a>
       <br>
-      <div ng-show="vm.updateView">
+      <div ng-show="vm.updateView" style="width: 54%">
         <span style="display: inline-block;">I will</span>
-        <span input-field style="display: inline-block;">
+        <span input-field style="display: inline-block; width: 20%;">
           <input type="text" ng-model="vm.updateGoal.goalName" length="30">
           <label>goal</label>
         </span>
         <span style="display: inline-block;">at least</span>
-        <span input-field style="display: inline-block;">
+        <span input-field style="display: inline-block; width: 15%;">
           <input type="number" ng-required="number" ng-model="vm.updateGoal.number" length="4">
           <label>target</label>
         </span>
-        <span input-field style="display: inline-block;">
+        <span input-field style="display: inline-block; width: 10%;">
           <input type="text" ng-model="vm.updateGoal.units" length="6">
           <label>units</label>
         </span>
