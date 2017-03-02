@@ -1,16 +1,6 @@
 var Sequelize = require('sequelize');
-//var db = new Sequelize('accomplish1', 'AccomplishIO', 'hrr21brach');
 
-db = new Sequelize('accomplish1', 'AccomplishIO', 'hrr21brach', {
-    host: 'rds-mysql-accomplish1.cqrshccyvmut.us-east-2.rds.amazonaws.com',
-    dialect: 'mysql',
-    port: 3306,
-    pool: {
-      min: 1,
-      max: 5,
-      idle: 20000
-    }
-  });
+var db = new Sequelize('accomplish', 'root', '');
 
 db.authenticate()
   .then(function(err) {
