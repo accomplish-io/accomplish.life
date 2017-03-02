@@ -15,6 +15,15 @@ html {
   background-size: cover;
 }
 
+.statement {
+   font-family: "pollen-web",serif;
+   font-size: 6vw;
+   color: white;
+   text-shadow: 0 2px 2px black;
+   text-align: center;"
+}
+
+
 /*The div in which we append all the bars*/
 /*.progress-bars {
    width: 350px;
