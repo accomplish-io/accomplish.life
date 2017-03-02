@@ -17,7 +17,7 @@
   <div class="col">
     <!-- Add Main Goal Modal Trigger -->
     <!-- TODO: Make button into a "plus" like in the modal? -->
-    <a class="btn" data-target="newGoalModal" modal>Add a goal</a>
+    <a class="waves-effect waves-light light-blue darken-4 btn" data-target="newGoalModal" modal>Add a goal</a>
   </div>
   <br>
 
@@ -107,7 +107,7 @@
   <div id="newGoalModal" class="modal" style="width: 60%; height: 160%;">
     <!-- Submit Entire Goal -->
     <div class="right">
-      <a ng-click="vm.addGoal()" class="btn-floating btn-large waves-effect waves-light modal-action modal-close" style="margin-top: 10px; margin-right: 10px;"><i class="material-icons">add</i></a>
+      <a ng-click="vm.addGoal()" class="btn-floating btn-large waves-effect waves-light light-blue darken-4 modal-action modal-close" style="margin-top: 10px; margin-right: 10px;"><i class="material-icons">add</i></a>
     </div>
     <!-- Modal Form -->
     <div class="modal-content center">
@@ -119,7 +119,7 @@
       </div>
       <div class="row">
        <!-- Dropdown Trigger -->
-        <a class="dropdown-button btn" href="javascript:void(0);" data-activates="goalType" dropdown data-hover="true">How will you finish your goal?</a>
+        <a class="dropdown-button btn light-blue darken-4" href="javascript:void(0);" data-activates="goalType" dropdown data-hover="true">How will you finish your goal?</a>
        <!-- Dropdown Structure -->
         <ul id="goalType" class="dropdown-content">
           <li><a ng-click="vm.quantity = false">Do once</a></li>
@@ -146,11 +146,11 @@
       </div>
       <!-- Add backers -->
       <div>
-        <a ng-show="!vm.atLeastOneBacker" class="btn" ng-click="vm.addBacker()">Add a backer</a>
-        <a ng-show="vm.atLeastOneBacker" class="btn" ng-click="vm.addBacker()">Add another backer</a>
+        <a ng-show="!vm.atLeastOneBacker" class="btn light-blue darken-4" ng-click="vm.addBacker()">Add a backer</a>
+        <a ng-show="vm.atLeastOneBacker" class="btn light-blue darken-4" ng-click="vm.addBacker()">Add another backer</a>
         <form ng-show="vm.showBackerInput" ng-submit="vm.submitBacker()">
           <div ng-show="!!vm.existingBackers.length" class="">
-            <button class="waves-effect waves-green btn btn-flat" ng-click="vm.toggleCollapsible()">Show existing backers</button>
+            <button class="waves-effect waves-green btn btn-flat light-blue darken-4" ng-click="vm.toggleCollapsible()">Show existing backers</button>
             <ul class="center" ng-show="vm.showCollapsible" class="collapsible popout" data-collapsible="accordion" style="margin-left: 35%; width: 30%;" watch>
               <li ng-repeat="backer in vm.existingBackers">
                 <div class="collapsible-header" ng-click="vm.addExistingBacker(backer)"><i></i>{{backer.backerName}}
@@ -162,7 +162,7 @@
           <br>
           <input ng-model="vm.backerEmail" type="text" placeholder="Enter backer's email" style="width: 42%;" required/>
           <br>
-          <button class="btn waves-effect waves-light" type="submit" name="action">Submit Backer
+          <button class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Submit Backer
             <i class="material-icons right">send</i>
           </button>
         </form>
@@ -180,7 +180,7 @@
   <div id="newSubGoalModal" class="modal" style="width: 60%; height: 160%;">
     <!-- Submit Button -->
     <div class="right">
-      <a href="#!" ng-click="vm.addGoal(vm.parentGoal)" class="btn-floating btn-large waves-effect waves-light modal-action modal-close" style="margin-top: 10px; margin-right: 10px;"><i class="material-icons">add</i></a>
+      <a href="#!" ng-click="vm.addGoal(vm.parentGoal)" class="btn-floating btn-large waves-effect waves-light light-blue darken-4 modal-action modal-close" style="margin-top: 10px; margin-right: 10px;"><i class="material-icons">add</i></a>
     </div>
     <div class="modal-content center">
       <h3>Add a Sub-Goal</h3>
@@ -192,7 +192,7 @@
         </div>
         <div class="row">
           <!-- Dropdown Trigger -->
-          <a class="dropdown-button btn" href="javascript:void(0);" data-activates="subGoalType" dropdown data-hover="true">How will you finish your goal?</a>
+          <a class="dropdown-button btn light-blue darken-4" href="javascript:void(0);" data-activates="subGoalType" dropdown data-hover="true">How will you finish your goal?</a>
           <!-- Dropdown Structure -->
           <ul id="subGoalType" class="dropdown-content">
             <li><a ng-click="vm.quantity = false">Do once</a></li>
@@ -275,7 +275,7 @@
         <canvas id="line" height=50 width=110 class="chart chart-line" chart-data="vm.goalDetail.progressRange" chart-labels="vm.goalDetail.dateRange" chart-series="vm.lineChart.series" chart-label="Your Progress Over Time" chart-options="vm.lineChart.options"></canvas>
       </div>
       <br>
-      <a class="btn" ng-show="!vm.updateView" ng-click="vm.toggleUpdate()">Update Goal</a>
+      <a class="btn light-blue darken-4" ng-show="!vm.updateView" ng-click="vm.toggleUpdate()">Update Goal</a>
       <br>
       <div ng-show="vm.updateView" style="width: 54%">
         <span style="display: inline-block;">I will</span>
