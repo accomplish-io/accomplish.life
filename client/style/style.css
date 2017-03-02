@@ -1,7 +1,19 @@
 .headerTitle {
   font-size: 3em;
   font-family: "pollen-web",serif;
-  }
+}
+
+/*.authBody {
+   background-image: url(../images/authBackground.jpg);
+}*/
+
+html {
+  background: url(../images/authBackground.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 /*The div in which we append all the bars*/
 /*.progress-bars {
