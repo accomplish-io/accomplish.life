@@ -1,3 +1,8 @@
+.headerTitle {
+  font-size: 3em;
+  font-family: "pollen-web",serif;
+  }
+
 /*The div in which we append all the bars*/
 /*.progress-bars {
    width: 350px;
