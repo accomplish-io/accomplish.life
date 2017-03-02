@@ -2,7 +2,7 @@
   font-size: 3em;
   font-family: "pollen-web",serif;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
 }
 
 /*.authBody {
@@ -25,13 +25,15 @@ html {
    text-align: center;"
 }
 
-.nav-wrapper {
+/*.nav-wrapper {
    height: 1vh;
-}
+}*/
 
 .logo {
-   height: 10vh;
+   height: 8vh;
    display: inline-block;
+   margin-left: 1em;
+   margin-top: .5em;
 }
 
 /*The div in which we append all the bars*/
