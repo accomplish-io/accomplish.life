@@ -1,6 +1,8 @@
 .headerTitle {
   font-size: 3em;
   font-family: "pollen-web",serif;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /*.authBody {
@@ -23,6 +25,14 @@ html {
    text-align: center;"
 }
 
+.nav-wrapper {
+   height: 1vh;
+}
+
+.logo {
+   height: 10vh;
+   display: inline-block;
+}
 
 /*The div in which we append all the bars*/
 /*.progress-bars {
