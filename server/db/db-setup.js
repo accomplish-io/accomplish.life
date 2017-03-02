@@ -1,4 +1,5 @@
 var Sequelize = require('sequelize');
+
 var db = new Sequelize('accomplish', 'root', '');
 
 db.authenticate()

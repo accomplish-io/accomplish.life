@@ -3,3 +3,8 @@ node_modules/
 client/app/auth/auth0-variables.js
 client/bower_components
 dist/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

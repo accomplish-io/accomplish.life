@@ -1,3 +1,81 @@
+.headerTitle {
+  font-size: 3em;
+  font-family: "pollen-web",serif;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.logo {
+  height: 8vh;
+  display: inline-block;
+  margin-left: 1em;
+  margin-top: .5em;
+}
+
+html {
+  background: url(../images/authBackground.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.statement {
+  font-family: "pollen-web",serif;
+  font-size: 6vw;
+  color: white;
+  text-shadow: 0 0px 1vw black;
+  text-align: center;"
+}
+
+.subheading {
+   /*font-family: "pollen-web",serif;*/
+  font-size: 1.5em;
+  color: white;
+  text-shadow: 0 0px .3vw black;
+  text-align: center;
+  bottom: 0;
+}
+
+#startButton {
+   /*display: inline-block;*/
+/*   position: fixed;
+   bottom: 0;*/
+/*   text-align: center;*/
+}
+
+.footerholder {
+  bottom: 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+}
+
+.footer {
+  height: 15vh;
+  margin: auto;
+  width: 85vw;
+}
+
+.subheadingholder1 {
+  bottom: 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+}
+
+.subheadingholder2 {
+  height: 30vh;
+  margin: auto;
+  width: 85vw;
+}
+
+.container {
+  padding-right: 2vw;
+  padding-left: 2vw;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+}
 /*The div in which we append all the bars*/
 /*.progress-bars {
    width: 350px;
