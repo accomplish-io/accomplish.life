@@ -5,6 +5,12 @@
   vertical-align: top;
 }
 
+.logo {
+   height: 8vh;
+   display: inline-block;
+   margin-left: 1em;
+   margin-top: .5em;
+}
 /*.authBody {
    background-image: url(../images/authBackground.jpg);
 }*/
@@ -21,19 +27,50 @@ html {
    font-family: "pollen-web",serif;
    font-size: 6vw;
    color: white;
-   text-shadow: 0 2px 2px black;
+   text-shadow: 0 0px 1vw black;
    text-align: center;"
 }
 
-/*.nav-wrapper {
-   height: 1vh;
-}*/
+.subheading {
+   /*font-family: "pollen-web",serif;*/
+   font-size: 1.5em;
+   color: white;
+   text-shadow: 0 0px .3vw black;
+   text-align: center;
+   bottom: 0;
+}
 
-.logo {
-   height: 8vh;
-   display: inline-block;
-   margin-left: 1em;
-   margin-top: .5em;
+#startButton {
+   /*display: inline-block;*/
+/*   position: fixed;
+   bottom: 0;*/
+/*   text-align: center;*/
+}
+
+.footerholder {
+    bottom: 0;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+}
+
+.footer {
+    height: 15vh;
+    margin: auto;
+    width: 85vw;
+}
+
+.subheadingholder1 {
+    bottom: 0;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+}
+
+.subheadingholder2 {
+    height: 30vh;
+    margin: auto;
+    width: 85vw;
 }
 
 /*The div in which we append all the bars*/
