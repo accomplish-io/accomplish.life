@@ -272,7 +272,7 @@
       <h3>Goal Details</h3>
       <br>
       <div style="width: 85%; height: 100%;">
-        <canvas id="line" height=50 width=110 class="chart chart-line" chart-data="vm.goalDetail.progressRange" chart-labels="vm.goalDetail.dateRange" chart-series="vm.lineChart.series" chart-label="Your Progress Over Time" chart-options="vm.lineChart.options"></canvas>
+        <canvas id="line" height=50 width=110 class="chart chart-line" chart-data="vm.goalDetail.progressRange" chart-labels="vm.goalDetail.dateRange" chart-series="vm.lineChart.series" chart-labels="vm.goalDetail.label" chart-options="vm.lineChart.options"></canvas>
       </div>
       <br>
       <a class="btn light-blue darken-4" ng-show="!vm.updateView" ng-click="vm.toggleUpdate()">Update Goal</a>
