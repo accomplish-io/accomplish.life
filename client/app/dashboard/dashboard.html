@@ -266,7 +266,7 @@
   </div>
 
   <!-- Goal Details Modal vm.updateGoal-->
-  <div id="goalDetailsModal" class="modal" style="width: 85%; height: 120%;">
+  <div id="goalDetailsModal" class="modal" style="width: 85%; height: 160%;">
     <div class="modal-content">
       <h3>Goal Details</h3>
       <br>
@@ -293,6 +293,7 @@
         </span>
         <br>
         <span input-field style="display: inline-block;">
+          <span style="display: inline-block;">By</span>
           <input style="display: inline-block;" type="date" class="datepicker" ng-model="vm.updateGoal.due" length="10">
         </span>
         <br>
@@ -301,7 +302,7 @@
       <br>
       <br>
       <br>
-      <h4>Subgoals:</h4>
+      <h4>Subgoals</h4>
       <div ng-repeat="goal in vm.goals | filter: {GoalId: vm.goalDetail.id}:true">
         <div class="collapsible-header" style="padding-right: 0px">
           <ul class="collection with-header">
