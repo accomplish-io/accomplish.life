@@ -15,6 +15,7 @@
   <h3>Goals</h3>
   <div class="col">
     <!-- Add Main Goal Modal Trigger -->
+    <!-- TODO: Make button into a "plus" like in the modal? -->
     <a class="btn" data-target="newGoalModal" modal>Add a goal</a>
   </div>
   <br>
@@ -124,7 +125,7 @@
           <li><a ng-click="vm.quantity = true">Quantify your goal</a></li>
         </ul>
       </div>
-      <div class="row" ng-show="vm.quantity"  style="margin-left: 23%; width: 54%;">
+      <div class="row" ng-show="vm.quantity" style="margin-left: 23%; width: 54%;">
         <span style="display: inline-block;">I will</span>
         <!-- TODO: Make into main goal title -->
         <span input-field style="display: inline-block; width: 20%;">
@@ -165,6 +166,7 @@
           </button>
         </form>
       </div>
+      <br>
       <!-- Calendar -->
       <datepicker style="margin-left: 23%; width: 54%;">
         <input ng-model="vm.date" type="text" placeholder="Add an end date for your goal" required/>
@@ -174,11 +176,16 @@
 
 
   <!-- Add Sub Goal Modal -->
-  <div id="newSubGoalModal" class="modal" style="width: 85%; height: 70%;">
-    <div class="modal-content">
+  <div id="newSubGoalModal" class="modal" style="width: 60%; height: 160%;">
+    <!-- Submit Button -->
+    <div class="right">
+      <a href="#!" ng-click="vm.addGoal(vm.parentGoal)" class="btn-floating btn-large waves-effect waves-light modal-action modal-close" style="margin-top: 10px; margin-right: 10px;"><i class="material-icons">add</i></a>
+    </div>
+    <div class="modal-content center">
+      <h3>Add a Sub-Goal</h3>
       <div class="row">
         <div class="row">
-          <div class="input-field">
+          <div class="input-field" style="margin-left: 23%; width: 54%;">
             <input ng-model="vm.goal" placeholder="Add a New Sub-Goal" required>
           </div>
         </div>
@@ -191,32 +198,29 @@
             <li><a ng-click="vm.quantity = true">Quantify your goal</a></li>
           </ul>
         </div>
-        <div class="row" ng-show="vm.quantity">
+        <div class="row" ng-show="vm.quantity" style="margin-left: 23%; width: 54%;">
           <span style="display: inline-block;">I will</span>
           <!-- TODO: Make into Sub Goal title -->
-          <span input-field style="display: inline-block;">
+          <span input-field style="display: inline-block; width: 20%;">
             <input type="text" ng-model="vm.verb" length="20">
             <label>sub-goal</label>
           </span>
           <span style="display: inline-block;">at least</span>
-          <span input-field style="display: inline-block;">
+          <span input-field style="display: inline-block; width: 15%;">
             <input type="number" ng-required="number" ng-model="vm.number" length="10">
             <label>target</label>
           </span>
-          <span input-field style="display: inline-block;">
+          <span input-field style="display: inline-block; width: 10%;">
             <input type="text" ng-model="vm.units" length="10">
             <label>units</label>
           </span>
           <!-- End of TODO -->
         </div>
+        <br>
         <!-- Calendar -->
-        <datepicker>
+        <datepicker style="margin-left: 23%; width: 54%;">
           <input ng-model="vm.date" type="text" placeholder="Add an end date for your goal" required/>
         </datepicker>
-        <!-- Submit Button -->
-        <div class="right">
-          <a href="#!" ng-click="vm.addGoal(vm.parentGoal)" class="btn modal-action modal-close waves-effect waves-green btn btn-flat">Submit Sub-Goal</a>
-        </div>
       </div>
     </div>
   </div>
