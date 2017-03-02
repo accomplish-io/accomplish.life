@@ -49,6 +49,7 @@
               goal.dayRange = vm.createDayRange(goal);
               goal.dateRange = vm.createDateRange(goal);
               goal.progressRange = vm.createProgressRange(goal);
+              goal.label = vm.makeLabel(goal);
               var amountDone = [goal.number ? ((goal.Progresses.reduce(function(prev, next, index, progArr) {
                 return angular.isNumber(next.number) ? prev + next.number : prev;
               }, 0)) / goal.number) * 100 : 70];
@@ -58,6 +59,11 @@
             vm.goals = goals.data;
             vm.restoreDisplayed();
           });
+      };
+
+      vm.makeLabel = function(goal) {
+        var rate = Math.round(goal.number/(goal.dayRange.length - 1));
+        return [goal.goalName + " " + rate + " " + goal.units + " per day"];
       };
 
       vm.createDayRange = (goal) => {
@@ -86,12 +92,8 @@
         return range;
       };
 
-      vm.logger = () => {
-        console.log(vm.updateGoal);
-      };
-
       vm.createProgressRange = (goal) => {
-        var range = [[]];
+        var range = [[],[0]];
         var timeLeft = new Date(goal.due) - new Date(goal.start);
         var oneDay = 86400000;
         var i = 0;
@@ -100,6 +102,9 @@
           //range[1].push(goal.dayRange[i]);
           timeLeft -= oneDay;
           i++;
+        }
+        for (var j = 0; j < range[0].length; j++) {
+          range[1].push((j + 1) * (100/(range[0].length - 1)));
         }
         goal.Progresses.forEach((progress) => {
           var occurred = new Date(progress.date).valueOf();
@@ -164,6 +169,10 @@
           yAxes: [
             {
               id: 'y-axis-1',
+              ticks: {
+                beginAtZero: true,
+                max: 100
+              },
               type: 'linear',
               display: true,
               position: 'left'
