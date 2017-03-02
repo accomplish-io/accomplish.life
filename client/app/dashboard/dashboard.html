@@ -13,7 +13,7 @@
 
 <!-- App -->
 <div class="container" style="background-color: white">
-  <h3>Goals</h3>
+  <h3 class="tk-pollen-web">Goals</h3>
   <div class="col">
     <!-- Add Main Goal Modal Trigger -->
     <!-- TODO: Make button into a "plus" like in the modal? -->
@@ -74,7 +74,7 @@
   </div>
 
   <!-- Completed Goals -->
-  <h3>Completed</h3>
+  <h3 class="tk-pollen-web">Completed</h3>
   <div ng-repeat="goal in vm.goals | filter:{complete: true, GoalId: null}">
     <div class="collapsible-header" style="padding-right: 0px">
       <ul class="collection with-header">
