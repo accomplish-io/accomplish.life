@@ -146,6 +146,7 @@
         <a ng-show="vm.atLeastOneBacker" class="btn light-blue darken-4" ng-click="vm.addBacker()">Add another backer</a>
         <form ng-show="vm.showBackerInput" ng-submit="vm.submitBacker()">
           <div ng-show="!!vm.existingBackers.length" class="">
+            <br>
             <button class="waves-effect waves-green btn btn-flat light-blue darken-4" ng-click="vm.toggleCollapsible()" style="color:white">Show existing backers</button>
             <ul class="center" ng-show="vm.showCollapsible" class="collapsible popout" data-collapsible="accordion" style="margin-left: 35%; width: 30%;" watch>
               <li ng-repeat="backer in vm.existingBackers">
