@@ -1,4 +1,6 @@
-(function() {
+'use strict';
+
+(function () {
   'use strict';
 
   angular
@@ -6,32 +8,36 @@
     .factory('GoalFactory', GoalFactory);
 
   function GoalFactory($http) {
-    const findOrCreateUser = (name, email) =>
-      $http({
+
+    var findOrCreateUser = function findOrCreateUser(name, email) {
+      return $http({
         method: 'POST',
         url: 'api/auth',
         data: {
           email: email
         }
       });
+    };
 
-    const findUser = (email) =>
-      $http({
+    var findUser = function findUser(email) {
+      return $http({
         method: 'GET',
-        url: `api/users/${email}`,
+        url: 'api/users/' + email
       });
+    };
 
-    const updateUser = (email, data) =>
-      $http({
+    var updateUser = function updateUser(email, data) {
+      return $http({
         method: 'PUT',
-        url: `api/users/${email}`,
+        url: 'api/users/' + email,
         data: data
       });
+    };
 
-    const createGoal = (text, email, GoalId, date, number, unit) =>
-      $http({
+    var createGoal = function createGoal(text, email, GoalId, date, number, unit) {
+      return $http({
         method: 'POST',
-        url: `api/goals/${email}`,
+        url: 'api/goals/' + email,
         data: {
           goalName: text,
           GoalId: GoalId,
@@ -40,59 +46,66 @@
           due: date
         }
       });
+    };
 
-    const getUserGoals = (email) =>
-      $http({
+    var getUserGoals = function getUserGoals(email) {
+      return $http({
         method: 'GET',
-        url: `api/goals/${email}`
+        url: 'api/goals/' + email
       });
+    };
 
-    const deleteGoal = (id) =>
-      $http({
+    var deleteGoal = function deleteGoal(id) {
+      return $http({
         method: 'DELETE',
-        url: `api/goal/${id}`
+        url: 'api/goal/' + id
       });
+    };
 
-    const getOneGoal = (id) =>
-      $http({
+    var getOneGoal = function getOneGoal(id) {
+      return $http({
         method: 'GET',
-        url: `api/goal/${id}`
+        url: 'api/goal/' + id
       });
+    };
 
-    const updateGoal = (id, data) =>
-      $http({
+    var updateGoal = function updateGoal(id, data) {
+      return $http({
         method: 'PUT',
-        url: `api/goal/${id}`,
+        url: 'api/goal/' + id,
         data: data
       });
+    };
 
-    const postProgress = (goalId, data) =>
-      $http({
+    var postProgress = function postProgress(goalId, data) {
+      return $http({
         method: 'POST',
-        url: `api/progress/${goalId}`,
+        url: 'api/progress/' + goalId,
         data: data
       });
+    };
 
-    const getProgress = (goalId) =>
-      $http({
+    var getProgress = function getProgress(goalId) {
+      return $http({
         method: 'GET',
-        url: `api/progress/${goalId}`
+        url: 'api/progress/' + goalId
       });
+    };
 
-    const addBacker = (backer) =>
-      $http({
+    var addBacker = function addBacker(backer) {
+      return $http({
         method: 'POST',
         url: 'api/backers',
         data: backer
       });
+    };
 
-
-    const getBackers = (userId) =>
-      $http({
+    var getBackers = function getBackers(userId) {
+      return $http({
         method: 'GET',
-        url: `api/backers/${userId}`
+        url: 'api/backers/' + userId
       });
-
+    };
 
     return {
       findOrCreateUser: findOrCreateUser,
