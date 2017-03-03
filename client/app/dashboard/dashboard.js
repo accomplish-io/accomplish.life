@@ -3,7 +3,7 @@
 
   angular
     .module('dashboard', ['ui.materialize', '720kb.datepicker'])
-    .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, GoalFactory, BackerFactory, ProgressFactory) {
+    .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, UserFactory, GoalFactory, BackerFactory, ProgressFactory) {
 
       var vm = this;
       vm.quantity = false;
@@ -23,7 +23,7 @@
 
       lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
         vm.payload = profile;
-        GoalFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
+        UserFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
           .then(user => {
             vm.user = user.data[0];
             vm.renderGoals();
