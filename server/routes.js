@@ -1,9 +1,6 @@
 module.exports = function(app, express, db, wk) {
-  //add routes and controller based on database endpoints
 
   app.post('/api/auth', function(req, res) {
-    //console.log('Attempting to create new user');
-    //console.log('Reqest body: ', req.body);
     db.User.findOrCreate({where: {
       email: req.body.email,
     }})
@@ -24,8 +21,6 @@ module.exports = function(app, express, db, wk) {
       });
   });
 
-  // this is a change
-
   app.get('/api/users/:email', function(req, res) {
     db.User.findOne({
       where: {
@@ -44,7 +39,6 @@ module.exports = function(app, express, db, wk) {
       }
     })
     .then(function (user) {
-      //console.log(user.dataValues.id);
       db.Goal.findAll({
         where: {
           UserId: user.dataValues.id
@@ -52,7 +46,6 @@ module.exports = function(app, express, db, wk) {
         include: [db.Progress]
       })
       .then(function(results) {
-        //console.log('Results ******************************** ' + results);
         res.send(results);
       });
     });
@@ -65,7 +58,6 @@ module.exports = function(app, express, db, wk) {
       }
     })
       .then(function(user) {
-        // console.log('*******USER: ', user);
         db.Goal.create({
           UserId: user.id,
           goalName: req.body.goalName,
@@ -88,11 +80,6 @@ module.exports = function(app, express, db, wk) {
     db.Goal.destroy({
       where: { GoalId: req.params.id }
     })
-      .then(function() {
-        db.Goal.destroy({
-          where: { id: req.params.id }
-        });
-      })
       .then(function() {
         res.send('Task deleted');
       });
@@ -192,6 +179,15 @@ module.exports = function(app, express, db, wk) {
     .then(function(backer) {
       res.send(backer);
     });
+  });
+
+  app.delete('/api/backers/:id', function(req, res) {
+    db.Backer.destroy({
+      where: { BackerId: req.params.id }
+    })
+      .then(function() {
+        res.send('Backer removed');
+      });
   });
 
 };
