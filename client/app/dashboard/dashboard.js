@@ -188,15 +188,16 @@
         goal.addDisplayed = !goal.addDisplayed;
       };
 
-      vm.toggleUpdate = function() {
+      vm.toggleUpdate = function(id) {
         vm.updateView = !vm.updateView;
       };
 
       vm.prepUpdate = function(goal) {
+        vm.quantifiable = !!goal.units;
         vm.goalDetail = goal;
         vm.updateGoal = {};
         vm.updateGoal.due = new Date(goal.due);
-        vm.updateGoal.number = goal.number;
+        vm.updateGoal.number = '';
         vm.updateGoal.goalName = goal.goalName;
         vm.updateGoal.units = goal.units;
         vm.lineChart.options.scales.yAxes[0].ticks.max = goal.number;
@@ -295,6 +296,8 @@
         GoalFactory.updateGoal(goal.id, vm.updateGoal)
         .then(function() {
           vm.renderGoals();
+          vm.updateGoal = {};
+          vm.updateView = false;
         });
       };
 
