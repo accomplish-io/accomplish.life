@@ -51,3 +51,17 @@ Any other dependency is connected via CDN
 
 -Auth0
 -Amazon MySQL RDB
+
+### Project Issues Link
+
+View the project issues [here](https://github.com/accomplish-io/accomplish.life/issues)
+
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+
+## Running Tests
+
+Intiate the test sequence by...
