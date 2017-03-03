@@ -146,6 +146,7 @@
         <a ng-show="vm.atLeastOneBacker" class="btn light-blue darken-4" ng-click="vm.addBacker()">Add another backer</a>
         <form ng-show="vm.showBackerInput" ng-submit="vm.submitBacker()">
           <div ng-show="!!vm.existingBackers.length" class="">
+            <br>
             <button class="waves-effect waves-green btn btn-flat light-blue darken-4" ng-click="vm.toggleCollapsible()" style="color:white">Show existing backers</button>
             <ul class="center" ng-show="vm.showCollapsible" class="collapsible popout" data-collapsible="accordion" style="margin-left: 35%; width: 30%;" watch>
               <li ng-repeat="backer in vm.existingBackers">
@@ -271,7 +272,7 @@
     <div class="modal-content">
       <h3>Goal Details</h3>
       <br>
-      <div style="width: 85%; height: 100%;">
+      <div ng-if="vm.goal" style="width: 85%; height: 100%;">
         <canvas id="line" height=50 width=110 class="chart chart-line" chart-data="vm.goalDetail.progressRange" chart-labels="vm.goalDetail.dateRange" chart-series="vm.lineChart.series" chart-labels="vm.goalDetail.label" chart-options="vm.lineChart.options"></canvas>
       </div>
       <br>
