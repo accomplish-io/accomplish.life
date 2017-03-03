@@ -77,21 +77,6 @@
       });
     };
 
-    var postProgress = function postProgress(goalId, data) {
-      return $http({
-        method: 'POST',
-        url: 'api/progress/' + goalId,
-        data: data
-      });
-    };
-
-    var getProgress = function getProgress(goalId) {
-      return $http({
-        method: 'GET',
-        url: 'api/progress/' + goalId
-      });
-    };
-
     return {
       findOrCreateUser: findOrCreateUser,
       findUser: findUser,
@@ -99,9 +84,7 @@
       createGoal: createGoal,
       updateGoal: updateGoal,
       deleteGoal: deleteGoal,
-      updateUser: updateUser,
-      postProgress: postProgress,
-      getProgress: getProgress
+      updateUser: updateUser
     };
   };
 })();
