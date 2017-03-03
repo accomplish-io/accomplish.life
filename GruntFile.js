@@ -3,18 +3,17 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-     shell: {
-         multiple: {
-             command: [
-                'npm install',
-                'cd client',
-                'bower install',
-                'cd ..',
-                'nodemon server/server.js'
-             ].join('&&')
-         }
-     },
-
+    shell: {
+      multiple: {
+        command: [
+          'npm install',
+          'cd client',
+          'bower install',
+          'cd ..',
+          'nodemon server/server.js'
+        ].join('&&')
+      }
+    },
 
     ngAnnotate: {
       options: {
