@@ -104,7 +104,7 @@
           i++;
         }
         for (var j = 0; j < range[0].length; j++) {
-          range[1].push((j + 1) * (100/(range[0].length - 1)));
+          range[1].push((j + 1) * (goal.number/(range[0].length - 1)));
         }
         goal.Progresses.forEach((progress) => {
           var occurred = new Date(progress.date).valueOf();
@@ -118,9 +118,7 @@
             }
           }
         });
-        range[0].forEach(progress => {
-          progress = progress/goal.number;
-        });
+
         return range;
       };
 
@@ -201,6 +199,7 @@
         vm.updateGoal.number = goal.number;
         vm.updateGoal.goalName = goal.goalName;
         vm.updateGoal.units = goal.units;
+        vm.lineChart.options.scales.yAxes[0].ticks.max = goal.number;
       };
 
       vm.addProgress = function (goal) {
