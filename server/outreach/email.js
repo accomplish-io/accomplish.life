@@ -1,34 +1,24 @@
-var sendEmail = function() {
+var newGoalEmail = function(goalID, email, backers) {
 
   var params = {
-    Destination: { /* required */
-      BccAddresses: [
-        'STRING_VALUE',
-        /* more items */
-      ],
-      CcAddresses: [
-        'STRING_VALUE',
-        /* more items */
-      ],
-      ToAddresses: [
-        'STRING_VALUE',
-        /* more items */
-      ]
+    Destination: {
+      CcAddresses: backers,
+      ToAddresses: [email]
     },
-    Message: { /* required */
-      Body: { /* required */
+    Message: {
+      Body: {
         Html: {
           Data: 'STRING_VALUE', /* required */
-          Charset: 'STRING_VALUE'
+          Charset: 'UTF-8'
         },
         Text: {
           Data: 'STRING_VALUE', /* required */
-          Charset: 'STRING_VALUE'
+          Charset: 'UTF-8'
         }
       },
       Subject: { /* required */
-        Data: 'STRING_VALUE', /* required */
-        Charset: 'STRING_VALUE'
+        Data: 'New Goal!', /* required */
+        Charset: 'UTF-8'
       }
     },
     Source: 'STRING_VALUE', /* required */
@@ -52,8 +42,4 @@ var sendEmail = function() {
     if (err) console.log(err, err.stack); // an error occurred
     else     console.log(data);           // successful response
   });
-
-
-
-
 };
