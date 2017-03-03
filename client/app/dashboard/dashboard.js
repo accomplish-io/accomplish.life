@@ -3,7 +3,7 @@
 
   angular
     .module('dashboard', ['ui.materialize', '720kb.datepicker'])
-    .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, GoalFactory) {
+    .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, GoalFactory, BackerFactory) {
 
       var vm = this;
       vm.quantity = false;
@@ -230,7 +230,7 @@
           .then(function(goal) {
             vm.currentBackers.forEach(function(backer) {
               backer.GoalId = goal.data.id;
-              GoalFactory.addBacker(backer);
+              BackerFactory.addBacker(backer);
             });
             vm.currentBackers = [];
           })
@@ -252,7 +252,7 @@
       vm.addBacker = function() {
         vm.showBackerInput = true;
         vm.existingBackers = [];
-        GoalFactory.getBackers(vm.user.id)
+        BackerFactory.getBackers(vm.user.id)
         .then(function(backers)  {
           var allBackers = backers.data;
           allBackers.forEach(function(current) {//create an object with unique backers
