@@ -188,7 +188,7 @@
         goal.addDisplayed = !goal.addDisplayed;
       };
 
-      vm.toggleUpdate = function(id) {
+      vm.toggleUpdate = function() {
         vm.updateView = !vm.updateView;
       };
 
