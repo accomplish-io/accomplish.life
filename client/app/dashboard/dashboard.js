@@ -3,7 +3,7 @@
 
   angular
     .module('dashboard', ['ui.materialize', '720kb.datepicker'])
-    .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, GoalFactory, BackerFactory) {
+    .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, GoalFactory, BackerFactory, ProgressFactory) {
 
       var vm = this;
       vm.quantity = false;
@@ -205,7 +205,7 @@
 
       vm.addProgress = function (goal) {
         console.log(vm.progressGoal);
-        GoalFactory.postProgress(goal.id, {
+        ProgressFactory.postProgress(goal.id, {
           number: vm.progNum,
           date: new Date()
         })
