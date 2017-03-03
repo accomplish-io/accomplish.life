@@ -92,21 +92,6 @@
       });
     };
 
-    var addBacker = function addBacker(backer) {
-      return $http({
-        method: 'POST',
-        url: 'api/backers',
-        data: backer
-      });
-    };
-
-    var getBackers = function getBackers(userId) {
-      return $http({
-        method: 'GET',
-        url: 'api/backers/' + userId
-      });
-    };
-
     return {
       findOrCreateUser: findOrCreateUser,
       findUser: findUser,
@@ -116,9 +101,7 @@
       deleteGoal: deleteGoal,
       updateUser: updateUser,
       postProgress: postProgress,
-      getProgress: getProgress,
-      addBacker: addBacker,
-      getBackers: getBackers
+      getProgress: getProgress
     };
   };
 })();
