@@ -175,7 +175,16 @@
           </button>
         </form>
       </div>
+      <div>
+        <ul class="center" class="collapsible popout" data-collapsible="accordion" style="margin-left: 35%; width: 30%;" watch>
+          <li ng-repeat="backer in vm.currentBackers">
+            <div class="collapsible-header ldblue tk-pollen-web"><i></i>{{backer.name}}
+            </div>
+          </li>
+        </ul>
+      </div>
       <br>
+      <div >
       <!-- Calendar -->
       <datepicker class="datepickercss" style="margin-left: 23%; width: 54%;">
         <input class="dateinput" ng-model="vm.date" type="text" placeholder="Add an end date for your goal" required/>
