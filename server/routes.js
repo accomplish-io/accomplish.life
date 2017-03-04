@@ -188,7 +188,7 @@ module.exports = function(app, express, db, wk) {
 
   app.delete('/api/backers/:id', function(req, res) {
     db.Backer.destroy({
-      where: { BackerId: req.params.id }
+      where: { id: req.params.id }
     })
       .then(function() {
         res.send('Backer removed');
