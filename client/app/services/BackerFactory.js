@@ -27,7 +27,7 @@
     var deleteBacker = function deleteBacker(backerId) {
       return $http({
         method: 'DELETE',
-        url: 'api/backers/' + id
+        url: 'api/backers/' + backerId
       });
     };
 

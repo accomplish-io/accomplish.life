@@ -161,7 +161,7 @@
             <button class="waves-effect waves-green btn btn-flat light-blue darken-4" ng-click="vm.toggleCollapsible()" style="color:white">Show existing backers</button>
             <ul class="center" ng-show="vm.showCollapsible" class="collapsible popout" data-collapsible="accordion" style="margin-left: 35%; width: 30%;" watch>
               <li ng-repeat="backer in vm.existingBackers">
-                <div class="collapsible-header" ng-click="vm.addExistingBacker(backer)"><i></i>{{backer.backerName}}
+                <div class="collapsible-header ldblue tk-pollen-web" ng-click="vm.addExistingBacker(backer)">{{backer.backerName}}<i ng-click="vm.deleteExistingBacker(backer)" class="material-icons right">remove</i>
                 </div>
               </li>
             </ul>
@@ -178,7 +178,7 @@
       <div>
         <ul class="center" class="collapsible popout" data-collapsible="accordion" style="margin-left: 35%; width: 30%;" watch>
           <li ng-repeat="backer in vm.currentBackers">
-            <div class="collapsible-header ldblue tk-pollen-web"><i ng-click="vm.deleteBacker(backer)" class="material-icons right">remove</i>{{backer.name}}
+            <div class="collapsible-header ldblue tk-pollen-web">{{backer.name}}<i ng-click="vm.deleteBacker(backer)" class="material-icons right">remove</i>
             </div>
           </li>
         </ul>
