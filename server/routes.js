@@ -1,5 +1,5 @@
 module.exports = function(app, express, db, wk) {
-  /*
+
   app.post('/api/auth', function(req, res) {
     db.User.findOrCreate({where: {
       email: req.body.email,
@@ -194,7 +194,6 @@ module.exports = function(app, express, db, wk) {
         res.send('Backer removed');
       });
   });
-  */
 
   app.post('api/home', require('./home.js'));
 

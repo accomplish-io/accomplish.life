@@ -1,4 +1,4 @@
-/*var Sequelize = require('sequelize');
+var Sequelize = require('sequelize');
 
 var db = new Sequelize('accomplish', 'root', '');
 
@@ -130,4 +130,4 @@ exports.Progress = Progress;
 exports.Backer = Backer;
 exports.GoalBacker = GoalBacker;
 exports.Session = Session;
-exports.GoalSession = GoalSession; */
+exports.GoalSession = GoalSession;
