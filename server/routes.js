@@ -1,3 +1,5 @@
+var homeHandle = require('./home.js');
+
 module.exports = function(app, express, db, wk) {
 
   app.post('/api/auth', function(req, res) {
@@ -195,6 +197,9 @@ module.exports = function(app, express, db, wk) {
       });
   });
 
-  app.post('api/home', require('./home.js'));
+  app.post('api/home', function(req, res) {
+    console.log('fired');
+    homeHandle(req, res);
+  });
 
 };
