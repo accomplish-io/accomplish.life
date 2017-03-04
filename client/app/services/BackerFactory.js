@@ -33,7 +33,8 @@
 
     return {
       addBacker: addBacker,
-      getBackers: getBackers
+      getBackers: getBackers,
+      deleteBacker: deleteBacker
     };
   };
 })();
