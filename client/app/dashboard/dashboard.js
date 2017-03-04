@@ -280,6 +280,7 @@
         vm.backerEmail = '';
         vm.atLeastOneBacker = true;
         vm.showBackerInput = false;
+        vm.showCollapsible = false;
       };
 
       vm.addExistingBacker = function(backer) {
