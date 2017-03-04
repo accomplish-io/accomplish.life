@@ -272,6 +272,16 @@
         vm.currentBackers.splice(spliced, 1);
       }
 
+      vm.deleteExistingBacker = function(backer) {
+        console.log('bacer in deleteExistingBacker ', backer);
+        var spliced = vm.existingBackers.indexOf(backer);
+        vm.existingBackers.splice(spliced, 1);
+        BackerFactory.deleteBacker(backer.id)
+        .then(function(){
+          console.log("Existing backer deleted");
+        });
+      };
+
       vm.submitBacker = function(goal) {
         //submit vm.backerName and vm.backerEmail
         var newBacker = {};
