@@ -24,6 +24,13 @@
       });
     };
 
+    var deleteBacker = function deleteBacker(backerId) {
+      return $http({
+        method: 'DELETE',
+        url: 'api/backers/' + id
+      });
+    };
+
     return {
       addBacker: addBacker,
       getBackers: getBackers
