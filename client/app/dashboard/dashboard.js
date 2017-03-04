@@ -238,12 +238,17 @@
             vm.renderGoals();
           });
         // Reset entry field
+        vm.resetNewGoal();
+      };
+
+      vm.resetNewGoal = function() {
         vm.goal = '';
         vm.verb = '';
         vm.number = null;
         vm.date = null;
         vm.units = '';
-      };
+        vm.quantity = false;
+      }
 
       // Only show backer input field if someone wants to add a backer
       vm.showBackerInput = false;
