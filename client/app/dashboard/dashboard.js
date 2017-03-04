@@ -26,6 +26,7 @@
         UserFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
           .then(user => {
             vm.user = user.data[0];
+            console.log(vm.user);
             vm.renderGoals();
           });
 
