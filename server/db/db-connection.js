@@ -1,4 +1,4 @@
-var mysql = require('mysql');
+/*var mysql = require('mysql');
 
 var Sequelize = require('sequelize');
 
@@ -19,7 +19,6 @@ db.authenticate()
     console.log('Unable to connect to the database: ', err);
   });
 
-/*
 var connection = mysql.createConnection({
   user: 'root',
   password: '',
@@ -27,5 +26,5 @@ var connection = mysql.createConnection({
 });
 
 connection.connect();
-*/
 module.exports = db;
+*/
