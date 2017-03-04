@@ -195,4 +195,6 @@ module.exports = function(app, express, db, wk) {
       });
   });
 
+  app.post('api/home', require('./home.js'));
+
 };
