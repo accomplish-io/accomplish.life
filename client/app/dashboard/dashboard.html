@@ -178,7 +178,7 @@
       <div>
         <ul class="center" class="collapsible popout" data-collapsible="accordion" style="margin-left: 35%; width: 30%;" watch>
           <li ng-repeat="backer in vm.currentBackers">
-            <div class="collapsible-header ldblue tk-pollen-web"><i></i>{{backer.name}}
+            <div class="collapsible-header ldblue tk-pollen-web"><i ng-click="vm.deleteBacker(backer)" class="material-icons right">remove</i>{{backer.name}}
             </div>
           </li>
         </ul>
@@ -195,7 +195,7 @@
       <a ng-click="vm.addGoal()" class="btn-floating btn-large waves-effect waves-light light-blue darken-4 modal-action modal-close" style="margin-top: 10px; margin-right: 10px;"><i class="material-icons">add</i></a>
     </div>
   </div>
-
+</div>
 
   <!-- Add Sub Goal Modal -->
   <div id="newSubGoalModal" class="modal" style="width: 60%; height: 160%;">
