@@ -3,7 +3,7 @@
 
   angular
     .module('dashboard', ['ui.materialize', '720kb.datepicker'])
-    .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, GoalFactory) {
+    .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, UserFactory, GoalFactory, BackerFactory, ProgressFactory) {
 
       var vm = this;
       vm.quantity = false;
@@ -23,7 +23,7 @@
 
       lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
         vm.payload = profile;
-        GoalFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
+        UserFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
           .then(user => {
             vm.user = user.data[0];
             vm.renderGoals();
@@ -205,7 +205,7 @@
 
       vm.addProgress = function (goal) {
         console.log(vm.progressGoal);
-        GoalFactory.postProgress(goal.id, {
+        ProgressFactory.postProgress(goal.id, {
           number: vm.progNum,
           date: new Date()
         })
@@ -230,7 +230,7 @@
           .then(function(goal) {
             vm.currentBackers.forEach(function(backer) {
               backer.GoalId = goal.data.id;
-              GoalFactory.addBacker(backer);
+              BackerFactory.addBacker(backer);
             });
             vm.currentBackers = [];
           })
@@ -252,7 +252,7 @@
       vm.addBacker = function() {
         vm.showBackerInput = true;
         vm.existingBackers = [];
-        GoalFactory.getBackers(vm.user.id)
+        BackerFactory.getBackers(vm.user.id)
         .then(function(backers)  {
           var allBackers = backers.data;
           allBackers.forEach(function(current) {//create an object with unique backers

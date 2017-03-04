@@ -92,7 +92,10 @@ Goal.belongsTo(Frequency);
 Frequency.hasMany(Goal);
 
 Progress.belongsTo(Goal);
-Goal.hasMany(Progress);
+Goal.hasMany(Progress, {
+  onDelete: 'cascade',
+  hooks: true
+});
 
 GoalBacker.belongsTo(Goal);
 Goal.hasMany(Backer);
