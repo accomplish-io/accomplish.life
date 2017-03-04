@@ -292,7 +292,7 @@
     <div class="modal-content">
       <h3 class="ldblue">Goal Details</h3>
       <br>
-      <div ng-if="vm.goal" style="width: 85%; height: 100%;">
+      <div ng-if="vm.goalDetail.number" style="width: 85%; height: 100%;">
         <canvas id="line" height=50 width=110 class="chart chart-line" chart-data="vm.goalDetail.progressRange" chart-labels="vm.goalDetail.dateRange" chart-series="vm.lineChart.series" chart-labels="vm.goalDetail.label" chart-options="vm.lineChart.options"></canvas>
       </div>
       <br>
