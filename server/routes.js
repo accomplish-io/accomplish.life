@@ -81,6 +81,11 @@ module.exports = function(app, express, db, wk) {
       where: { GoalId: req.params.id }
     })
       .then(function() {
+        db.Goal.destroy({
+          where: { id: req.params.id }
+        });
+      })
+      .then(function() {
         res.send('Task deleted');
       });
   });
