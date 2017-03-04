@@ -2,9 +2,10 @@ var mysql = require('mysql');
 
 var Sequelize = require('sequelize');
 
-db = new Sequelize('accomplish', 'root', '', {
+db = new Sequelize(process.env.DBNAME || 'accomplish1', process.env.DBUSER || 'root', process.env.DBPW || '', {
+  host: process.env.DBHOST || 'localhost',
   dialect: 'mysql',
-  port: 3306,
+  port: process.env.DBPORT || 3306,
   pool: {
     min: 1,
     max: 5,
@@ -19,13 +20,4 @@ db.authenticate()
     console.log('Unable to connect to the database: ', err);
   });
 
-/*
-var connection = mysql.createConnection({
-  user: 'root',
-  password: '',
-  database: 'accomplish'
-});
-
-connection.connect();
-*/
 module.exports = db;
