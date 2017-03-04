@@ -267,6 +267,11 @@
       // Submit backer's name and email
       vm.currentBackers = [];
 
+      vm.deleteBacker = function(backer) {
+        var spliced = vm.currentBackers.indexOf(backer);
+        vm.currentBackers.splice(spliced, 1);
+      }
+
       vm.submitBacker = function(goal) {
         //submit vm.backerName and vm.backerEmail
         var newBacker = {};
