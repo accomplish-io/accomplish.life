@@ -65,7 +65,7 @@
 
           <!-- Display Sub Goals -->
           <span ng-if="goal.hasChildren">
-            <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 10px 15px 10px 0px;">expand_more</i>
+            <i ng-click="vm.toggleSubs(goal, $event)" class="material-icons right" style="margin: 10px 15px 10px 0px;">expand_more</i>
           </span>
         </li>
         <br>
@@ -105,7 +105,7 @@
           <i ng-click='vm.deleteGoal(goal.id)' class="material-icons right" style="margin: 0px 15px 0px 0px;">delete_forever</i>
           <!-- Show Sub Goals -->
           <span ng-if="goal.hasChildren">
-            <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 0px 15px 0px 0px;">swap_vertical_circle</i>
+            <i ng-click="vm.toggleSubs(goal, $event)" class="material-icons right" style="margin: 0px 15px 0px 0px;">expand_more</i>
           </span>
         </li>
         <!-- Sub Goals -->

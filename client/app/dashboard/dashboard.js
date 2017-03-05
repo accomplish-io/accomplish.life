@@ -6,6 +6,7 @@
     .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, UserFactory, GoalFactory, BackerFactory, ProgressFactory) {
 
       var vm = this;
+
       vm.quantity = false;
       vm.test = 'blank';
       vm.progNum = '';
@@ -17,6 +18,7 @@
       vm.lineChart = {};
       vm.existingBackers = [];
       vm.showCollapsible = false;
+
       // Get user details from auth
       vm.displayLoginButton = () =>
       localStorage.getItem('id_token') ? false : true;
@@ -180,8 +182,12 @@
       };
 
       // Open up sub-goals
-      vm.toggleSubs = function (goal) {
+      vm.toggleSubs = function (goal, $event) {
         goal.subsDisplayed = !goal.subsDisplayed;
+        var spanElement = $event.target;
+        $event.target.innerHTML === 'expand_more'
+          ? angular.element(spanElement).html('expand_less')
+          : angular.element(spanElement).html('expand_more');
       };
 
       vm.toggleAdd = function (goal) {
@@ -275,7 +281,7 @@
       vm.deleteBacker = function(backer) {
         var spliced = vm.currentBackers.indexOf(backer);
         vm.currentBackers.splice(spliced, 1);
-      }
+      };
 
       vm.deleteExistingBacker = function(backer) {
         console.log('bacer in deleteExistingBacker ', backer);
