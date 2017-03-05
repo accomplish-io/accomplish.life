@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 
-db = new Sequelize(process.env.DBNAME || 'accomplish1', process.env.DBUSER || 'root', process.env.DBPW || '', {
+db = new Sequelize(process.env.DBNAME || 'accomplish', process.env.DBUSER || 'root', process.env.DBPW || '', {
   host: process.env.DBHOST || 'localhost',
   dialect: 'mysql',
   port: process.env.DBPORT || 3306,
