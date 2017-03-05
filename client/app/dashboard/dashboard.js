@@ -65,7 +65,7 @@
 
       vm.makeLabel = function(goal) {
         var rate = Math.round(goal.number/(goal.dayRange.length - 1));
-        return [goal.goalName + " " + rate + " " + goal.units + " per day"];
+        return [goal.goalName + ' ' + rate + ' ' + goal.units + ' per day'];
       };
 
       vm.createDayRange = (goal) => {
@@ -210,7 +210,7 @@
       };
 
       vm.addProgress = function (goal) {
-        console.log(vm.progressGoal);
+        //console.log(vm.progressGoal);
         ProgressFactory.postProgress(goal.id, {
           number: vm.progNum,
           date: new Date()
@@ -284,12 +284,12 @@
       };
 
       vm.deleteExistingBacker = function(backer) {
-        console.log('bacer in deleteExistingBacker ', backer);
+        //console.log('bacer in deleteExistingBacker ', backer);
         var spliced = vm.existingBackers.indexOf(backer);
         vm.existingBackers.splice(spliced, 1);
         BackerFactory.deleteBacker(backer.id)
         .then(function(){
-          console.log("Existing backer deleted");
+          //console.log("Existing backer deleted");
         });
       };
 
