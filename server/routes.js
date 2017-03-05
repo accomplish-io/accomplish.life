@@ -197,9 +197,6 @@ module.exports = function(app, express, db, wk) {
       });
   });
 
-  app.post('/api/home', function(req, res) {
-    console.log('fired');
-    homeHandle(req, res);
-  });
+  app.post('/api/home', homeHandle);
 
 };
