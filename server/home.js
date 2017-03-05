@@ -1,7 +1,7 @@
 module.exports = function(req, res) {
-  var text = generateQuote();
+  var text = generateGoalAdvice();
   if (req.body.results.metadata.intentName === 'Encourage') {
-    text = generateGoalAdvice();
+    text = generateQuote();
   }
   var response = {
     "speech": "You did it!",
