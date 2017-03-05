@@ -1,6 +1,15 @@
 var Sequelize = require('sequelize');
 
-var db = new Sequelize('accomplish', 'root', '');
+db = new Sequelize(process.env.DBNAME || 'accomplish', process.env.DBUSER || 'root', process.env.DBPW || '', {
+  host: process.env.DBHOST || 'localhost',
+  dialect: 'mysql',
+  port: process.env.DBPORT || 3306,
+  pool: {
+    min: 1,
+    max: 5,
+    idle: 20000
+  }
+});
 
 db.authenticate()
   .then(function(err) {

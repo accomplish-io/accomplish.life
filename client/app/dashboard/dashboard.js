@@ -6,6 +6,7 @@
     .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, UserFactory, GoalFactory, BackerFactory, ProgressFactory) {
 
       var vm = this;
+
       vm.quantity = false;
       vm.test = 'blank';
       vm.progNum = '';
@@ -17,6 +18,7 @@
       vm.lineChart = {};
       vm.existingBackers = [];
       vm.showCollapsible = false;
+
       // Get user details from auth
       vm.displayLoginButton = () =>
       localStorage.getItem('id_token') ? false : true;
@@ -63,7 +65,7 @@
 
       vm.makeLabel = function(goal) {
         var rate = Math.round(goal.number/(goal.dayRange.length - 1));
-        return [goal.goalName + " " + rate + " " + goal.units + " per day"];
+        return [goal.goalName + ' ' + rate + ' ' + goal.units + ' per day'];
       };
 
       vm.createDayRange = (goal) => {
@@ -180,8 +182,12 @@
       };
 
       // Open up sub-goals
-      vm.toggleSubs = function (goal) {
+      vm.toggleSubs = function (goal, $event) {
         goal.subsDisplayed = !goal.subsDisplayed;
+        var spanElement = $event.target;
+        $event.target.innerHTML === 'expand_more'
+          ? angular.element(spanElement).html('expand_less')
+          : angular.element(spanElement).html('expand_more');
       };
 
       vm.toggleAdd = function (goal) {
@@ -204,7 +210,7 @@
       };
 
       vm.addProgress = function (goal) {
-        console.log(vm.progressGoal);
+        //console.log(vm.progressGoal);
         ProgressFactory.postProgress(goal.id, {
           number: vm.progNum,
           date: new Date()
@@ -275,15 +281,15 @@
       vm.deleteBacker = function(backer) {
         var spliced = vm.currentBackers.indexOf(backer);
         vm.currentBackers.splice(spliced, 1);
-      }
+      };
 
       vm.deleteExistingBacker = function(backer) {
-        console.log('bacer in deleteExistingBacker ', backer);
+        //console.log('bacer in deleteExistingBacker ', backer);
         var spliced = vm.existingBackers.indexOf(backer);
         vm.existingBackers.splice(spliced, 1);
         BackerFactory.deleteBacker(backer.id)
         .then(function(){
-          console.log("Existing backer deleted");
+          //console.log("Existing backer deleted");
         });
       };
 

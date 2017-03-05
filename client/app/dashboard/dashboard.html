@@ -45,24 +45,31 @@
               <a class="waves-effect waves-light light-blue darken-4 btn-medium modal-action modal-close tk-pollen-web" style="color:white;">No</a>
             </div>
           </div>
-          <!-- Add Progress -->
-          <a ng-click="vm.progressGoal = goal" data-target="goalProgressModal" ng-style="{color: goal.number ? 'black' : '#d9d9d9', 'pointer-events': goal.number ? 'auto' : 'none'}" modal>
-            <i class="material-icons right" style="margin: 10px 15px 10px 0px;">insert_chart</i>
-          </a>
+
+
           <!-- Goal Details -->
-          <a ng-click="vm.prepUpdate(goal)" data-target="goalDetailsModal" style="color: black;" modal>
-            <i class="material-icons right" style="margin: 10px 15px 10px 0px;">settings</i>
+          <a tooltipped class="col s4 offset-s4 l2 offset-l1" data-position="bottom" data-delay="50" data-tooltip="View Goal Details" ng-click="vm.prepUpdate(goal)" data-target="goalDetailsModal" style="color: black;" modal>
+            <i class="material-icons right" style="margin: 10px 15px 10px 0px;">info_outline</i>
           </a>
+
+
+          <!-- Add Progress -->
+          <a tooltipped class="col s4 offset-s4 l2 offset-l1" data-position="left" data-delay="250" data-tooltip="Add Progress" ng-click="vm.progressGoal = goal" data-target="goalProgressModal" ng-style="{color: goal.number ? 'black' : '#d9d9d9', 'pointer-events': goal.number ? 'auto' : 'none'}" modal>
+            <i class="material-icons right" style="margin: 10px 15px 10px 0px;">grade</i>
+          </a>
+
           <!-- Create New Sub Goal -->
-          <a ng-click="vm.parentGoal = goal.id" data-target="newSubGoalModal" style="color: black;" modal>
-            <i class="material-icons right" style="margin: 10px 15px 10px 0px;">library_add</i>
+          <a tooltipped class="col s4 offset-s4 l2 offset-l1" data-position="top" data-delay="150" data-tooltip="Create New Subgoal" ng-click="vm.parentGoal = goal.id" data-target="newSubGoalModal" style="color: black;" modal>
+            <i class="material-icons right" style="margin: 10px 15px 10px 0px;">add_circle_outline</i>
           </a>
+
           <!-- Display Sub Goals -->
           <span ng-if="goal.hasChildren">
-            <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 10px 15px 10px 0px;">swap_vertical_circle</i>
+            <i ng-click="vm.toggleSubs(goal, $event)" class="material-icons right" style="margin: 10px 15px 10px 0px;">expand_more</i>
           </span>
         </li>
         <br>
+
         <!-- Sub Goals -->
         <div ng-show="goal.subsDisplayed">
           <div ng-repeat="sub in vm.goals | filter: {GoalId: goal.id}:true">
@@ -75,7 +82,7 @@
               <i ng-click="vm.deleteGoal(sub.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete_forever</i>
               <!-- Add Progress -->
               <a ng-if="!sub.complete" ng-click="vm.progressGoal = sub" data-target="subProgressModal" ng-style="{color: sub.number ? 'black' : '#d9d9d9', 'pointer-events': sub.number ? 'auto' : 'none'}" modal>
-                <i ng-if="!sub.complete" class="material-icons right" style="margin: 0px 15px 0px 0px;">insert_chart</i>
+                <i ng-if="!sub.complete" class="material-icons right" style="margin: 0px 15px 0px 0px;">grade</i>
               </a>
             </li>
           </div>
@@ -98,7 +105,7 @@
           <i ng-click='vm.deleteGoal(goal.id)' class="material-icons right" style="margin: 0px 15px 0px 0px;">delete_forever</i>
           <!-- Show Sub Goals -->
           <span ng-if="goal.hasChildren">
-            <i ng-click="vm.toggleSubs(goal)" class="material-icons right" style="margin: 0px 15px 0px 0px;">swap_vertical_circle</i>
+            <i ng-click="vm.toggleSubs(goal, $event)" class="material-icons right" style="margin: 0px 15px 0px 0px;">expand_more</i>
           </span>
         </li>
         <!-- Sub Goals -->
