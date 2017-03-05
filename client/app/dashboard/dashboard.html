@@ -128,7 +128,7 @@
       <h3 class="tk-pollen-web ldblue">Add a Goal</h3>
       <div class="row">
         <div class="input-field" style="margin-left: 23%; width: 54%;">
-          <input ng-model="vm.goal" placeholder="Add a New Goal" required>
+          <input ng-model="vm.goal" placeholder="Add a New Goal" required autofocus>
         </div>
       </div>
       <div class="row">
@@ -211,7 +211,7 @@
       <div class="row">
         <div class="row">
           <div class="input-field" style="margin-left: 23%; width: 54%;">
-            <input ng-model="vm.goal" placeholder="Add a New Sub-Goal" required>
+            <input ng-model="vm.goal" placeholder="Add a New Sub-Goal" required autofocus>
           </div>
         </div>
         <div class="row">
@@ -227,8 +227,7 @@
           <span style="display: inline-block;">I will</span>
           <!-- TODO: Make into Sub Goal title -->
           <span input-field style="display: inline-block; width: 20%;">
-            <input type="text" ng-model="vm.verb" length="20">
-            <label>sub-goal</label>
+            <input type="text" ng-model="vm.verb" length="20" placeholder="sub-goal" autofocus>
           </span>
           <span style="display: inline-block;">at least</span>
           <span input-field style="display: inline-block; width: 15%;">
