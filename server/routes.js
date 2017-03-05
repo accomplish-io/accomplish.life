@@ -1,3 +1,5 @@
+var homeHandle = require('./home.js');
+
 module.exports = function(app, express, db, wk) {
 
   app.post('/api/auth', function(req, res) {
@@ -194,5 +196,7 @@ module.exports = function(app, express, db, wk) {
         res.send('Backer removed');
       });
   });
+
+  app.post('/api/home', homeHandle);
 
 };
