@@ -30,7 +30,7 @@ function generateQuote() {
 
 function generateGoalAdvice() {
   var goalAdvice = [
-    'Write your goal down.',
+    "Write your goal down.",
     "Be sure to ask yourself what resources you would need to complete your goal.",
     "Make your goals SMART; Let them be specific, measurable, attainable, realistic, and time oriented.",
     "Think about when and where you will complete your goal.",
