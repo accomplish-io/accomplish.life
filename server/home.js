@@ -1,6 +1,6 @@
 module.exports = function(req, res) {
   var text = generateGoalAdvice();
-  if (req.body.results.metadata.intentName === 'Encourage') {
+  if (req.body.result.metadata.intentName === 'Encourage') {
     text = generateQuote();
   }
   var response = {
