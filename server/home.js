@@ -4,8 +4,8 @@ module.exports = function(req, res) {
     text = generateQuote();
   }
   var response = {
-    "speech": "You did it!",
-    "displayText": "woot woot!",
+    "speech": text,
+    "displayText": text,
     "data": {},
     "contextOut": [],
     "source": "accomplish.life"
