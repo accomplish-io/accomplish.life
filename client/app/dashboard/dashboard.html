@@ -48,19 +48,19 @@
 
 
           <!-- Goal Details -->
-          <a tooltipped class="col s4 offset-s4 l2 offset-l1" data-position="bottom" data-delay="50" data-tooltip="View Goal Details" ng-click="vm.prepUpdate(goal)" data-target="goalDetailsModal" style="color: black;" modal>
-            <i class="material-icons right" style="margin: 10px 15px 10px 0px;">info_outline</i>
+          <a ng-click="vm.prepUpdate(goal)" data-target="goalDetailsModal" style="color: black;" modal>
+            <i tooltipped data-position="bottom" data-delay="100" data-tooltip="View Goal Details"  class="material-icons right" style="margin: 10px 15px 10px 0px;">info_outline</i>
           </a>
 
 
           <!-- Add Progress -->
-          <a tooltipped class="col s4 offset-s4 l2 offset-l1" data-position="left" data-delay="250" data-tooltip="Add Progress" ng-click="vm.progressGoal = goal" data-target="goalProgressModal" ng-style="{color: goal.number ? 'black' : '#d9d9d9', 'pointer-events': goal.number ? 'auto' : 'none'}" modal>
-            <i class="material-icons right" style="margin: 10px 15px 10px 0px;">grade</i>
+          <a ng-click="vm.progressGoal = goal" data-target="goalProgressModal" ng-style="{color: goal.number ? 'black' : '#d9d9d9', 'pointer-events': goal.number ? 'auto' : 'none'}" modal>
+            <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Add Progress" class="material-icons right" style="margin: 10px 15px 10px 0px;">grade</i>
           </a>
 
           <!-- Create New Sub Goal -->
-          <a tooltipped class="col s4 offset-s4 l2 offset-l1" data-position="top" data-delay="150" data-tooltip="Create New Subgoal" ng-click="vm.parentGoal = goal.id" data-target="newSubGoalModal" style="color: black;" modal>
-            <i class="material-icons right" style="margin: 10px 15px 10px 0px;">add_circle_outline</i>
+          <a ng-click="vm.parentGoal = goal.id" data-target="newSubGoalModal" style="color: black;" modal>
+            <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Create New Subgoal" class="material-icons right" style="margin: 10px 15px 10px 0px;">add_circle_outline</i>
           </a>
 
           <!-- Display Sub Goals -->
