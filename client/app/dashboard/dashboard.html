@@ -34,15 +34,15 @@
           <canvas id="base" height="20" width="180" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.barChart.labels" chart-options="vm.barChart.options" style="height: 40px"></canvas>
           <!-- Delete Goal -->
           <a data-target="deleteGoalModal" style="color: black;" modal>
-           <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Delete Goal" class="material-icons right" data-target="deleteGoalModal" style="margin: 10px 15px 10px 0px;">delete_forever</i>
+            <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Delete Goal" ng-click="vm.currentDeleteGoal = goal" class="material-icons right" data-target="deleteGoalModal" style="margin: 10px 15px 10px 0px;">delete_forever</i>
           </a>
           <!-- Delete Goal Modal -->
           <div id="deleteGoalModal" class="modal" style="width: 30%; height: 20%;">
             <div class="modal-content center">
               <span class="tk-pollen-web ldblue" style="font-size: 125%;">Delete your main goal?</span>
               <br>
-              <a class="waves-effect waves-light light-blue darken-4 btn modal-action modal-close tk-pollen-web" ng-click="vm.deleteGoal(goal.id)" style="color:white;">Yes</a>
-              <a class="waves-effect waves-light light-blue darken-4 btn modal-action modal-close tk-pollen-web" style="color:white;">No</a>
+              <a class="waves-effect waves-light light-blue darken-4 btn-medium modal-action modal-close tk-pollen-web" ng-click="vm.deleteGoal(vm.currentDeleteGoal.id)" style="color:white;">Yes</a>
+              <a class="waves-effect waves-light light-blue darken-4 btn-medium modal-action modal-close tk-pollen-web" style="color:white;">No</a>
             </div>
           </div>
 

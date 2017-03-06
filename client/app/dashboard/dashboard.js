@@ -18,6 +18,7 @@
       vm.lineChart = {};
       vm.existingBackers = [];
       vm.showCollapsible = false;
+      vm.currentDeleteGoal = null;
 
       // Get user details from auth
       vm.displayLoginButton = () =>
@@ -226,6 +227,7 @@
       vm.deleteGoal = function(id) {
         GoalFactory.deleteGoal(id)
           .then(function() {
+            vm.currentDeleteGoal = null;
             vm.renderGoals();
           });
       };
