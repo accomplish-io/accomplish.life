@@ -65,7 +65,8 @@
 
           <!-- Display Sub Goals -->
           <span ng-if="goal.hasChildren">
-            <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Show/Hide Subgoals" ng-click="vm.toggleSubs(goal, $event)" class="material-icons right" style="margin: 10px 15px 10px 0px;">expand_more</i>
+            <i ng-if="goal.subsDisplayed" tooltipped data-position="bottom" data-delay="100" data-tooltip="Hide Subgoals" ng-click="vm.toggleSubs(goal, $event)" class="material-icons right" style="margin: 10px 15px 10px 0px;">expand_less</i>
+            <i ng-if="!goal.subsDisplayed" tooltipped data-position="bottom" data-delay="100" data-tooltip="Show Subgoals" ng-click="vm.toggleSubs(goal, $event)" class="material-icons right" style="margin: 10px 15px 10px 0px;">expand_more</i>
           </span>
         </li>
         <br>
@@ -127,24 +128,15 @@
     <div class="modal-content center">
       <h3 class="tk-pollen-web ldblue">Add a Goal</h3>
       <div class="row">
-        <div class="input-field" style="margin-left: 23%; width: 54%;">
+        <div class="input-field" ng-show="!vm.quantity" style="margin-left: 23%; width: 54%;">
           <input ng-model="vm.goal" placeholder="Add a New Goal" required autofocus>
         </div>
-      </div>
-      <div class="row">
-       <!-- Dropdown Trigger -->
-        <a class="dropdown-button btn light-blue darken-4" href="javascript:void(0);" data-activates="goalType" dropdown data-hover="true">How will you finish your goal?</a>
-       <!-- Dropdown Structure -->
-        <ul id="goalType" class="dropdown-content">
-          <li><a g-click="vm.quantity = false"><span class="ldblue">Do once</span></a></li>
-          <li><a ng-click="vm.quantity = true"><span class="ldblue">Quantify your goal</span></a></li>
-        </ul>
       </div>
       <div class="row ldblue" ng-show="vm.quantity" margin-left: 23%; width: 54%;">
         <span style="display: inline-block;">I will</span>
         <!-- TODO: Make into main goal title -->
         <span input-field style="display: inline-block; width: 20%;">
-          <input type="text" ng-model="vm.verb" length="20">
+          <input type="text" ng-model="vm.goal" length="20">
           <label>goal</label>
         </span>
         <span style="display: inline-block;">at least</span>
@@ -157,6 +149,15 @@
           <label>units</label>
         </span>
         <!-- End of TODO -->
+      </div>
+      <div class="row">
+       <!-- Dropdown Trigger -->
+        <a class="dropdown-button btn light-blue darken-4" href="javascript:void(0);" data-activates="goalType" dropdown data-hover="true">How will you finish your goal?</a>
+       <!-- Dropdown Structure -->
+        <ul id="goalType" class="dropdown-content">
+          <li><a ng-click="vm.quantity = false"><span class="ldblue">Do once</span></a></li>
+          <li><a ng-click="vm.quantity = true"><span class="ldblue">Quantify your goal</span></a></li>
+        </ul>
       </div>
       <!-- Add backers -->
       <div>
@@ -207,27 +208,18 @@
   <!-- Add Sub Goal Modal -->
   <div id="newSubGoalModal" class="modal" style="width: 60%; height: 160%;">
     <div class="modal-content center">
-      <h3 class="ldblue">Add a Sub-Goal</h3>
+      <h3 class="tk-pollen-web ldblue">Add a Sub-Goal</h3>
       <div class="row">
         <div class="row">
-          <div class="input-field" style="margin-left: 23%; width: 54%;">
+          <div class="input-field" ng-show="!vm.quantity" style="margin-left: 23%; width: 54%;">
             <input ng-model="vm.goal" placeholder="Add a New Sub-Goal" required autofocus>
           </div>
-        </div>
-        <div class="row">
-          <!-- Dropdown Trigger -->
-          <a class="dropdown-button btn light-blue darken-4" href="javascript:void(0);" data-activates="subGoalType" dropdown data-hover="true">How will you finish your goal?</a>
-          <!-- Dropdown Structure -->
-          <ul id="subGoalType" class="dropdown-content">
-            <li><a ng-click="vm.quantity = false">Do once</a></li>
-            <li><a ng-click="vm.quantity = true">Quantify your goal</a></li>
-          </ul>
         </div>
         <div class="row" ng-show="vm.quantity" style="margin-left: 23%; width: 54%;">
           <span style="display: inline-block;">I will</span>
           <!-- TODO: Make into Sub Goal title -->
           <span input-field style="display: inline-block; width: 20%;">
-            <input type="text" ng-model="vm.verb" length="20" placeholder="sub-goal" autofocus>
+            <input type="text" ng-model="vm.goal" length="20" placeholder="sub-goal" autofocus>
           </span>
           <span style="display: inline-block;">at least</span>
           <span input-field style="display: inline-block; width: 15%;">
@@ -239,6 +231,15 @@
             <label>units</label>
           </span>
           <!-- End of TODO -->
+        </div>
+        <div class="row">
+          <!-- Dropdown Trigger -->
+          <a class="dropdown-button btn light-blue darken-4" href="javascript:void(0);" data-activates="subGoalType" dropdown data-hover="true">How will you finish your goal?</a>
+          <!-- Dropdown Structure -->
+          <ul id="subGoalType" class="dropdown-content">
+            <li><a ng-click="vm.quantity = false"><span class="ldblue">Do once</span></a></li>
+            <li><a ng-click="vm.quantity = true"><span class="ldblue">Quantify your goal</span></a></li>
+          </ul>
         </div>
         <br>
         <!-- Calendar -->

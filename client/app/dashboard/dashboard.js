@@ -185,10 +185,10 @@
       // Open up sub-goals
       vm.toggleSubs = function (goal, $event) {
         goal.subsDisplayed = !goal.subsDisplayed;
-        var spanElement = $event.target;
+        /*var spanElement = $event.target;
         $event.target.innerHTML === 'expand_more'
           ? angular.element(spanElement).html('expand_less')
-          : angular.element(spanElement).html('expand_more');
+          : angular.element(spanElement).html('expand_more');*/
       };
 
       vm.toggleAdd = function (goal) {
