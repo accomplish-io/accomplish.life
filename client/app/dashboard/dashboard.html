@@ -65,7 +65,8 @@
 
           <!-- Display Sub Goals -->
           <span ng-if="goal.hasChildren">
-            <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Show/Hide Subgoals" ng-click="vm.toggleSubs(goal, $event)" class="material-icons right" style="margin: 10px 15px 10px 0px;">expand_more</i>
+            <i ng-if="goal.subsDisplayed" tooltipped data-position="bottom" data-delay="100" data-tooltip="Hide Subgoals" ng-click="vm.toggleSubs(goal, $event)" class="material-icons right" style="margin: 10px 15px 10px 0px;">expand_less</i>
+            <i ng-if="!goal.subsDisplayed" tooltipped data-position="bottom" data-delay="100" data-tooltip="Show Subgoals" ng-click="vm.toggleSubs(goal, $event)" class="material-icons right" style="margin: 10px 15px 10px 0px;">expand_more</i>
           </span>
         </li>
         <br>
