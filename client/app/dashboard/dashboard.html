@@ -13,7 +13,7 @@
 
 <!-- App -->
 <div class="container" style="background-color: white">
-  <h3 class="tk-pollen-web">Goals</h3>
+  <h3 class="tk-pollen-web ldblue">Goals</h3>
   <div class="col">
     <!-- Add Main Goal Modal Trigger -->
     <!-- TODO: Make button into a "plus" like in the modal? -->
@@ -76,7 +76,7 @@
           <div ng-repeat="sub in vm.goals | filter: {GoalId: goal.id}:true">
             <li class="collection-item">
               <!-- Checkbox -->
-              <input ng-click="vm.updateCompleteGoal(sub)" type="checkbox" id="{{sub.id}}" ng-checked="{{sub.complete}}"/>
+              <input ng-click="vm.updateCompleteGoal(sub)" type="checkbox" class="checkboxColor" id="{{sub.id}}" ng-checked="{{sub.complete}}"/>
               <!-- Sub Goal Name -->
               <label for="{{sub.id}}" style="display: initial;">{{sub.goalName}}</label>
               <!-- Delete Sub Goal -->
@@ -93,7 +93,7 @@
   </div>
 
   <!-- Completed Goals -->
-  <h3 class="tk-pollen-web">Completed</h3>
+  <h3 class="tk-pollen-web ldblue">Completed</h3>
   <div ng-repeat="goal in vm.goals | filter:{complete: true, GoalId: null}">
     <div class="collapsible-header" style="padding-right: 0px">
       <ul class="collection with-header">
@@ -297,7 +297,7 @@
   <!-- Goal Details Modal vm.updateGoal-->
   <div id="goalDetailsModal" class="modal" style="width: 85%; height: 160%;">
     <div class="modal-content">
-      <h3 class="ldblue">Goal Details</h3>
+      <h3 class="tk-pollen-web ldblue">Goal Details</h3>
       <br>
       <div ng-if="vm.goalDetail.number" style="width: 85%; height: 100%;">
         <canvas id="line" height=50 width=110 class="chart chart-line" chart-data="vm.goalDetail.progressRange" chart-labels="vm.goalDetail.dateRange" chart-series="vm.lineChart.series" chart-labels="vm.goalDetail.label" chart-options="vm.lineChart.options"></canvas>
@@ -337,7 +337,7 @@
       <br>
       <br>
       <br>
-      <h4>Subgoals</h4>
+      <h4 class="tk-pollen-web ldblue">Subgoals</h4>
       <div ng-repeat="goal in vm.goals | filter: {GoalId: vm.goalDetail.id}:true">
         <div class="collapsible-header" style="padding-right: 0px">
           <ul class="collection with-header">
