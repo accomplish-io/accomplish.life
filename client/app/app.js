@@ -7,7 +7,8 @@ angular.module('app', [
   'auth0.lock',
   'angular-jwt',
   'ui.router',
-  'chart.js'
+  'chart.js',
+  'mp.tabTrap'
 ])
 .config(config);
 
