@@ -115,9 +115,9 @@ html {
 }
 
 .container {
-  padding-right: 2vw;
-  padding-left: 2vw;
-  padding-top: 2vh;
+  padding-right: 5vw;
+  padding-left: 5vw;
+  padding-top: 1vh;
   padding-bottom: 2vh;
 }
 /*The div in which we append all the bars*/
