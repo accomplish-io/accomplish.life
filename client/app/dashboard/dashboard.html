@@ -318,7 +318,7 @@
         <canvas id="line" height=50 width=110 class="chart chart-line" chart-data="vm.goalDetail.progressRange" chart-labels="vm.goalDetail.dateRange" chart-series="vm.lineChart.series" chart-labels="vm.goalDetail.label" chart-options="vm.lineChart.options"></canvas>
       </div>
       <br>
-      <a class="btn light-blue darken-4" ng-show="!vm.updateView" ng-click="vm.toggleUpdate()">Update Goal</a>
+      <a class="btn light-blue darken-4 ldblue" ng-show="!vm.updateView" ng-click="vm.toggleUpdate()">Update Goal</a>
       <br>
       <div ng-show="vm.updateView" style="width: 54%">
         <div ng-show="vm.quantifiable">
@@ -347,7 +347,7 @@
           <input style="display: inline-block;" type="date" class="datepicker" ng-model="vm.updateGoal.due" length="10">
         </span>
         <br>
-        <a class="btn modal-action modal-close waves-effect waves-green" ng-click="vm.updateThisGoal(vm.goalDetail)">Submit Changes</a>
+        <a class="btn modal-action modal-close waves-effect waves-green light-blue darken-4 ldblue" ng-click="vm.updateThisGoal(vm.goalDetail)">Submit Changes</a>
       </div>
       <br>
       <br>
