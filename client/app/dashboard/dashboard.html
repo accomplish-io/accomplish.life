@@ -44,12 +44,12 @@
             <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Delete Goal" ng-click="vm.currentDeleteGoal = goal" class="material-icons right" data-target="deleteGoalModal" style="margin: 10px 15px 10px 0px;">clear</i>
           </a>
           <!-- Delete Goal Modal -->
-          <div id="deleteGoalModal" class="modal" style="width: 30%; height: 20%;">
+          <div id="deleteGoalModal" class="modal" style="width: 40%; height: 25%;">
             <div class="modal-content center">
-              <span class="tk-pollen-web ldblue" style="font-size: 125%;">Delete your main goal?</span>
+              <span class="tk-pollen-web ldblue" style="font-size: 125%;">Are you sure you want to delete your goal?</span>
               <br>
-              <a class="waves-effect waves-light light-blue darken-4 btn-medium modal-action modal-close tk-pollen-web" ng-click="vm.deleteGoal(vm.currentDeleteGoal.id)" style="color:white;">Yes</a>
-              <a class="waves-effect waves-light light-blue darken-4 btn-medium modal-action modal-close tk-pollen-web" style="color:white;">No</a>
+              <a class="waves-effect waves-light light-blue darken-4 btn modal-action modal-close tk-pollen-web" ng-click="vm.deleteGoal(vm.currentDeleteGoal.id)" style="color:white;">Yes</a>
+              <a class="waves-effect waves-light light-blue darken-4 btn modal-action modal-close tk-pollen-web" style="color:white;">No</a>
             </div>
           </div>
 
@@ -209,7 +209,7 @@
       <br>
       <div >
       <!-- Calendar -->
-      <datepicker class="datepickercss" style="margin-left: 23%; width: 54%;">
+      <datepicker class="datepickercss" date-format="yyyy-MM-dd" style="margin-left: 23%; width: 54%;">
         <input class="dateinput" ng-model="vm.date" type="text" placeholder="Add an end date for your goal" required/>
       </datepicker>
     </div>
@@ -258,7 +258,7 @@
         </div>
         <br>
         <!-- Calendar -->
-        <datepicker style="margin-left: 23%; width: 54%;">
+        <datepicker date-format="yyyy-MM-dd" style="margin-left: 23%; width: 54%;">
           <input ng-model="vm.date" type="text" placeholder="Add an end date for your goal" required/>
         </datepicker>
       </div>
@@ -318,7 +318,7 @@
         <canvas id="line" height=50 width=110 class="chart chart-line" chart-data="vm.goalDetail.progressRange" chart-labels="vm.goalDetail.dateRange" chart-series="vm.lineChart.series" chart-labels="vm.goalDetail.label" chart-options="vm.lineChart.options"></canvas>
       </div>
       <br>
-      <a class="btn light-blue darken-4" ng-show="!vm.updateView" ng-click="vm.toggleUpdate()">Update Goal</a>
+      <a class="btn light-blue darken-4 ldblue" ng-show="!vm.updateView" ng-click="vm.toggleUpdate()">Update Goal</a>
       <br>
       <div ng-show="vm.updateView" style="width: 54%">
         <div ng-show="vm.quantifiable">
@@ -347,7 +347,7 @@
           <input style="display: inline-block;" type="date" class="datepicker" ng-model="vm.updateGoal.due" length="10">
         </span>
         <br>
-        <a class="btn modal-action modal-close waves-effect waves-green" ng-click="vm.updateThisGoal(vm.goalDetail)">Submit Changes</a>
+        <a class="btn modal-action modal-close waves-effect waves-green light-blue darken-4 ldblue" ng-click="vm.updateThisGoal(vm.goalDetail)">Submit Changes</a>
       </div>
       <br>
       <br>
