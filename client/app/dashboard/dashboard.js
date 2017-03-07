@@ -240,6 +240,8 @@
 
       // Add the entered goal into the database
       vm.addGoal = function(id) {
+        var myDate = Date.parse(vm.date)
+        console.log(myDate);
         GoalFactory.createGoal(vm.goal, vm.payload.email, id, vm.date, vm.number, vm.units)
           .then(function(goal) {
             vm.currentBackers.forEach(function(backer) {
