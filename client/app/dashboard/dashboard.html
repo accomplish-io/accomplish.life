@@ -53,7 +53,7 @@
 
           <!-- Goal Details -->
           <a ng-click="vm.prepUpdate(goal)" data-target="goalDetailsModal" style="color: black;" modal>
-            <i tooltipped data-position="bottom" data-delay="100" data-tooltip="View Goal Details"  class="material-icons right" style="margin: 10px 15px 10px 0px;">equalizer</i>
+            <i tooltipped data-position="bottom" data-delay="100" data-tooltip="View Goal Details" class="material-icons right" style="margin: 10px 15px 10px 0px;">equalizer</i>
           </a>
 
           <!-- Create New Sub Goal -->
@@ -345,9 +345,9 @@
               <!-- Goal Name -->
               <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
               <!-- Data Chart -->
-              <canvas id="base" height="20" width="180" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.barChart.labels" chart-options="vm.barChart.options" style="height: 40px"></canvas>
+              <canvas id="base" height="25" width="180" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.barChart.labels" chart-options="vm.barChart.options" style="height: 40px"></canvas>
               <!-- Delete Goal -->
-              <i ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">clear</i>
+              <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Delete Subgoal" ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">clear</i>
             </li>
             <br>
           </ul>
