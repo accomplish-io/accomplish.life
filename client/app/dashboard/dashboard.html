@@ -31,7 +31,9 @@
           <!-- Goal Name -->
           <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
           <!-- Data Chart -->
+
           <canvas id="base" height="25" width="180" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.barChart.labels" chart-options="vm.barChart.options" style="height: 40px"></canvas>
+
           <!-- Delete Goal -->
           <a data-target="deleteGoalModal" style="color: black;" modal>
             <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Delete Goal" ng-click="vm.currentDeleteGoal = goal" class="material-icons right" data-target="deleteGoalModal" style="margin: 10px 15px 10px 0px;">clear</i>

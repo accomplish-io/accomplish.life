@@ -46,6 +46,12 @@
                 goals.data.forEach(parent => {
                   if (parent.id === goal.GoalId) {
                     parent.hasChildren = true;
+                    if (!parent.incompleteChildren) {
+                      parent.incompleteChildren = false;
+                    }
+                    if (!goal.complete) {
+                      parent.incompleteChildren = true;
+                    }
                   }
                 });
               }
@@ -55,8 +61,8 @@
               goal.label = vm.makeLabel(goal);
               var amountDone = [goal.number ? ((goal.Progresses.reduce(function(prev, next, index, progArr) {
                 return angular.isNumber(next.number) ? prev + next.number : prev;
-              }, 0)) / goal.number) * 100 : 70];
-              var amountDue = [goal.due ? ((new Date() - new Date(goal.start)) / (new Date(goal.due) - new Date(goal.start))) * 100 : 100];
+              }, 0)) / goal.number) * 100 : 0];
+              var amountDue = [goal.due ? ((new Date() - new Date(goal.start)) / (new Date(goal.due) - new Date(goal.start))) * 100 : 0];
               goal.progress = [amountDone, amountDue];
             });
             vm.goals = goals.data;
@@ -185,10 +191,10 @@
       // Open up sub-goals
       vm.toggleSubs = function (goal, $event) {
         goal.subsDisplayed = !goal.subsDisplayed;
-        /*var spanElement = $event.target;
+        var spanElement = $event.target;
         $event.target.innerHTML === 'expand_more'
           ? angular.element(spanElement).html('expand_less')
-          : angular.element(spanElement).html('expand_more');*/
+          : angular.element(spanElement).html('expand_more');
       };
 
       vm.toggleAdd = function (goal) {
