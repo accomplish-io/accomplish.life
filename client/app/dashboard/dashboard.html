@@ -26,12 +26,17 @@
     <div class="collapsible-header" style="padding-right: 0px">
       <ul class="collection with-header">
         <li class="collection-header">
-          <!-- Checkbox -->
-          <input ng-click="vm.updateCompleteGoal(goal)" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}"/>
+
+          <!-- Checkbox for goal with complete children -->
+          <input ng-if="!!!goal.incompleteChildren" ng-click="vm.updateCompleteGoal(goal)" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}"/>
+
+          <!-- Checkbox for goal with incomplete children-->
+          <input ng-if="goal.incompleteChildren" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}" ng-click="vm.currentCompleteGoal = goal" data-target="completeGoalModal" modal/>
+
           <!-- Goal Name -->
           <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
-          <!-- Data Chart -->
 
+          <!-- Data Chart -->
           <canvas id="base" height="25" width="180" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.barChart.labels" chart-options="vm.barChart.options" style="height: 40px"></canvas>
 
           <!-- Delete Goal -->
@@ -119,6 +124,16 @@
           </div>
         </div>
       </ul>
+    </div>
+  </div>
+
+   <!-- Complete goal with incomplete subgoals modal -->
+  <div id="completeGoalModal" class="modal" style="width: 30%; height: 20%;">
+    <div class="modal-content center">
+      <span class="tk-pollen-web ldblue" style="font-size: 125%;">Your subgoals are not complete.  Do you still want to complete this goal?</span>
+      <br>
+      <a class="waves-effect waves-light light-blue darken-4 btn-medium modal-action modal-close tk-pollen-web" ng-click="vm.updateCompleteGoal(vm.currentCompleteGoal)" style="color:white;">Yes</a>
+      <a class="waves-effect waves-light light-blue darken-4 btn-medium modal-action modal-close tk-pollen-web" ng-click="vm.currentCompleteGoal = null" style="color:white;">No</a>
     </div>
   </div>
 
