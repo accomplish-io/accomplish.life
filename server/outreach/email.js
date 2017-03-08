@@ -44,26 +44,35 @@
 //   });
 // };
 
-require('dotenv').load();
+require('dotenv').load({path: '../../emailKeys.env'});
 var nodemailer = require('nodemailer');
 
 // Transport object
 var transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: 'SendPulse',
   auth: {
-    user: 'gmail.' + process.env.EMAIL_USER,
+    user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PW
   }
 });
 
-var newGoalEmail = function(user, backerEmail, goalTitle) {
+// Verify connection configuration
+// transporter.verify(function(error, success) {
+//    if (error) {
+//         console.log(error);
+//    } else {
+//         console.log('Server is ready to take our messages');
+//    }
+// });
+
+var newGoalEmail = function(user, backerName, backerEmail, goalTitle) {
   // Setup email data
   var mailOptions = {
-    from: '"Accomplish.io" <' + process.env.EMAIL_USER + '>', // sender address
-    to: backerEmail, // list of receivers
+    from: 'Accomplish.io ' + process.env.EMAIL_USER, // sender address
+    to: 'backerName backerEmail', // list of receivers
     subject: 'A friend of yours started a new goal!', // Subject line
-    text: 'Hello world ?', // plain text body
-    html: '<b>Hello world ?</b>' // html body
+    // text: 'goalTitle', // plain text body
+    html: '<b>goalTitle</b>', // html body
   };
 
   // Send mail with defined transport object
