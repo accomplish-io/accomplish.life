@@ -4,9 +4,11 @@ module.exports = function(app, express, db, wk) {
 
   app.post('/api/auth', function(req, res) {
     db.User.findOrCreate({where: {
-      email: req.body.email,
+      email: req.body.email
     }})
       .then(function(user) {
+        user[0].authId = req.body.name;
+        user[0].save();
         res.send(user);
       });
   });
@@ -159,6 +161,10 @@ module.exports = function(app, express, db, wk) {
     })
       .then(function(goal) {
         goal.update(req.body);
+        if (req.body.complete === true) {
+          //send email
+          //delete backers
+        }
         res.send(goal);
       });
   });
