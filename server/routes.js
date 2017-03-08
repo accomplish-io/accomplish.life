@@ -209,7 +209,7 @@ module.exports = function(app, express, db, wk, email) {
     .then(function(goal) {
       //user properties are goal.User
       //ex. authId = goal.User.authId
-      console.log(goal.User.email)
+      // console.log(goal.User.email)
       res.send(goal);
     });
   });

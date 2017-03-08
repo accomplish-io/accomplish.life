@@ -47,33 +47,34 @@
 require('dotenv').load();
 var nodemailer = require('nodemailer');
 
+// Transport object
 var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'gmail.' + process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PW
-    }
+  service: 'gmail',
+  auth: {
+    user: 'gmail.' + process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PW
+  }
 });
 
 var newGoalEmail = function(user, backerEmail, goalTitle) {
-  // setup email data with unicode symbols
-  let mailOptions = {
-      from: '"Accomplish.io" <' + process.env.EMAIL_USER + '>', // sender address
-      to: backerEmail, // list of receivers
-      subject: 'A friend of yours started a new goal!', // Subject line
-      text: 'Hello world ?', // plain text body
-      html: '<b>Hello world ?</b>' // html body
+  // Setup email data
+  var mailOptions = {
+    from: '"Accomplish.io" <' + process.env.EMAIL_USER + '>', // sender address
+    to: backerEmail, // list of receivers
+    subject: 'A friend of yours started a new goal!', // Subject line
+    text: 'Hello world ?', // plain text body
+    html: '<b>Hello world ?</b>' // html body
   };
 
-  // send mail with defined transport object
+  // Send mail with defined transport object
   transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-          return console.log(error);
-      }
-      console.log('Message %s sent: %s', info.messageId, info.response);
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Message %s sent: %s', info.messageId, info.response);
   });
 };
 
 module.exports = {
   newGoalEmail: newGoalEmail
-}
+};
