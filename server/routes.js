@@ -196,8 +196,8 @@ module.exports = function(app, express, db, wk, email) {
         }
       });
     })
-    .then(function(backer) {
-      res.send(backer);
+    .then(function(goalbacker) {
+      res.send(goalbacker);
     });
   });
 
