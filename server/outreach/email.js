@@ -43,7 +43,7 @@ var goalCompleteEmail = function(user, backerEmail, backerName, goalTitle) {
   var mailOptions = {
     from: '"Accomplish.io" <' + process.env.EMAIL_USER + '>', // sender address
     to: backerEmail, // list of receivers
-    subject: 'A friend of yours started a new goal!', // Subject line
+    subject: 'A friend of yours has completed a goal!', // Subject line
     text: 'Hi ' + backerName + ",\n" + user + " has just finished their goal to " + goalTitle +". You should congratulate them! \n Best, \n The Accomplish.Life Team", // plain text body
     html: '<b>Help your friends!</b>' // html body
   };
