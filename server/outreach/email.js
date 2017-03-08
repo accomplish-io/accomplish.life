@@ -73,3 +73,7 @@ var newGoalEmail = function(user, backerEmail, goalTitle) {
       console.log('Message %s sent: %s', info.messageId, info.response);
   });
 };
+
+module.exports = {
+  newGoalEmail: newGoalEmail
+}

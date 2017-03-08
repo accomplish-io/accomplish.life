@@ -1,6 +1,6 @@
 var homeHandle = require('./home.js');
 
-module.exports = function(app, express, db, wk) {
+module.exports = function(app, express, db, wk, email) {
 
   app.post('/api/auth', function(req, res) {
     db.User.findOrCreate({where: {
