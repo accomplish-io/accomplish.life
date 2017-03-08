@@ -1,10 +1,98 @@
-<!-- New Goal Modal -->
-<div ng-controller="NewCtrl" class="row">
-  <form ng-submit="vm.addGoal()">
+<!-- Navbar -->
+<nav>
+   <div class="nav-wrapper light-blue darken-4" ng-controller="AuthCtrl">
+    <img src="../images/logo.png" alt="Accomplish.life Logo" class="logo">
+    <a href = "#" class="brand-logo, tk-pollen-web, headerTitle">Accomplish.Life</a>
+    <ul id="nav-mobile" class="right hide-on-small-and-down" style="margin-right: 30px;">
+      <li><a class="tk-pollen-web" ui-sref="home">Goal Dashboard</a></li>
+      <li ><a class="tk-pollen-web" ng-if="vm.displayLoginButton()" ui-sref="auth">Log In</a></li>
+      <li ><a class="tk-pollen-web" ng-if="!vm.displayLoginButton()" ui-sref="auth" ng-click="authService.logout()">Log Out</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Add Goal -->
+
+<div id="newGoal" class="center newGoalContainer" style="width: 60%; height: 100%; margin:auto; background-color: white;">
+  <div class="center">
+    <h3 class="tk-pollen-web ldblue">Add a Goal</h3>
     <div class="row">
-      <div class="input-field">
-        <input ng-model="vm.goal" placeholder="Add a New Goal" required>
+     <!-- Dropdown Trigger -->
+      <a class="dropdown-button btn light-blue darken-4" href="javascript:void(0);" data-activates="goalType" dropdown data-hover="true">How will you finish your goal?</a>
+      <!-- Dropdown Structure -->
+      <ul id="goalType" class="dropdown-content">
+        <li><a ng-click="vm.quantity = false"><span class="ldblue">Do once</span></a></li>
+        <li><a ng-click="vm.quantity = true"><span class="ldblue">Quantify your goal</span></a></li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="input-field" ng-show="!vm.quantity" style="margin-left: 23%; width: 54%;">
+        <input ng-model="vm.goal" placeholder="Add a New Goal" required autofocus>
       </div>
     </div>
-  </form>
+    <div class="row ldblue" ng-show="vm.quantity" margin-left: 23%; width: 54%;">
+      <span style="display: inline-block;">I will</span>
+      <!-- TODO: Make into main goal title -->
+      <span input-field style="display: inline-block; width: 20%;">
+        <input type="text" ng-model="vm.goal" length="20">
+        <label>goal</label>
+      </span>
+      <span style="display: inline-block;">at least</span>
+      <span input-field style="display: inline-block; width: 15%;">
+        <input type="number" ng-required="number" ng-model="vm.number" length="10">
+        <label>target</label>
+      </span>
+      <span input-field style="display: inline-block; width: 10%;">
+        <input type="text" ng-model="vm.units" length="10">
+        <label>units</label>
+      </span>
+      <!-- End of TODO -->
+    </div>
+    <br>
+    <!-- Add backers -->
+    <div>
+      <a ng-show="!vm.atLeastOneBacker" class="btn light-blue darken-4" ng-click="vm.addBacker()">Add a backer</a>
+      <a ng-show="vm.atLeastOneBacker" class="btn light-blue darken-4" ng-click="vm.addBacker()">Add another backer</a>
+      <form ng-show="vm.showBackerInput" ng-submit="vm.submitBacker()">
+        <div ng-show="!!vm.existingBackers.length" class="">
+          <br>
+          <button class="waves-effect waves-green btn btn-flat light-blue darken-4" ng-click="vm.toggleCollapsible()" style="color:white;"> Existing backers</button>
+          <ul class="center" ng-show="vm.showCollapsible" class="collapsible popout" data-collapsible="accordion" style="margin-left: 35%; width: 30%;" watch>
+            <li ng-repeat="backer in vm.existingBackers">
+              <div class="collapsible-header ldblue tk-pollen-web" ng-click="vm.addExistingBacker(backer)">{{backer.backerName}}<i ng-click="vm.deleteExistingBacker(backer)" class="material-icons right">remove</i>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <input ng-model="vm.backerName" type="text" placeholder="Enter backer's name" style="width: 42%;" required/>
+        <br>
+        <input ng-model="vm.backerEmail" type="text" placeholder="Enter backer's email" style="width: 42%;" required/>
+        <br>
+        <button class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Submit Backer
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
+    </div>
+    <div>
+      <ul class="center" class="collapsible popout" data-collapsible="accordion" style="margin-left: 35%; width: 30%;" watch>
+        <li ng-repeat="backer in vm.currentBackers">
+          <div class="collapsible-header ldblue tk-pollen-web">{{backer.name}}<i ng-click="vm.deleteBacker(backer)" class="material-icons right">remove</i>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <br>
+
+    <!-- Calendar -->
+    <div >
+      <datepicker class="datepickercss" date-format="yyyy-MM-dd" style="margin-left: 23%; width: 54%;">
+        <input class="dateinput" ng-model="vm.date" type="text" placeholder="Add an end date for your goal" required/>
+      </datepicker>
+    </div>
+
+   <!-- Submit Entire Goal -->
+    <div class="right">
+      <a tooltipped ui-sref="home" data-position="bottom" data-delay="100" data-tooltip="Submit New Goal" ng-click="vm.addGoal()" class="btn-floating btn-large waves-effect waves-light light-blue darken-4" style="margin-top: 10px; margin-right: 10px;"><i class="material-icons">add</i></a>
+    </div>
+  </div>
 </div>
