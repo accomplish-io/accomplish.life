@@ -1,6 +1,6 @@
 var homeHandle = require('./home.js');
 
-module.exports = function(app, express, db, wk) {
+module.exports = function(app, express, db, wk, email) {
 
   app.post('/api/auth', function(req, res) {
     db.User.findOrCreate({where: {
@@ -209,7 +209,7 @@ module.exports = function(app, express, db, wk) {
     .then(function(goal) {
       //user properties are goal.User
       //ex. authId = goal.User.authId
-      console.log(goal.User.email)
+      // console.log(goal.User.email)
       res.send(goal);
     });
   });
