@@ -107,13 +107,13 @@ Goal.hasMany(Progress, {
 });
 
 GoalBacker.belongsTo(Goal);
-Goal.hasMany(Backer);
+Goal.hasMany(GoalBacker);
 
 GoalBacker.belongsTo(Backer);
 Backer.hasMany(GoalBacker);
 
 GoalSession.belongsTo(Goal);
-Goal.hasMany(Session);
+Goal.hasMany(GoalSession);
 
 GoalSession.belongsTo(Session);
 Session.hasMany(GoalSession);
