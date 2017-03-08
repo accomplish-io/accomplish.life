@@ -207,6 +207,8 @@
 
       vm.prepUpdate = function(goal) {
         vm.quantifiable = !!goal.units;
+        vm.subGoalsExist = vm.hasSubGoals(goal);
+        console.log('vm.subGoalsExist ', vm.subGoalsExist);
         vm.goalDetail = goal;
         vm.updateGoal = {};
         vm.updateGoal.due = new Date(goal.due);
@@ -340,6 +342,17 @@
           vm.updateView = false;
         });
       };
+
+      vm.hasSubGoals = function(parent) {
+        for(var i = 0; i < vm.goals.length; i++) {
+          if(parent.id === vm.goals[i].GoalId) {
+            console.log('parent ', parent);
+            console.log('subgoal ', vm.goals[i]);
+            return true;
+          }
+        }
+        return false;
+      }
 
       // Update goal completion status
       vm.updateCompleteGoal = function(goal) {
