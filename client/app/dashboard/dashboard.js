@@ -208,7 +208,6 @@
       vm.prepUpdate = function(goal) {
         vm.quantifiable = !!goal.units;
         vm.subGoalsExist = vm.hasSubGoals(goal);
-        console.log('vm.subGoalsExist ', vm.subGoalsExist);
         vm.goalDetail = goal;
         vm.updateGoal = {};
         vm.updateGoal.due = new Date(goal.due);
