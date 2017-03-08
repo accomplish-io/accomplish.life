@@ -248,9 +248,6 @@
               BackerFactory.addBacker(backer)
                 .then(function(backerX) {
                   BackerFactory.welcomeBacker(backerX)
-                  .then(myGoal => {
-                    console.log(myGoal);
-                  });
                 });
             });
             vm.currentBackers = [];

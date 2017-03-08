@@ -196,13 +196,10 @@ module.exports = function(app, express, db, wk) {
 
   app.post('/api/backers/email', function(req, res) {
     var backer = req.body.data[0]
-    backerName = backer.backerName;
-    backerEmail = backer.backerEmail;
-    GoalId = backer.GoalId;
-    UserId = backer.UserId;
-    console.log(backer);
-    console.log("****")
-    console.log(GoalId);
+    var backerName = backer.backerName;
+    var backerEmail = backer.backerEmail;
+    var GoalId = backer.GoalId;
+    var UserId = backer.UserId;
     db.Goal.findOne({
       where: {
         id: GoalId
@@ -210,9 +207,8 @@ module.exports = function(app, express, db, wk) {
       include: [db.User]
     })
     .then(function(goal) {
-      //goal properties are goal.data
-      //user properties are goal.data.User
-      //ex. authId = goal.data.User.authId
+      //user properties are goal.User
+      //ex. authId = goal.User.authId
       console.log(goal.User.email)
       res.send(goal);
     });
