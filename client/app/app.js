@@ -30,7 +30,6 @@ function config($stateProvider, lockProvider, $urlRouterProvider, jwtOptionsProv
       controllerAs: 'vm',
       authenticate: true
     })
-
     .state('new', {
       url: '/new',
       controller: 'NewCtrl',
