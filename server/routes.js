@@ -163,6 +163,17 @@ module.exports = function(app, express, db, wk, email) {
         goal.update(req.body);
         if (req.body.complete === true) {
           //send email
+          db.Backer.findAll({
+            where: {
+              GoalId: req.params.id
+            },
+            include: [db.User]
+          })
+          .then(function(backerArr) {
+            backerArr.forEach(backer => {
+              email.goalCompleteEmail(backer.User.authId, backer.backerEmail, backer.backerName, goal.goalName)
+            });
+          })
           //delete backers
         }
         res.send(goal);
@@ -206,7 +217,6 @@ module.exports = function(app, express, db, wk, email) {
     var backerName = backer.backerName;
     var backerEmail = backer.backerEmail;
     var GoalId = backer.GoalId;
-    var UserId = backer.UserId;
     db.Goal.findOne({
       where: {
         id: GoalId
@@ -217,6 +227,7 @@ module.exports = function(app, express, db, wk, email) {
       //user properties are goal.User
       //ex. authId = goal.User.authId
       // console.log(goal.User.email)
+      email.newGoalEmail(goal.User.authId, backerEmail, backerName, goal.goalName);
       res.send(goal);
     });
   });

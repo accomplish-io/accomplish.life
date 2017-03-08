@@ -71,8 +71,27 @@ var newGoalEmail = function(user, backerName, backerEmail, goalTitle) {
     from: 'Accomplish.io ' + process.env.EMAIL_USER, // sender address
     to: 'backerName backerEmail', // list of receivers
     subject: 'A friend of yours started a new goal!', // Subject line
-    // text: 'goalTitle', // plain text body
-    html: '<b>goalTitle</b>', // html body
+    text: 'Hi ' + backerName + ",\n" + user + " is trying to " + goalTitle +" and has selected you to be a backer. We'll let you know how " + user + " is doing. Just be sure to send lots of encourangement. \n Best, \n The Accomplish.Life team", // plain text body
+    html: '<b>Help your friends!</b>' // html body
+  };
+
+  // Send mail with defined transport object
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Message %s sent: %s', info.messageId, info.response);
+  });
+};
+
+var goalCompleteEmail = function(user, backerEmail, backerName, goalTitle) {
+  // Setup email data
+  var mailOptions = {
+    from: '"Accomplish.io" <' + process.env.EMAIL_USER + '>', // sender address
+    to: backerEmail, // list of receivers
+    subject: 'A friend of yours started a new goal!', // Subject line
+    text: 'Hi ' + backerName + ",\n" + user + " has just finished their goal to " + goalTitle +". You should congratulate them! \n Best, \n The Accomplish.Life Team", // plain text body
+    html: '<b>Help your friends!</b>' // html body
   };
 
   // Send mail with defined transport object
@@ -85,5 +104,6 @@ var newGoalEmail = function(user, backerName, backerEmail, goalTitle) {
 };
 
 module.exports = {
-  newGoalEmail: newGoalEmail
+  newGoalEmail: newGoalEmail,
+  goalCompleteEmail: goalCompleteEmail
 };
