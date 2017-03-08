@@ -30,13 +30,13 @@ function config($stateProvider, lockProvider, $urlRouterProvider, jwtOptionsProv
       controllerAs: 'vm',
       authenticate: true
     })
-    /*
     .state('new', {
       url: '/new',
       controller: 'NewCtrl',
       templateUrl: './app/goal-new/goal-new.html',
       controllerAs: 'vm'
     })
+    /*
     .state('complete', {
       url: '/auth',
       controller: 'CompleteCtrl',

@@ -240,6 +240,7 @@
 
       // Add the entered goal into the database
       vm.addGoal = function(id) {
+        console.log('We are adding the goal');
         var myDate = new Date(Date.parse(vm.date) + 43100000);
         GoalFactory.createGoal(vm.goal, vm.payload.email, id, myDate, vm.number, vm.units)
           .then(function(goal) {

@@ -15,9 +15,8 @@
 <div class="container" style="background-color: white">
   <h3 class="tk-pollen-web ldblue">Goals</h3>
   <div class="col">
-    <!-- Add Main Goal Modal Trigger -->
-    <!-- TODO: Make button into a "plus" like in the modal? -->
-    <a class="waves-effect waves-light light-blue darken-4 btn" data-target="newGoalModal" ng-click="vm.resetNewGoal()" modal>Add a goal</a>
+    <!-- Add Main Goal New Page Button -->
+    <a class="waves-effect waves-light light-blue darken-4 btn" ui-sref="new" ng-click="vm.resetNewGoal()" modal>Add a goal</a>
   </div>
   <br>
 
@@ -137,91 +136,6 @@
     </div>
   </div>
 
-  <!-- Add Goal Modal -->
-  <div id="newGoalModal" class="modal" style="width: 60%; height: 160%;">
-    <!-- Modal Form -->
-    <tab-trap>
-      <div class="modal-content center">
-        <h3 class="tk-pollen-web ldblue">Add a Goal</h3>
-        <div class="row">
-          <div class="input-field" ng-show="!vm.quantity" style="margin-left: 23%; width: 54%;">
-            <input ng-model="vm.goal" placeholder="Add a New Goal" required autofocus>
-          </div>
-        </div>
-        <div class="row ldblue" ng-show="vm.quantity" margin-left: 23%; width: 54%;">
-          <span style="display: inline-block;">I will</span>
-          <!-- TODO: Make into main goal title -->
-          <span input-field style="display: inline-block; width: 20%;">
-            <input type="text" ng-model="vm.goal" length="20">
-            <label>goal</label>
-          </span>
-          <span style="display: inline-block;">at least</span>
-          <span input-field style="display: inline-block; width: 15%;">
-            <input type="number" ng-required="number" ng-model="vm.number" length="10">
-            <label>target</label>
-          </span>
-          <span input-field style="display: inline-block; width: 10%;">
-            <input type="text" ng-model="vm.units" length="10">
-            <label>units</label>
-          </span>
-          <!-- End of TODO -->
-        </div>
-        <div class="row">
-         <!-- Dropdown Trigger -->
-          <a class="dropdown-button btn light-blue darken-4" href="javascript:void(0);" data-activates="goalType" dropdown data-hover="true">How will you finish your goal?</a>
-         <!-- Dropdown Structure -->
-          <ul id="goalType" class="dropdown-content">
-            <li><a ng-click="vm.quantity = false"><span class="ldblue">Do once</span></a></li>
-            <li><a ng-click="vm.quantity = true"><span class="ldblue">Quantify your goal</span></a></li>
-          </ul>
-        </div>
-        <!-- Add backers -->
-        <div>
-          <a ng-show="!vm.atLeastOneBacker" class="btn light-blue darken-4" ng-click="vm.addBacker()">Add a backer</a>
-          <a ng-show="vm.atLeastOneBacker" class="btn light-blue darken-4" ng-click="vm.addBacker()">Add another backer</a>
-          <form ng-show="vm.showBackerInput" ng-submit="vm.submitBacker()">
-            <div ng-show="!!vm.existingBackers.length" class="">
-              <br>
-              <button class="waves-effect waves-green btn btn-flat light-blue darken-4" ng-click="vm.toggleCollapsible()" style="color:white">Show existing backers</button>
-              <ul class="center" ng-show="vm.showCollapsible" class="collapsible popout" data-collapsible="accordion" style="margin-left: 35%; width: 30%;" watch>
-                <li ng-repeat="backer in vm.existingBackers">
-                  <div class="collapsible-header ldblue tk-pollen-web" ng-click="vm.addExistingBacker(backer)">{{backer.backerName}}<i ng-click="vm.deleteExistingBacker(backer)" class="material-icons right">remove</i>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <input ng-model="vm.backerName" type="text" placeholder="Enter backer's name" style="width: 42%;" required/>
-            <br>
-            <input ng-model="vm.backerEmail" type="text" placeholder="Enter backer's email" style="width: 42%;" required/>
-            <br>
-            <button class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Submit Backer
-              <i class="material-icons right">send</i>
-            </button>
-          </form>
-        </div>
-        <div>
-          <ul class="center" class="collapsible popout" data-collapsible="accordion" style="margin-left: 35%; width: 30%;" watch>
-            <li ng-repeat="backer in vm.currentBackers">
-              <div class="collapsible-header ldblue tk-pollen-web">{{backer.name}}<i ng-click="vm.deleteBacker(backer)" class="material-icons right">remove</i>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <br>
-        <div >
-        <!-- Calendar -->
-        <datepicker class="datepickercss" date-format="yyyy-MM-dd" style="margin-left: 23%; width: 54%;">
-          <input class="dateinput" ng-model="vm.date" type="text" placeholder="Add an end date for your goal" required/>
-        </datepicker>
-      </div>
-       <!-- Submit Entire Goal -->
-      <div class="right">
-        <a tooltipped data-position="bottom" data-delay="100" data-tooltip="Submit New Goal" ng-click="vm.addGoal()" class="btn-floating btn-large waves-effect waves-light light-blue darken-4 modal-action modal-close" style="margin-top: 10px; margin-right: 10px;"><i class="material-icons">add</i></a>
-      </div>
-    </div>
-  </tab-trap>
-</div>
-
   <!-- Add Sub Goal Modal -->
   <div id="newSubGoalModal" class="modal" style="width: 60%; height: 160%;">
     <tab-trap>
@@ -272,7 +186,6 @@
       </div>
     </tab-trap>
   </div>
-
   <!-- Update Main Goal Progress Modal -->
   <div id="goalProgressModal" class="modal" style="width: 45%; height: 45%;">
     <tab-trap>
@@ -294,7 +207,6 @@
       </div>
     </tab-trap>
   </div>
-
   <!-- Update Sub Goal Progress Modal -->
   <div id="subProgressModal" class="modal" style="width: 45%; height: 45%;">
     <tab-trap>
@@ -316,7 +228,6 @@
       </div>
     </tab-trap>
   </div>
-
   <!-- Goal Details Modal vm.updateGoal-->
   <div id="goalDetailsModal" class="modal" style="width: 85%; height: 160%;">
     <tab-trap>
