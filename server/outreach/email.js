@@ -74,15 +74,14 @@ var newGoalEmail = function(user, backerName, backerEmail, goalTitle) {
     text: 'Hi ' + backerName + ",\n" + user + " is trying to " + goalTitle +" and has selected you to be a backer. We'll let you know how " + user + " is doing. Just be sure to send lots of encourangement. \n Best, \n The Accomplish.Life team", // plain text body
     html: '<b>Help your friends!</b>' // html body
   };
-  console.log("fired! " + user + "  " + backerEmail + "  " + goalTitle + "  " + backerName)
+
   // Send mail with defined transport object
-  /*
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       return console.log(error);
     }
     console.log('Message %s sent: %s', info.messageId, info.response);
-  });*/
+  });
 };
 
 var goalCompleteEmail = function(user, backerEmail, backerName, goalTitle) {
@@ -94,16 +93,14 @@ var goalCompleteEmail = function(user, backerEmail, backerName, goalTitle) {
     text: 'Hi ' + backerName + ",\n" + user + " has just finished their goal to " + goalTitle +". You should congratulate them! \n Best, \n The Accomplish.Life Team", // plain text body
     html: '<b>Help your friends!</b>' // html body
   };
-  console.log("fired! " + user + "  " + backerEmail + "  " + goalTitle + "  " + backerName)
+
   // Send mail with defined transport object
-  /*
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       return console.log(error);
     }
     console.log('Message %s sent: %s', info.messageId, info.response);
   });
-  */
 };
 
 module.exports = {
