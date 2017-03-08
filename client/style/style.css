@@ -120,6 +120,13 @@ html {
   padding-top: 1vh;
   padding-bottom: 2vh;
 }
+
+.newGoalContainer {
+  padding-right: 5vw;
+  padding-left: 5vw;
+  padding-top: 1vh;
+  padding-bottom: 20vh;
+}
 /*The div in which we append all the bars*/
 /*.progress-bars {
    width: 350px;
