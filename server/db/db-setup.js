@@ -100,20 +100,26 @@ User.hasMany(Goal);
 Goal.belongsTo(Frequency);
 Frequency.hasMany(Goal);
 
-Progress.belongsTo(Goal);
-Goal.hasMany(Progress, {
-  onDelete: 'cascade',
+Progress.belongsTo(Goal, {
+  onDelete: 'CASCADE',
   hooks: true
 });
+Goal.hasMany(Progress);
 
-GoalBacker.belongsTo(Goal);
-Goal.hasMany(Backer);
+GoalBacker.belongsTo(Goal, {
+  onDelete: 'CASCADE',
+  hooks: true
+});
+Goal.hasMany(GoalBacker);
 
-GoalBacker.belongsTo(Backer);
+GoalBacker.belongsTo(Backer, {
+  onDelete: 'CASCADE',
+  hooks: true
+});
 Backer.hasMany(GoalBacker);
 
 GoalSession.belongsTo(Goal);
-Goal.hasMany(Session);
+Goal.hasMany(GoalSession);
 
 GoalSession.belongsTo(Session);
 Session.hasMany(GoalSession);

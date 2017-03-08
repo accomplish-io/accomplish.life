@@ -185,17 +185,24 @@ module.exports = function(app, express, db, wk, email) {
       where: {
         backerName: req.body.name,
         backerEmail: req.body.email,
-        GoalId: req.body.GoalId,
         UserId: req.body.UserId
       }
     })
     .then(function(backer) {
-      res.send(backer);
+      db.GoalBacker.findOrCreate({
+        where: {
+          BackerId: backer[0].id,
+          GoalId: req.body.GoalId
+        }
+      });
+    })
+    .then(function(goalbacker) {
+      res.send(goalbacker);
     });
   });
 
   app.post('/api/backers/email', function(req, res) {
-    var backer = req.body.data[0]
+    var backer = req.body.data[0];
     var backerName = backer.backerName;
     var backerEmail = backer.backerEmail;
     var GoalId = backer.GoalId;

@@ -1,6 +1,7 @@
-# Project Name
+# Accomplish.life
 
-> Accomplish.life
+> Accomplish.life is a goal setter and accountability tracker for users wanting to transform their lives.
+
 
 ## Team
 

@@ -37,7 +37,7 @@
         url: 'api/backers/email',
         data: backer
       });
-    }
+    };
 
     return {
       addBacker: addBacker,
