@@ -226,7 +226,7 @@ module.exports = function(app, express, db, wk, email) {
       include: [db.User]
     })
     .then(function(goal) {
-      email.newGoalEmail(goal.User.authId, backerEmail, backerName, goal.goalName);
+      email.newGoalEmail(goal.User.authId, backerName, backerEmail, goal.goalName);
       res.send(goal);
     });
   });
