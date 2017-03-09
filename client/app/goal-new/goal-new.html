@@ -34,7 +34,7 @@
       <!-- TODO: Make into main goal title -->
       <span input-field style="display: inline-block; width: 20%;">
         <input type="text" ng-model="vm.goal" length="20">
-        <label>goal</label>
+        <label>verb</label>
       </span>
       <span style="display: inline-block;">at least</span>
       <span input-field style="display: inline-block; width: 15%;">
@@ -45,6 +45,8 @@
         <input type="text" ng-model="vm.units" length="10">
         <label>units</label>
       </span>
+      <!-- Example of quantifiable goal -->
+      <span style="display: inline-block;" >Example:  I will <p style="font-weight:bold;display: inline-block;"> run </p> at least <p style="font-weight:bold; display: inline-block;"> 10 </p> <p style="font-weight:bold; display: inline-block;"> miles </p>.</span>
       <!-- End of TODO -->
     </div>
     <br>
@@ -96,7 +98,7 @@
     </div>
    <!-- Submit Entire Goal -->
     <div class="right">
-      <a tooltipped ui-sref="home" data-position="bottom" data-delay="100" data-tooltip="Submit New Goal" ng-click="vm.addGoal()" class="btn-floating btn-large waves-effect waves-light light-blue darken-4" style="margin-top: 10px; margin-right: 10px;"><i class="material-icons">add</i></a>
+      <a ui-sref="home" ng-click="vm.addGoal()" class="btn waves-effect waves-light light-blue darken-4 right">Submit New Goal</a>
     </div>
   </div>
 </div>
