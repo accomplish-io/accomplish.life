@@ -58,13 +58,15 @@
             <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Add Progress" class="material-icons right" style="margin: 10px 15px 10px 0px;">done_all</i>
           </a>
 
+
+
           <!-- Goal Details Quantifiable -->
-          <a ng-show="!!goal.number" ng-click="vm.prepUpdate(goal)" data-target="goalDetailsModalQuantifiable" style="color: black;" modal>
+          <a ui-sref="details" ng-show="!!goal.number" ng-click="vm.prepUpdate(goal)" data-target="goalDetailsModalQuantifiable" style="color: black;" modal>
             <i tooltipped data-position="bottom" data-delay="100" data-tooltip="View Goal Details" class="material-icons right" style="margin: 10px 15px 10px 0px;">equalizer</i>
           </a>
 
           <!-- Goal Details Non-Quantifiable -->
-          <a ng-show="!goal.number" ng-click="vm.prepUpdate(goal)" data-target="goalDetailsModalNonQuantifiable" style="color: black;" modal>
+          <a ui-sref="details" ng-show="!goal.number" ng-click="vm.prepUpdate(goal)" data-target="goalDetailsModalNonQuantifiable" style="color: black;" modal>
             <i tooltipped data-position="bottom" data-delay="100" data-tooltip="View Goal Details" class="material-icons right" style="margin: 10px 15px 10px 0px;">equalizer</i>
           </a>
 
