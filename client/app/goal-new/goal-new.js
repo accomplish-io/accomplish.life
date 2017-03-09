@@ -64,7 +64,7 @@
       // Add the entered goal into the database
       vm.addGoal = function(id) {
         if(vm.quantity) {
-          vm.goal = "I will "+vm.goal+" at least " +vm.number+" "+vm.units;
+          vm.goal = 'I will ' + vm.goal + ' at least ' + vm.number + ' ' + vm.units;
         }
         var myDate = new Date(Date.parse(vm.date) + 43100000);
         GoalFactory.createGoal(vm.goal, vm.payload.email, id, myDate, vm.number, vm.units)
