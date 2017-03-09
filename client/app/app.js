@@ -36,6 +36,12 @@ function config($stateProvider, lockProvider, $urlRouterProvider, jwtOptionsProv
       templateUrl: './app/goal-new/goal-new.html',
       controllerAs: 'vm'
     })
+    .state('details', {
+      url: '/details',
+      controller: 'DetailsCtrl',
+      templateUrl: './app/goal-details/goal-details.html',
+      controllerAs: 'vm'
+    });
     /*
     .state('complete', {
       url: '/auth',
@@ -43,12 +49,6 @@ function config($stateProvider, lockProvider, $urlRouterProvider, jwtOptionsProv
       templateUrl: './app/goal-complete/goal-complete.html',
       controllerAs: 'vm'
     })
-    .state('details', {
-      url: '/auth',
-      controller: 'DetailsCtrl',
-      templateUrl: './app/goal-details/goal-details.html',
-      controllerAs: 'vm'
-    });
 */
   lockProvider.init({
     clientID: AUTH0_CLIENT_ID,
