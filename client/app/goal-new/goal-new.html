@@ -12,7 +12,6 @@
 </nav>
 
 <!-- Add Goal -->
-
 <div id="newGoal" class="center newGoalContainer" style="width: 60%; height: 100%; margin:auto; background-color: white;">
   <div class="center">
     <h3 class="tk-pollen-web ldblue">Add a Goal</h3>
@@ -82,16 +81,12 @@
       </ul>
     </div>
     <br>
-
     <!-- Calendar -->
     <div >
       <datepicker class="datepickercss" date-format="yyyy-MM-dd" style="margin-left: 23%; width: 54%;">
         <input class="dateinput" ng-model="vm.date" type="text" placeholder="Add an end date for your goal" required/>
       </datepicker>
     </div>
-
-   <!-- Goal baby goal -->
-
    <!-- Submit Entire Goal -->
     <div class="right">
       <a tooltipped ui-sref="home" data-position="bottom" data-delay="100" data-tooltip="Submit New Goal" ng-click="vm.addGoal()" class="btn-floating btn-large waves-effect waves-light light-blue darken-4" style="margin-top: 10px; margin-right: 10px;"><i class="material-icons">add</i></a>
