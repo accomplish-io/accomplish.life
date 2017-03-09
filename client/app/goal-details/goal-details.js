@@ -1,15 +1,9 @@
-angular.module('details', [])
-.controller('DetailsCtrl', function($scope, authService) {
-  var vm = this;
-  vm.authService = authService;
-});
-
 (function () {
   'use strict';
 
   angular
-    .module('dashboard', ['ui.materialize', '720kb.datepicker'])
-    .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, UserFactory, GoalFactory, BackerFactory, ProgressFactory) {
+    .module('details', ['ui.materialize', '720kb.datepicker'])
+    .controller('DetailsCtrl', function($scope, $http, authService, jwtHelper, lock, UserFactory, GoalFactory, BackerFactory, ProgressFactory) {
 
       var vm = this;
 
