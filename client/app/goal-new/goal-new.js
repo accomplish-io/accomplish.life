@@ -23,7 +23,6 @@
         UserFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
           .then(user => {
             vm.user = user.data[0];
-            vm.renderGoals();
           });
       });
 
@@ -64,7 +63,6 @@
 
       // Add the entered goal into the database
       vm.addGoal = function(id) {
-        console.log('We are adding the goal');
         var myDate = new Date(Date.parse(vm.date) + 43100000);
         GoalFactory.createGoal(vm.goal, vm.payload.email, id, myDate, vm.number, vm.units)
           .then(function(goal) {
@@ -73,9 +71,6 @@
               BackerFactory.addBacker(backer);
             });
             vm.currentBackers = [];
-          })
-          .then(function() {
-            vm.renderGoals();
           });
         // Reset entry field
         vm.resetNewGoal();

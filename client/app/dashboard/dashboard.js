@@ -207,6 +207,7 @@
 
       vm.prepUpdate = function(goal) {
         vm.quantifiable = !!goal.units;
+        vm.subGoalsExist = vm.hasSubGoals(goal);
         vm.goalDetail = goal;
         vm.updateGoal = {};
         vm.updateGoal.due = new Date(goal.due);
@@ -240,7 +241,6 @@
 
       // Add the entered goal into the database
       vm.addGoal = function(id) {
-        console.log('We are adding the goal');
         var myDate = new Date(Date.parse(vm.date) + 43100000);
         GoalFactory.createGoal(vm.goal, vm.payload.email, id, myDate, vm.number, vm.units)
           .then(function(goal) {
@@ -339,6 +339,15 @@
           vm.updateGoal = {};
           vm.updateView = false;
         });
+      };
+
+      vm.hasSubGoals = function(parent) {
+        for(var i = 0; i < vm.goals.length; i++) {
+          if(parent.id === vm.goals[i].GoalId) {
+            return true;
+          }
+        }
+        return false;
       };
 
       // Update goal completion status
