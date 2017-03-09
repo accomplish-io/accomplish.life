@@ -308,8 +308,8 @@
       vm.submitBacker = function(goal) {
         //submit vm.backerName and vm.backerEmail
         var newBacker = {};
-        newBacker.name = vm.backerName;
-        newBacker.email = vm.backerEmail;
+        newBacker.backerName = vm.backerName;
+        newBacker.backerEmail = vm.backerEmail;
         newBacker.UserId = vm.user.id;
         vm.currentBackers.push(newBacker);
 
