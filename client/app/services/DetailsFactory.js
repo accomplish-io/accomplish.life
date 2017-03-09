@@ -35,6 +35,7 @@
       setUpdateGoal: setUpdateGoal,
       getSubGoalsExist: getSubGoalsExist,
       setSubGoalsExist: setSubGoalsExist,
+
     };
 
   };
