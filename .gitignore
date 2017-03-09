@@ -3,7 +3,7 @@ node_modules/
 client/app/auth/auth0-variables.js
 client/bower_components
 dist/
-emailKeys.env
+server/outreach/emailKeys.env
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
