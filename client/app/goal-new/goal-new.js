@@ -1,5 +1,3 @@
-
-
 (function () {
   'use strict';
 
@@ -66,6 +64,10 @@
 
       // Add the entered goal into the database
       vm.addGoal = function(id) {
+        angular.element('html').css({
+          'background-image': 'url("../images/authBackground.jpg")',
+        });
+
         if(vm.quantity) {
           vm.goal = 'I will ' + vm.goal + ' at least ' + vm.number + ' ' + vm.units;
         }
@@ -76,7 +78,7 @@
               backer.GoalId = goal.data.id;
               BackerFactory.addBacker(backer)
                 .then(function(backerX) {
-                  BackerFactory.welcomeBacker(backerX)
+                  BackerFactory.welcomeBacker(backerX);
                 });
             });
             vm.currentBackers = [];
