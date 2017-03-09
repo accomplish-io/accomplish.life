@@ -13,7 +13,7 @@
 
 <!-- App -->
 <div class="container" style="background-color: white">
-  <h3 class="tk-pollen-web ldblue">Goals</h3>
+  <h3 class="tk-pollen-web ldblue center">Goals</h3>
   <div class="col">
     <!-- Add Main Goal New Page Button -->
     <a ui-sref="new" class="waves-effect waves-light light-blue darken-4 btn"  ng-click="vm.resetNewGoal()">Add a goal</a>
@@ -102,7 +102,7 @@
   </div>
 
   <!-- Completed Goals -->
-  <h3 class="tk-pollen-web ldblue">Completed</h3>
+  <h3 class="tk-pollen-web ldblue center">Completed</h3>
   <div ng-repeat="goal in vm.goals | filter:{complete: true, GoalId: null}">
     <div class="collapsible-header" style="padding-right: 0px">
       <ul class="collection with-header">
