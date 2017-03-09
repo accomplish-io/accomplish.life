@@ -218,7 +218,6 @@
       };
 
       vm.addProgress = function (goal) {
-        //console.log(vm.progressGoal);
         ProgressFactory.postProgress(goal.id, {
           number: vm.progNum,
           date: new Date()
