@@ -1,3 +1,5 @@
+
+
 (function () {
   'use strict';
 
@@ -152,24 +154,8 @@
         vm.showCollapsible = !vm.showCollapsible;
       };
 
-
-      var $header = $('nav');
-      var $content = $('#newGoal');
-      console.log($('body.ng-scope').innerHeight());
-      var $window = $(window).on('resize', function(){
-        var height = $(this).innerHeight() - $header.innerHeight() - $content.innerHeight();
-        console.log($(this).innerHeight(), $header.innerHeight(), $content.innerHeight());
-        $content.css({
-          // 'padding-bottom':'3000px'
-        });
-      }).trigger('resize');
-
-// $("#numbers a").css({
-// "color":"white",
-// "text-decoration":"none",
-// "padding:":"5px"
-// });
-
-
+      angular.element('html').css({
+        'background-image': 'url("../images/authBackground-white.jpg")',
+      });
     });
 })();

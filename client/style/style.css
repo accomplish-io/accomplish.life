@@ -18,25 +18,31 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
+
 body {
   line-height: 1;
 }
+
 ol, ul {
   list-style: none;
 }
+
 blockquote, q {
   quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: '';
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -171,6 +177,7 @@ input:focus#calen {
 }
 
 .newGoalContainer {
+  height: 100%;
   padding-right: 5vw;
   padding-left: 5vw;
   padding-top: 1vh;
@@ -178,22 +185,8 @@ input:focus#calen {
   background-color: white;
   /*padding-bottom: 3000px;*/
   /*margin-bottom: -3000px;*/
-  extend bottom padding
 }
 
-#newGoalFooter {
-  position: absolute;
-  /*right: 0;*/
-  bottom: 0;
-  /*left: 0;*/
-  /*padding: 1rem;*/
-  position: fixed;
-  text-align: center;
-  margin: auto;
-  height:30px;
-  background-color: gold;
-
-}
 
 /*The div in which we append all the bars*/
 /*.progress-bars {
