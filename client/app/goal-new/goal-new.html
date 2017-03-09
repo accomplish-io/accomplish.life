@@ -21,8 +21,8 @@
       <a class="dropdown-button btn light-blue darken-4" href="javascript:void(0);" data-activates="goalType" dropdown data-hover="true">How will you finish your goal?</a>
       <!-- Dropdown Structure -->
       <ul id="goalType" class="dropdown-content">
-        <li><a ng-click="vm.quantity = false"><span class="ldblue">Do once</span></a></li>
-        <li><a ng-click="vm.quantity = true"><span class="ldblue">Quantify your goal</span></a></li>
+        <li><a ng-click="vm.quantity = false; vm.goal = ''"><span class="ldblue">Do once</span></a></li>
+        <li><a ng-click="vm.quantity = true; vm.goal=''"><span class="ldblue">Quantify your goal</span></a></li>
       </ul>
     </div>
     <div class="row">
@@ -89,6 +89,8 @@
         <input class="dateinput" ng-model="vm.date" type="text" placeholder="Add an end date for your goal" required/>
       </datepicker>
     </div>
+
+   <!-- Goal baby goal -->
 
    <!-- Submit Entire Goal -->
     <div class="right">
