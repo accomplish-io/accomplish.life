@@ -6,7 +6,7 @@
     <ul id="nav-mobile" class="right hide-on-small-and-down" style="margin-right: 30px;">
       <li><a class="tk-pollen-web" ui-sref="home">Goal Dashboard</a></li>
       <li ><a class="tk-pollen-web" ng-if="vm.displayLoginButton()" ui-sref="auth">Log In</a></li>
-      <li ><a class="tk-pollen-web" ng-if="!vm.displayLoginButton()" ui-sref="auth" ng-click="authService.logout()">Log Out</a></li>
+      <li ><a class="" ng-if="!vm.displayLoginButton()" ui-sref="auth" ng-click="authService.logout()">Log Out</a></li>
     </ul>
   </div>
 </nav>
@@ -16,7 +16,7 @@
   <h3 class="tk-pollen-web ldblue">Goals</h3>
   <div class="col">
     <!-- Add Main Goal New Page Button -->
-    <a class="waves-effect waves-light light-blue darken-4 btn" ui-sref="new" ng-click="vm.resetNewGoal()" modal>Add a goal</a>
+    <a ui-sref="new" class="waves-effect waves-light light-blue darken-4 btn"  ng-click="vm.resetNewGoal()">Add a goal</a>
   </div>
   <br>
 
