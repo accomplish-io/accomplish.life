@@ -213,9 +213,7 @@ module.exports = function(app, express, db, wk, email) {
   });
 
   app.post('/api/backers/email', function(req, res) {
-    // console.log('*********REQUEST BODY: ', req.body);
     var backer = req.body.config.data;
-    // console.log('*********BACKER', backer);
     var backerName = backer.name;
     var backerEmail = backer.email;
     var GoalId = backer.GoalId;
