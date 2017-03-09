@@ -171,9 +171,9 @@ module.exports = function(app, express, db, wk, email) {
           })
           .then(function(backerArr) {
             backerArr.forEach(goalBacker => {
-              email.goalCompleteEmail(goalBacker.Backer.User.authId, goalBacker.Backer.backerName, goalBacker.Backer.backerEmail, goal.goalName)
+              email.goalCompleteEmail(goalBacker.Backer.User.authId, goalBacker.Backer.backerName, goalBacker.Backer.backerEmail, goal.goalName);
             });
-          })
+          });
           //delete backers
         }
         res.send(goal);
