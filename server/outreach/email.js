@@ -24,7 +24,7 @@ var newGoalEmail = function(user, backerName, backerEmail, goalTitle) {
     from: 'Accomplish.io ' + process.env.EMAIL_USER, // sender address
     to: backerName + ' ' + backerEmail, // list of receivers
     subject: 'A friend of yours started a new goal!', // Subject line
-    text: 'Hi ' + backerName + ",\n" + user + " is trying to " + goalTitle + " and has selected you to be a backer. We'll let you know how " + user + " is doing. Just be sure to send lots of encourangement. \n Best, \n The Accomplish.Life team", // plain text body
+    text: 'Hi ' + backerName + ",\n" + user + " is trying to " + goalTitle + " and has selected you to be a backer. We'll let you know how " + user + " is doing. Just be sure to send lots of encouragement. \n Best, \n The Accomplish.Life team", // plain text body
     // html: '<b>Help your friends!</b>' // html body
   };
 
