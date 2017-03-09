@@ -163,15 +163,15 @@ module.exports = function(app, express, db, wk, email) {
         goal.update(req.body);
         if (req.body.complete === true) {
           //send email
-          db.Backer.findAll({
+          db.GoalBacker.findAll({
             where: {
               GoalId: req.params.id
             },
-            include: [db.User]
+            include: [{model: db.Backer, include: db.User}]
           })
           .then(function(backerArr) {
-            backerArr.forEach(backer => {
-              email.goalCompleteEmail(backer.User.authId, backer.backerEmail, backer.backerName, goal.goalName)
+            backerArr.forEach(goalBacker => {
+              email.goalCompleteEmail(goalBacker.Backer.User.authId, goalBacker.Backer.backerName, goalBacker.Backer.backerEmail, goal.goalName)
             });
           })
           //delete backers

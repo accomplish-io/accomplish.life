@@ -1,4 +1,3 @@
-require('dotenv').load({path: './emailKeys.env'});
 var nodemailer = require('nodemailer');
 
 // Transport object
@@ -38,11 +37,11 @@ var newGoalEmail = function(user, backerName, backerEmail, goalTitle) {
   });
 };
 
-var goalCompleteEmail = function(user, backerEmail, backerName, goalTitle) {
+var goalCompleteEmail = function(user, backerName, backerEmail, goalTitle) {
   // Setup email data
   var mailOptions = {
-    from: '"Accomplish.io" <' + process.env.EMAIL_USER + '>', // sender address
-    to: backerEmail, // list of receivers
+    from: 'Accomplish.io ' + process.env.EMAIL_USER, // sender address
+    to: backerName + ' ' + backerEmail, // list of receivers
     subject: 'A friend of yours has completed a goal!', // Subject line
     text: 'Hi ' + backerName + ",\n" + user + " has just finished their goal to " + goalTitle +". You should congratulate them! \n Best, \n The Accomplish.Life Team", // plain text body
     // html: '<b>Help your friends!</b>' // html body
