@@ -213,9 +213,11 @@ module.exports = function(app, express, db, wk, email) {
   });
 
   app.post('/api/backers/email', function(req, res) {
-    var backer = req.body.data[0];
-    var backerName = backer.backerName;
-    var backerEmail = backer.backerEmail;
+    // console.log('*********REQUEST BODY: ', req.body);
+    var backer = req.body.config.data;
+    // console.log('*********BACKER', backer);
+    var backerName = backer.name;
+    var backerEmail = backer.email;
     var GoalId = backer.GoalId;
     db.Goal.findOne({
       where: {
@@ -224,9 +226,6 @@ module.exports = function(app, express, db, wk, email) {
       include: [db.User]
     })
     .then(function(goal) {
-      //user properties are goal.User
-      //ex. authId = goal.User.authId
-      // console.log(goal.User.email)
       email.newGoalEmail(goal.User.authId, backerEmail, backerName, goal.goalName);
       res.send(goal);
     });
