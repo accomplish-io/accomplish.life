@@ -214,8 +214,8 @@ module.exports = function(app, express, db, wk, email) {
 
   app.post('/api/backers/email', function(req, res) {
     var backer = req.body.config.data;
-    var backerName = backer.name;
-    var backerEmail = backer.email;
+    var backerName = backer.backerName;
+    var backerEmail = backer.backerEmail;
     var GoalId = backer.GoalId;
     db.Goal.findOne({
       where: {
