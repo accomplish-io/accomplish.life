@@ -88,6 +88,11 @@ html {
 /*   text-align: center;*/
 }
 
+input:focus#calen {
+  border-bottom: 1px solid #01579b  !important;
+  box-shadow: 0 1px 0 0 #01579b  !important
+}
+
 .footerholder {
   bottom: 0;
   position: fixed;
