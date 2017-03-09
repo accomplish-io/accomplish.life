@@ -173,6 +173,13 @@ module.exports = function(app, express, db, wk, email) {
             backerArr.forEach(goalBacker => {
               email.goalCompleteEmail(goalBacker.Backer.User.authId, goalBacker.Backer.backerName, goalBacker.Backer.backerEmail, goal.goalName);
             });
+          })
+          .then(function() {
+            db.GoalBacker.destroy({
+              where: {
+                GoalId: req.params.id
+              }
+            });
           });
           //delete backers
         }
