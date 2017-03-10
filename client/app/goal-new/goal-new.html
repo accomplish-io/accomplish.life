@@ -84,7 +84,7 @@
     <div>
       <ul class="center" class="collapsible popout" data-collapsible="accordion" style="margin-left: 35%; width: 30%;" watch>
         <li ng-repeat="backer in vm.currentBackers">
-          <div class="collapsible-header ldblue tk-pollen-web">{{backer.name}}<i ng-click="vm.deleteBacker(backer)" class="material-icons right">remove</i>
+          <div class="collapsible-header ldblue tk-pollen-web">{{backer.name}}   {{backer.email}}<i ng-click="vm.deleteBacker(backer)" class="material-icons right">remove</i>
           </div>
         </li>
       </ul>
