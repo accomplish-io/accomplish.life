@@ -4,4 +4,8 @@ angular.module('auth', [])
   vm.authService = authService;
   vm.displayLoginButton = () =>
       localStorage.getItem('id_token') ? false : true;
+  angular.element('html').css({
+    'background-image': 'url("../images/authBackground.jpg")',
+  });
+
 });

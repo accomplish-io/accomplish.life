@@ -1,0 +1,81 @@
+<!-- Navbar -->
+<nav>
+   <div class="nav-wrapper light-blue darken-4" ng-controller="AuthCtrl">
+    <img src="../images/logo.png" alt="Accomplish.life Logo" class="logo">
+    <a href = "#" class="brand-logo, tk-pollen-web, headerTitle">Accomplish.Life</a>
+    <ul id="nav-mobile" class="right hide-on-small-and-down" style="margin-right: 30px;">
+      <li><a class="tk-pollen-web" ui-sref="home">Goal Dashboard</a></li>
+      <li ><a class="tk-pollen-web" ng-if="vm.displayLoginButton()" ui-sref="auth">Log In</a></li>
+      <li ><a class="tk-pollen-web" ng-if="!vm.displayLoginButton()" ui-sref="auth" ng-click="authService.logout()">Log Out</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- App -->
+<div class="container" style="background-color: white">
+
+  <!-- Goal Details Quantifiable vm.updateGoal-->
+  <div id="goalDetailsModalQuantifiable>
+    <tab-trap>
+      <div class="modal-content">
+        <h3 class="tk-pollen-web ldblue center">Goal Details</h3>
+        <br>
+        <div style="width: 85%; height: 100%;">
+          <canvas id="line" height=50 width=110 class="chart chart-line" chart-data="vm.goalDetail.progressRange" chart-labels="vm.goalDetail.dateRange" chart-series="vm.lineChart.series" chart-labels="vm.goalDetail.label" chart-options="vm.lineChart.options"></canvas>
+        </div>
+        <br>
+        <a class="btn light-blue darken-4 ldblue" ng-show="!vm.updateView" ng-click="vm.toggleUpdate()">Update Goal</a>
+        <br>
+        <div ng-show="vm.updateView" style="width: 54%">
+          <div>
+            <span style="display: inline-block;">I will</span>
+            <span input-field style="display: inline-block; width: 20%;">
+              <input type="text" ng-model="vm.updateGoal.goalName" length="30" autofocus>
+              <label>goal</label>
+            </span>
+            <span style="display: inline-block;">at least</span>
+            <span input-field style="display: inline-block; width: 15%;">
+              <input type="number" ng-required="number" ng-model="vm.updateGoal.number" length="4">
+              <label>target</label>
+            </span>
+            <span input-field style="display: inline-block; width: 10%;">
+              <input type="text" ng-model="vm.updateGoal.units" length="8">
+              <label>units</label>
+            </span>
+            <span style="display: inline-block;">by</span>
+          </div>
+          <br>
+          <span input-field style="display: inline-block;">
+            <input style="display: inline-block;" type="date" class="datepicker" ng-model="vm.updateGoal.due" length="10">
+          </span>
+          <br>
+          <a class="btn modal-action modal-close waves-effect waves-green light-blue darken-4 ldblue" ng-click="vm.updateThisGoal(vm.goalDetail)">Submit Changes</a>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div ng-show="vm.subGoalsExist">
+          <h4 class="tk-pollen-web ldblue center">Subgoals</h4>
+          <div ng-repeat="goal in vm.goals | filter: {GoalId: vm.goalDetail.id}:true">
+            <div class="collapsible-header" style="padding-right: 0px">
+              <ul class="collection with-header">
+                <li class="collection-header">
+                  <!-- Checkbox -->
+                  <input ng-click="vm.updateCompleteGoal(goal)" type="checkbox" id="{{goal.id}}" ng-checked="{{goal.complete}}"/>
+                  <!-- Goal Name -->
+                  <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
+                  <!-- Data Chart -->
+                  <canvas id="base" height="25" width="180" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.barChart.labels" chart-options="vm.barChart.options" style="height: 40px"></canvas>
+                  <!-- Delete Goal -->
+                  <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Delete Subgoal" ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">clear</i>
+                </li>
+                <br>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </tab-trap>
+  </div>
+</div>
+

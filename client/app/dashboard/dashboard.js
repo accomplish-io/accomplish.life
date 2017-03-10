@@ -3,7 +3,7 @@
 
   angular
     .module('dashboard', ['ui.materialize', '720kb.datepicker'])
-    .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, UserFactory, GoalFactory, BackerFactory, ProgressFactory) {
+    .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, UserFactory, GoalFactory, BackerFactory, ProgressFactory, DetailsFactory) {
 
       var vm = this;
 
@@ -166,27 +166,6 @@
           ],
         }
       };
-      vm.lineChart.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-      vm.lineChart.series = ['Series A', 'Series B'];
-      vm.lineChart.data = [
-        [65, 59, 80, 81, 56, 55, 40]
-      ];
-      vm.lineChart.options = {
-        scales: {
-          yAxes: [
-            {
-              id: 'y-axis-1',
-              ticks: {
-                beginAtZero: true,
-                max: 100
-              },
-              type: 'linear',
-              display: true,
-              position: 'left'
-            }
-          ]
-        }
-      };
 
       // Open up sub-goals
       vm.toggleSubs = function (goal, $event) {
@@ -206,15 +185,12 @@
       };
 
       vm.prepUpdate = function(goal) {
-        vm.quantifiable = !!goal.units;
-        vm.subGoalsExist = vm.hasSubGoals(goal);
-        vm.goalDetail = goal;
-        vm.updateGoal = {};
-        vm.updateGoal.due = new Date(goal.due);
-        vm.updateGoal.number = '';
-        vm.updateGoal.goalName = goal.goalName;
-        vm.updateGoal.units = goal.units;
-        vm.lineChart.options.scales.yAxes[0].ticks.max = goal.number;
+        DetailsFactory.setUpdateGoal(lineChartNum, goal.number);
+        DetailsFactory.setUpdateGoal('due', vm.updateGoal.due);
+        DetailsFactory.setUpdateGoal('number', '');
+        DetailsFactory.setUpdateGoal('goalName', goal.goalName);
+        DetailsFactory.setUpdateGoal('units', goal.units);
+        DetailsFactory.setUpdateGoal('lineChartNum', goal.number);
       };
 
       vm.addProgress = function (goal) {
@@ -247,7 +223,7 @@
               backer.GoalId = goal.data.id;
               BackerFactory.addBacker(backer)
                 .then(function(backerX) {
-                  BackerFactory.welcomeBacker(backerX)
+                  BackerFactory.welcomeBacker(backerX);
                 });
             });
             vm.currentBackers = [];
@@ -358,6 +334,5 @@
             vm.renderGoals();
           });
       };
-
     });
 })();
