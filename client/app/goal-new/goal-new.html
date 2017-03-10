@@ -52,7 +52,6 @@
     </div>
     <br>
     <!-- Add backers -->
-
     <div>
       <a ng-show="!vm.atLeastOneBacker" class="btn light-blue darken-4" ng-click="vm.addBacker()">Add a backer</a>
       <a ng-show="vm.atLeastOneBacker" class="btn light-blue darken-4" ng-click="vm.addBacker()">Add another backer</a>
@@ -92,14 +91,14 @@
     </div>
     <br>
     <!-- Calendar -->
-    <div ng-click="vm.whiteBack()">
-      <datepicker class="datepickercss" date-format="yyyy-MM-dd" style="margin-left: 23%; width: 54%;">
-        <input class="dateinput" ng-model="vm.date" type="text" placeholder="Add an end date for your goal" required/>
+    <div >
+      <datepicker class="" date-format="yyyy-MM-dd" style="margin-left: 23%; width: 54%;">
+        <input class="dateinput input-field" id="calen" ng-model="vm.date" type="text" placeholder="Add an end date for your goal" required/>
       </datepicker>
     </div>
    <!-- Submit Entire Goal -->
-    <div class="right" id='goalSubmit'>
-      <a tooltipped ui-sref="home" data-position="bottom" data-delay="100" data-tooltip="Submit New Goal" ng-click="vm.addGoal()" class="btn-floating btn-large waves-effect waves-light light-blue darken-4" style="margin-top: 10px; margin-right: 10px;"><i class="material-icons">add</i></a>
+    <div class="right">
+      <a ui-sref="home" ng-click="vm.addGoal()" class="btn waves-effect waves-light light-blue darken-4 right">Submit New Goal</a>
     </div>
   </div>
 </div>
