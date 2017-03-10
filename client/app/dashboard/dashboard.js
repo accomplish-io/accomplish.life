@@ -185,22 +185,12 @@
       };
 
       vm.prepUpdate = function(goal) {
-        //vm.quantifiable = !!goal.units;
-        DetailsFactory.setQuantifiable(!!goal.units);
-        //vm.subGoalsExist = vm.hasSubGoals(goal);
-        DetailsFactory.setSubgoalsExist(vm.hasSubGoals(goal));
-        //vm.goalDetail = goal;
-        DetailsFactory.setGoalDetail(goal);
-        //vm.updateGoal = {};
-        //vm.updateGoal.due = new Date(goal.due);
-        DetailsFactory.setUpdateGoal(due, new Date(goal.due));
-        //vm.updateGoal.number = '';
-        DetailsFactory.setUpdateGoal(number, '');
-        // vm.updateGoal.goalName = goal.goalName;
-        DetailsFactory.setUpdateGoal(goalName, goal.goalName);
-        // vm.updateGoal.units = goal.units;
-        DetailsFactory.setUpdateGoal(units, goal.units);
-        vm.lineChart.options.scales.yAxes[0].ticks.max = goal.number;
+        DetailsFactory.setUpdateGoal(lineChartNum, goal.number);
+        DetailsFactory.setUpdateGoal('due', vm.updateGoal.due);
+        DetailsFactory.setUpdateGoal('number', '');
+        DetailsFactory.setUpdateGoal('goalName', goal.goalName);
+        DetailsFactory.setUpdateGoal('units', goal.units);
+        DetailsFactory.setUpdateGoal('lineChartNum', goal.number);
       };
 
       vm.addProgress = function (goal) {
