@@ -166,27 +166,6 @@
           ],
         }
       };
-      vm.lineChart.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-      vm.lineChart.series = ['Series A', 'Series B'];
-      vm.lineChart.data = [
-        [65, 59, 80, 81, 56, 55, 40]
-      ];
-      vm.lineChart.options = {
-        scales: {
-          yAxes: [
-            {
-              id: 'y-axis-1',
-              ticks: {
-                beginAtZero: true,
-                max: 100
-              },
-              type: 'linear',
-              display: true,
-              position: 'left'
-            }
-          ]
-        }
-      };
 
       // Open up sub-goals
       vm.toggleSubs = function (goal, $event) {
