@@ -8,31 +8,31 @@
     .factory('DetailsFactory', DetailsFactory);
 
   function DetailsFactory($http) {
+    var quantifiable;
+    var goalDetail;
+    var updateGoal = {};
+    var subGoalsExist;
 
-    var setQuantifiable = function (quant) {
-      quantifiable = quant;
-    };
+    var setQuantifiable = function (quant) { quantifiable = quant; };
+    var getQuantifiable = function () { return quantifiable; };
 
-    var setGoalDetail = function (goalDet) {
-      goalDetail = goalDet;
-    };
+    var setGoalDetail = function (goalDet) { goalDetail = goalDet; };
+    var getGoalDetail = function () { return goalDetail; };
 
-    var setUpdateGoal = function (key, prop) {
-      updateGoal[key] = prop;
-    };
+    var setUpdateGoal = function (key, prop) { updateGoal[key] = prop; };
+    var getUpdateGoal = function () { return updateGoal; };
 
-    var setSubGoalsExist = function (Boolean) {
-      subGoalsExist = Boolean;
-    };
+    var setSubGoalsExist = function (Boolean) { subGoalsExist = Boolean; };
+    var getSubGoalsExist = function () { return subGoalsExist; };
 
     return {
-      quantifiable: quantifiable,
+      getQuantifiable: getQuantifiable,
       setQuantifiable: setQuantifiable,
-      goalDetail: goalDetail,
+      getGoalDetail: getGoalDetail,
       setGoalDetail: setGoalDetail,
-      updateGoal: updateGoal,
+      getUpdateGoal: getUpdateGoal,
       setUpdateGoal: setUpdateGoal,
-      subGoalsExist: subGoalsExist,
+      getSubGoalsExist: getSubGoalsExist,
       setSubGoalsExist: setSubGoalsExist,
     };
 
