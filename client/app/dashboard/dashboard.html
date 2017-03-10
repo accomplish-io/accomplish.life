@@ -1,3 +1,4 @@
+<tab-trap>
 <!-- Navbar -->
 <nav>
    <div class="nav-wrapper light-blue darken-4" ng-controller="AuthCtrl">
@@ -40,7 +41,7 @@
 
           <!-- Delete Goal -->
           <a data-target="deleteGoalModal" style="color: black;" modal>
-            <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Delete Goal" ng-click="vm.currentDeleteGoal = goal" class="material-icons right" data-target="deleteGoalModal" style="margin: 10px 15px 10px 0px;">clear</i>
+            <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Delete Goal" ng-click="vm.currentDeleteGoal = goal" class="material-icons right" data-target="deleteGoalModal" style="margin: 10px 15px 10px 0px;">delete_forever</i>
           </a>
           <!-- Delete Goal Modal -->
           <div id="deleteGoalModal" class="modal" style="width: 40%; height: 25%;">
@@ -89,7 +90,7 @@
               <!-- Sub Goal Name -->
               <label for="{{sub.id}}" style="display: initial;">{{sub.goalName}}</label>
               <!-- Delete Sub Goal -->
-              <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Delete Subgoal" ng-click="vm.deleteGoal(sub.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">clear</i>
+              <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Delete Subgoal" ng-click="vm.deleteGoal(sub.id)" class="material-icons right" style="margin: 0px 15px 0px 0px;">delete_forever</i>
               <!-- Add Progress -->
               <a ng-if="!sub.complete" ng-click="vm.progressGoal = sub" data-target="subProgressModal" ng-style="{color: sub.number ? 'black' : '#d9d9d9', 'pointer-events': sub.number ? 'auto' : 'none'}" modal>
                 <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Add Progress" ng-if="!sub.complete" class="material-icons right" style="margin: 0px 15px 0px 0px;">done_all</i>
@@ -112,7 +113,7 @@
           <!-- Goal Name -->
           <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
           <!-- Delete Goal -->
-          <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Delete Completed Goal" ng-click='vm.deleteGoal(goal.id)' class="material-icons right" style="margin: 0px 15px 0px 0px;">clear</i>
+          <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Delete Completed Goal" ng-click='vm.deleteGoal(goal.id)' class="material-icons right" style="margin: 0px 15px 0px 0px;">delete_forever</i>
           <!-- Show Sub Goals -->
           <span ng-if="goal.hasChildren">
             <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Show/Hide Completed Subgoals" ng-click="vm.toggleSubs(goal, $event)" class="material-icons right" style="margin: 0px 15px 0px 0px;">expand_more</i>
@@ -132,10 +133,10 @@
   </div>
 
    <!-- Complete goal with incomplete subgoals modal -->
-  <div id="completeGoalModal" class="modal" style="width: 50%; height: 35%;">
+  <div id="completeGoalModal" class="modal" style="width: 40%; height: 25%;">
     <div class="modal-content center">
-      <span class="tk-pollen-web ldblue" style="font-size: 125%;">Your subgoals are not complete.  Do you still want to complete this goal?</span>
-      <br>
+      <span class="tk-pollen-web ldblue" style="font-size: 125%;">You have incomplete sub-goals, do you still want to complete this goal?</span>
+      <br><br>
       <a class="waves-effect waves-light light-blue darken-4 btn modal-action modal-close tk-pollen-web" ng-click="vm.updateCompleteGoal(vm.currentCompleteGoal)" style="color:white;">Yes</a>
       <a class="waves-effect waves-light light-blue darken-4 btn modal-action modal-close tk-pollen-web" ng-click="vm.currentCompleteGoal = null" style="color:white;">No</a>
     </div>
@@ -287,7 +288,7 @@
                   <!-- Data Chart -->
                   <canvas id="base" height="25" width="180" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.barChart.labels" chart-options="vm.barChart.options" style="height: 40px"></canvas>
                   <!-- Delete Goal -->
-                  <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Delete Subgoal" ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">clear</i>
+                  <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Delete Subgoal" ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">delete_forever</i>
                 </li>
                 <br>
               </ul>
@@ -334,7 +335,7 @@
                   <!-- Data Chart -->
                   <canvas id="base" height="25" width="180" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.barChart.labels" chart-options="vm.barChart.options" style="height: 40px"></canvas>
                   <!-- Delete Goal -->
-                  <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Delete Subgoal" ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">clear</i>
+                  <i tooltipped data-position="bottom" data-delay="100" data-tooltip="Delete Subgoal" ng-click="vm.deleteGoal(goal.id)" class="material-icons right" style="margin: 10px 15px 10px 0px;">delete_forever</i>
                 </li>
                 <br>
               </ul>
@@ -345,4 +346,4 @@
     </tab-trap>
   </div>
 </div>
-
+</tab-trap>
