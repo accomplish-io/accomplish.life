@@ -49,14 +49,11 @@
         }
       };
 
-      vm.quantifiable = DetailsFactory.quantifiable;
-      vm.subGoalsExist = DetailsFactory.subGoalsExist;
-      vm.goalDetail = DetailsFactory.goalDetail;
-      vm.updateGoal = DetailsFactory.updateGoal;
-      vm.lineChart.options.scales.yAxes[0].ticks.max = DetailsFactory.updateGoal.lineChartNum;
-
-
-
+      vm.quantifiable = DetailsFactory.getQuantifiable();
+      vm.subGoalsExist = DetailsFactory.getSubGoalsExist();
+      vm.goalDetail = DetailsFactory.getGoalDetail();
+      vm.updateGoal = DetailsFactory.getUpdateGoal();
+      vm.lineChart.options.scales.yAxes[0].ticks.max = vm.updateGoal.lineChartNum;
 
       vm.quantity = false;
       vm.test = 'blank';
@@ -65,8 +62,6 @@
       vm.quantity = false;
       vm.number = null;
       vm.unit = '';
-      vm.barChart = {};
-      vm.lineChart = {};
       vm.existingBackers = [];
       vm.showCollapsible = false;
       vm.currentDeleteGoal = null;
@@ -152,6 +147,8 @@
         return range;
       };
 
+=======
+>>>>>>> remove extra functions
       vm.createProgressRange = (goal) => {
         var range = [[],[0]];
         var timeLeft = new Date(goal.due) - new Date(goal.start);
@@ -199,37 +196,6 @@
         });
       };
 
-
-
-      // Open up sub-goals
-      vm.toggleSubs = function (goal, $event) {
-        goal.subsDisplayed = !goal.subsDisplayed;
-        var spanElement = $event.target;
-        $event.target.innerHTML === 'expand_more'
-          ? angular.element(spanElement).html('expand_less')
-          : angular.element(spanElement).html('expand_more');
-      };
-
-      vm.toggleAdd = function (goal) {
-        goal.addDisplayed = !goal.addDisplayed;
-      };
-
-      vm.toggleUpdate = function() {
-        vm.updateView = !vm.updateView;
-      };
-
-      vm.prepUpdate = function(goal) {
-        vm.quantifiable = !!goal.units;
-        vm.subGoalsExist = vm.hasSubGoals(goal);
-        vm.goalDetail = goal;
-        vm.updateGoal = {};
-        vm.updateGoal.due = new Date(goal.due);
-        vm.updateGoal.number = '';
-        vm.updateGoal.goalName = goal.goalName;
-        vm.updateGoal.units = goal.units;
-        vm.lineChart.options.scales.yAxes[0].ticks.max = goal.number;
-      };
-
       vm.addProgress = function (goal) {
         ProgressFactory.postProgress(goal.id, {
           number: vm.progNum,
@@ -249,36 +215,6 @@
             vm.currentDeleteGoal = null;
             vm.renderGoals();
           });
-      };
-
-      // Add the entered goal into the database
-      vm.addGoal = function(id) {
-        var myDate = new Date(Date.parse(vm.date) + 43100000);
-        GoalFactory.createGoal(vm.goal, vm.payload.email, id, myDate, vm.number, vm.units)
-          .then(function(goal) {
-            vm.currentBackers.forEach(function(backer) {
-              backer.GoalId = goal.data.id;
-              BackerFactory.addBacker(backer)
-                .then(function(backerX) {
-                  BackerFactory.welcomeBacker(backerX)
-                });
-            });
-            vm.currentBackers = [];
-          })
-          .then(function() {
-            vm.renderGoals();
-          });
-        // Reset entry field
-        vm.resetNewGoal();
-      };
-
-      vm.resetNewGoal = function() {
-        vm.goal = '';
-        vm.verb = '';
-        vm.number = null;
-        vm.date = null;
-        vm.units = '';
-        vm.quantity = false;
       };
 
       // Only show backer input field if someone wants to add a backer
@@ -352,8 +288,6 @@
           vm.updateView = false;
         });
       };
-
-
 
       // Update goal completion status
       vm.updateCompleteGoal = function(goal) {
