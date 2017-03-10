@@ -3,7 +3,7 @@
 
   angular
     .module('dashboard', ['ui.materialize', '720kb.datepicker'])
-    .controller('DashboardCtrl', function($scope, $http, $location, authService, jwtHelper, lock, UserFactory, GoalFactory, BackerFactory, ProgressFactory, DetailsFactory) {
+    .controller('DashboardCtrl', function($scope, $http, authService, jwtHelper, lock, UserFactory, GoalFactory, BackerFactory, ProgressFactory, DetailsFactory) {
 
       var vm = this;
 
@@ -207,9 +207,6 @@
             vm.progNum = '';
             vm.number = null;
             vm.unit = '';
-          })
-          .then(function() {
-            $location.path('/home');
           });
       };
 
