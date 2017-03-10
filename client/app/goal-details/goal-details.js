@@ -3,9 +3,18 @@
 
   angular
     .module('details', ['ui.materialize', '720kb.datepicker'])
-    .controller('DetailsCtrl', function($scope, $http, authService, jwtHelper, lock, UserFactory, GoalFactory, BackerFactory, ProgressFactory) {
+    .controller('DetailsCtrl', function($scope, $http, authService, jwtHelper, lock, UserFactory, GoalFactory, BackerFactory, ProgressFactory, DetailsFactory) {
 
       var vm = this;
+
+      vm.quantifiable = DetailsFactory.quantifiable;
+      vm.subGoalsExist = DetailsFactory.subGoalsExist;
+      vm.goalDetail = DetailsFactory.goalDetail;
+      vm.updateGoal = DetailsFactory.updateGoal;
+      vm.lineChart.options.scales.yAxes[0].ticks.max = vm.goalDetail.number;
+
+
+
 
       vm.quantity = false;
       vm.test = 'blank';
@@ -340,14 +349,7 @@
         });
       };
 
-      vm.hasSubGoals = function(parent) {
-        for(var i = 0; i < vm.goals.length; i++) {
-          if(parent.id === vm.goals[i].GoalId) {
-            return true;
-          }
-        }
-        return false;
-      };
+
 
       // Update goal completion status
       vm.updateCompleteGoal = function(goal) {

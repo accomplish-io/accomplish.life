@@ -9,33 +9,31 @@
 
   function DetailsFactory($http) {
 
-    var quantifiable;
-    var goalDetail;
-    var updateGoal = {};
-    var subGoalsExist;
+    var setQuantifiable = function (quant) {
+      quantifiable = quant;
+    };
 
-    var setQuantifiable = function (quant) { quantifiable = quant; };
-    var getQuantifiable = function () { return quantifiable; };
+    var setGoalDetail = function (goalDet) {
+      goalDetail = goalDet;
+    };
 
-    var setGoalDetail = function (goalDet) { goalDetail = goalDet; };
-    var getGoalDetail = function () { return goalDetail; };
+    var setUpdateGoal = function (key, prop) {
+      updateGoal[key] = prop;
+    };
 
-    var setUpdateGoal = function (key, prop) { updateGoal[key] = prop; };
-    var getUpdateGoal = function () { return updateGoal; };
-
-    var setSubGoalsExist = function (Boolean) { subGoalsExist = Boolean; };
-    var getSubGoalsExist = function () { return subGoalsExist; };
+    var setSubGoalsExist = function (Boolean) {
+      subGoalsExist = Boolean;
+    };
 
     return {
-      getQuantifiable: getQuantifiable,
+      quantifiable: quantifiable,
       setQuantifiable: setQuantifiable,
-      getGoalDetail: getGoalDetail,
+      goalDetail: goalDetail,
       setGoalDetail: setGoalDetail,
-      getUpdateGoal: getUpdateGoal,
+      updateGoal: updateGoal,
       setUpdateGoal: setUpdateGoal,
-      getSubGoalsExist: getSubGoalsExist,
+      subGoalsExist: subGoalsExist,
       setSubGoalsExist: setSubGoalsExist,
-
     };
 
   };
