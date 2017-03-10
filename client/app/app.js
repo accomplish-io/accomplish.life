@@ -37,6 +37,12 @@ function config($stateProvider, lockProvider, $urlRouterProvider, jwtOptionsProv
       templateUrl: './app/goal-new/goal-new.html',
       controllerAs: 'vm'
     })
+     .state('about', {
+      url: '/about',
+      controller: 'AboutCtrl',
+      templateUrl: './app/about/about.html',
+      controllerAs: 'vm'
+    })
 
     .state('details', {
       url: '/details',
