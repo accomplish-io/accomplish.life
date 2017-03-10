@@ -75,46 +75,10 @@
         UserFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
           .then(user => {
             vm.user = user.data[0];
-            vm.renderGoals();
           });
-
-        // Get user goals and render on page
       });
 
-      vm.renderGoals = () => {
-        vm.noteDisplayed();
-        GoalFactory.getUserGoals(vm.payload.email)
-          .then(goals => {
-            goals.data.forEach((goal, index, goalsArr) => {
-              goal.subsDisplayed = false;
-              goal.addDisplayed = false;
-              if(goal.GoalId !== null) {
-                goals.data.forEach(parent => {
-                  if (parent.id === goal.GoalId) {
-                    parent.hasChildren = true;
-                    if (!parent.incompleteChildren) {
-                      parent.incompleteChildren = false;
-                    }
-                    if (!goal.complete) {
-                      parent.incompleteChildren = true;
-                    }
-                  }
-                });
-              }
-              goal.dayRange = vm.createDayRange(goal);
-              goal.dateRange = vm.createDateRange(goal);
-              goal.progressRange = vm.createProgressRange(goal);
-              goal.label = vm.makeLabel(goal);
-              var amountDone = [goal.number ? ((goal.Progresses.reduce(function(prev, next, index, progArr) {
-                return angular.isNumber(next.number) ? prev + next.number : prev;
-              }, 0)) / goal.number) * 100 : 0];
-              var amountDue = [goal.due ? ((new Date() - new Date(goal.start)) / (new Date(goal.due) - new Date(goal.start))) * 100 : 0];
-              goal.progress = [amountDone, amountDue];
-            });
-            vm.goals = goals.data;
-            vm.restoreDisplayed();
-          });
-      };
+
 
       vm.makeLabel = function(goal) {
         var rate = Math.round(goal.number/(goal.dayRange.length - 1));
@@ -147,8 +111,6 @@
         return range;
       };
 
-=======
->>>>>>> remove extra functions
       vm.createProgressRange = (goal) => {
         var range = [[],[0]];
         var timeLeft = new Date(goal.due) - new Date(goal.start);
