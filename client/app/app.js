@@ -43,7 +43,6 @@ function config($stateProvider, lockProvider, $urlRouterProvider, jwtOptionsProv
       templateUrl: './app/about/about.html',
       controllerAs: 'vm'
     })
-
     .state('details', {
       url: '/details',
       controller: 'DetailsCtrl',
@@ -57,21 +56,6 @@ function config($stateProvider, lockProvider, $urlRouterProvider, jwtOptionsProv
       templateUrl: './app/goal-complete/goal-complete.html',
       controllerAs: 'vm'
     })
-=======
-    .state('about', {
-      url: '/about',
-      controller: 'AboutCtrl',
-      templateUrl: './app/about/about.html',
-      controllerAs: 'vm'
-    })
-    /*
-    .state('details', {
-      url: '/auth',
-      controller: 'DetailsCtrl',
-      templateUrl: './app/goal-details/goal-details.html',
-      controllerAs: 'vm'
-    });
->>>>>>> Add an about state
 */
   lockProvider.init({
     clientID: AUTH0_CLIENT_ID,
