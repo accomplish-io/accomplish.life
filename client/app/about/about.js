@@ -20,12 +20,14 @@
       vm.displayLoginButton = () =>
       localStorage.getItem('id_token') ? false : true;
 
-      lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
-        vm.payload = profile;
-        UserFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
-          .then(user => {
-            vm.user = user.data[0];
-          });
-      });
+      if(localStorage.getItem('id_token')) {
+        lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
+          vm.payload = profile;
+          UserFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
+            .then(user => {
+              vm.user = user.data[0];
+            });
+        });
+      }
  });
 })();
