@@ -222,6 +222,7 @@
         // vm.updateGoal.units = goal.units;
         DetailsFactory.setUpdateGoal(units, goal.units);
         vm.lineChart.options.scales.yAxes[0].ticks.max = goal.number;
+        DetailsFactory.setUpdateGoal(lineChartNum, goal.number);
       };
 
       vm.addProgress = function (goal) {

@@ -6,12 +6,54 @@
     .controller('DetailsCtrl', function($scope, $http, authService, jwtHelper, lock, UserFactory, GoalFactory, BackerFactory, ProgressFactory, DetailsFactory) {
 
       var vm = this;
+      vm.barChart = {};
+      vm.lineChart = {};
+
+      vm.barChart.labels = ['Progress'];
+      vm.barChart.series = ['Actual Progress', 'Expected Progress'];
+      vm.barChart.options = {
+        scales: {
+          yAxes: [{display: true}],
+          xAxes: [
+            {
+              display: true,
+              ticks: {
+                beginAtZero: true,
+                max: 100,
+                suggestedMax: 100
+              },
+              gridLines: {display: false}
+            }
+          ],
+        }
+      };
+      vm.lineChart.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+      vm.lineChart.series = ['Series A', 'Series B'];
+      vm.lineChart.data = [
+        [65, 59, 80, 81, 56, 55, 40]
+      ];
+      vm.lineChart.options = {
+        scales: {
+          yAxes: [
+            {
+              id: 'y-axis-1',
+              ticks: {
+                beginAtZero: true,
+                max: 100
+              },
+              type: 'linear',
+              display: true,
+              position: 'left'
+            }
+          ]
+        }
+      };
 
       vm.quantifiable = DetailsFactory.quantifiable;
       vm.subGoalsExist = DetailsFactory.subGoalsExist;
       vm.goalDetail = DetailsFactory.goalDetail;
       vm.updateGoal = DetailsFactory.updateGoal;
-      vm.lineChart.options.scales.yAxes[0].ticks.max = vm.goalDetail.number;
+      vm.lineChart.options.scales.yAxes[0].ticks.max = DetailsFactory.updateGoal.lineChartNum;
 
 
 
@@ -157,45 +199,7 @@
         });
       };
 
-      vm.barChart.labels = ['Progress'];
-      vm.barChart.series = ['Actual Progress', 'Expected Progress'];
-      vm.barChart.options = {
-        scales: {
-          yAxes: [{display: true}],
-          xAxes: [
-            {
-              display: true,
-              ticks: {
-                beginAtZero: true,
-                max: 100,
-                suggestedMax: 100
-              },
-              gridLines: {display: false}
-            }
-          ],
-        }
-      };
-      vm.lineChart.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-      vm.lineChart.series = ['Series A', 'Series B'];
-      vm.lineChart.data = [
-        [65, 59, 80, 81, 56, 55, 40]
-      ];
-      vm.lineChart.options = {
-        scales: {
-          yAxes: [
-            {
-              id: 'y-axis-1',
-              ticks: {
-                beginAtZero: true,
-                max: 100
-              },
-              type: 'linear',
-              display: true,
-              position: 'left'
-            }
-          ]
-        }
-      };
+
 
       // Open up sub-goals
       vm.toggleSubs = function (goal, $event) {
