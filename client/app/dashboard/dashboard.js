@@ -59,10 +59,10 @@
               goal.dateRange = vm.createDateRange(goal);
               goal.progressRange = vm.createProgressRange(goal);
               goal.label = vm.makeLabel(goal);
-              var amountDone = [goal.number ? ((goal.Progresses.reduce(function(prev, next, index, progArr) {
+              var amountDone = [goal.number ? Math.floor(((goal.Progresses.reduce(function(prev, next, index, progArr) {
                 return angular.isNumber(next.number) ? prev + next.number : prev;
-              }, 0)) / goal.number) * 100 : 0];
-              var amountDue = [goal.due ? ((new Date() - new Date(goal.start)) / (new Date(goal.due) - new Date(goal.start))) * 100 : 0];
+              }, 0)) / goal.number) * 100) : 0];
+              var amountDue = [goal.due ? Math.floor(((new Date() - new Date(goal.start)) / (new Date(goal.due) - new Date(goal.start))) * 100) : 0];
               goal.progress = [amountDone, amountDue];
             });
             vm.goals = goals.data;
