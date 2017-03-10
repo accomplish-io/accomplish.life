@@ -66,6 +66,41 @@
       vm.showCollapsible = false;
       vm.currentDeleteGoal = null;
 
+      vm.renderGoals = () => {
+        vm.noteDisplayed();
+        GoalFactory.getUserGoals(vm.payload.email)
+          .then(goals => {
+            goals.data.forEach((goal, index, goalsArr) => {
+              goal.subsDisplayed = false;
+              goal.addDisplayed = false;
+              if(goal.GoalId !== null) {
+                goals.data.forEach(parent => {
+                  if (parent.id === goal.GoalId) {
+                    parent.hasChildren = true;
+                    if (!parent.incompleteChildren) {
+                      parent.incompleteChildren = false;
+                    }
+                    if (!goal.complete) {
+                      parent.incompleteChildren = true;
+                    }
+                  }
+                });
+              }
+              goal.dayRange = vm.createDayRange(goal);
+              goal.dateRange = vm.createDateRange(goal);
+              goal.progressRange = vm.createProgressRange(goal);
+              goal.label = vm.makeLabel(goal);
+              var amountDone = [goal.number ? Math.floor(((goal.Progresses.reduce(function(prev, next, index, progArr) {
+                return angular.isNumber(next.number) ? prev + next.number : prev;
+              }, 0)) / goal.number) * 100) : 0];
+              var amountDue = [goal.due ? Math.floor(((new Date() - new Date(goal.start)) / (new Date(goal.due) - new Date(goal.start))) * 100) : 0];
+              goal.progress = [amountDone, amountDue];
+            });
+            vm.goals = goals.data;
+            vm.restoreDisplayed();
+          });
+      };
+
       // Get user details from auth
       vm.displayLoginButton = () =>
       localStorage.getItem('id_token') ? false : true;
@@ -75,6 +110,7 @@
         UserFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
           .then(user => {
             vm.user = user.data[0];
+            vm.renderGoals();
           });
       });
 
