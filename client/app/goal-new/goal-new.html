@@ -58,10 +58,11 @@
       <form ng-show="vm.showBackerInput" ng-submit="vm.submitBacker()">
         <div ng-show="!!vm.existingBackers.length">
           <br>
-          <button class="waves-effect waves-green btn btn-flat light-blue darken-4" ng-click="vm.toggleCollapsible()" style="color:white;"> Existing backers</button>
-          <ul class="center" ng-show="vm.showCollapsible" class="collapsible popout" data-collapsible="accordion" style="margin-left: 35%; width: 30%;" watch>
+          <button class="waves-effect waves-green btn btn-flat light-blue darken-4" ng-click="vm.toggleCollapsible()" style="color:white;">Existing backers</button>
+          <ul class="center" ng-show="vm.showCollapsible" class="collapsible popout" data-collapsible="accordion" style="margin-left: 29%; width: 42%;" watch>
             <li ng-repeat="backer in vm.existingBackers">
-              <div class="collapsible-header ldblue tk-pollen-web" ng-click="vm.addExistingBacker(backer)">{{backer.backerName}}<i ng-click="vm.deleteExistingBacker(backer)" class="material-icons right">remove</i>
+              <div class="collapsible-header ldblue tk-pollen-web" ng-click="vm.addExistingBacker(backer)">
+                <i ng-click="vm.deleteExistingBacker(backer)" class="material-icons right" style="color: black;">delete_forever</i>{{backer.backerName}} - {{backer.backerEmail}}
               </div>
             </li>
           </ul>
@@ -82,9 +83,10 @@
       </form>
     </div>
     <div>
-      <ul class="center" class="collapsible popout" data-collapsible="accordion" style="margin-left: 35%; width: 30%;" watch>
+      <ul class="center" class="collapsible popout" data-collapsible="accordion" style="margin-left: 29%; width: 42%;" watch>
         <li ng-repeat="backer in vm.currentBackers">
-          <div class="collapsible-header ldblue tk-pollen-web">{{backer.name}}   {{backer.email}}<i ng-click="vm.deleteBacker(backer)" class="material-icons right">remove</i>
+          <div class="collapsible-header ldblue tk-pollen-web">
+            <i ng-click="vm.deleteBacker(backer)" class="material-icons right" style="color: black;">delete_forever</i>{{backer.name}} - {{backer.email}}
           </div>
         </li>
       </ul>
