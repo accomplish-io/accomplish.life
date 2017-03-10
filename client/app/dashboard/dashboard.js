@@ -197,6 +197,7 @@
       };
 
       vm.addProgress = function (goal) {
+        $('#goalProgressModal').modal('close');
         ProgressFactory.postProgress(goal.id, {
           number: vm.progNum,
           date: new Date()
