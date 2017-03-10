@@ -185,8 +185,11 @@
       };
 
       vm.prepUpdate = function(goal) {
-        DetailsFactory.setUpdateGoal(lineChartNum, goal.number);
-        DetailsFactory.setUpdateGoal('due', vm.updateGoal.due);
+        DetailsFactory.setQuantifiable(!!goal.units);
+        DetailsFactory.setSubGoalsExist(vm.hasSubGoals(goal));
+        DetailsFactory.setGoalDetail(goal);
+        var dateObj = new Date(goal.due);
+        DetailsFactory.setUpdateGoal('due', dateObj);
         DetailsFactory.setUpdateGoal('number', '');
         DetailsFactory.setUpdateGoal('goalName', goal.goalName);
         DetailsFactory.setUpdateGoal('units', goal.units);
