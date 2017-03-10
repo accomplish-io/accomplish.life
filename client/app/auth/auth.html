@@ -5,6 +5,7 @@
       <ul id="nav-mobile" class="right hide-on-small-and-down" style="margin-right: 30px;">
         <li ><a class="tk-pollen-web" ng-if="vm.displayLoginButton()" ui-sref="auth" ng-click="vm.authService.login()">Log In</a></li>
         <li ><a class="tk-pollen-web" ng-if="!vm.displayLoginButton()" ui-sref="home" ng-click="authService.logout()">Log Out</a></li>
+        <li><a class="tk-pollen-web" ui-sref="about">About Us</a></li>
       </ul>
     </div>
   </nav>
