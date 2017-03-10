@@ -37,7 +37,7 @@
           <label for="{{goal.id}}" style="display: initial;">{{goal.goalName}}</label>
 
           <!-- Data Chart -->
-          <canvas id="base" height="25" width="180" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.barChart.labels" chart-options="vm.barChart.options" style="height: 40px"></canvas>
+          <canvas id="base" height="25" width="180" class="chart-horizontal-bar" chart-data=goal.progress chart-labels="vm.barChart.labels" chart-options="vm.barChart.options" chart-series="vm.barChart.series" style="height: 40px"></canvas>
 
           <!-- Delete Goal -->
           <a data-target="deleteGoalModal" style="color: black;" modal>
