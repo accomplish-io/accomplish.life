@@ -2,17 +2,12 @@
 
 > Accomplish.life is a goal setter and accountability tracker for users wanting to transform their lives.
 
-
 ## Team
 
   - __Product Owner__: Daniel Ritchie
   - __Scrum Master__: Eric Forsell
   - __Client-Side Team Leader__: Andrew Slagle
   - __Server-Side Team Leader__: Elizabeth Akerman
-
-## Files
-
-Key files and folders are as follows:
 
 ## Requirements
 
@@ -48,21 +43,10 @@ nodemon server/server.js
 
 Any other dependency is connected via CDN
 
-## Important Accounts
-
--Auth0
--Amazon MySQL RDB
-
-### Project Issues Link
+## Project Issues Link
 
 View the project issues [here](https://github.com/accomplish-io/accomplish.life/issues)
-
 
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
-
-
-## Running Tests
-
-Intiate the test sequence by...
