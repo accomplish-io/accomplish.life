@@ -31,17 +31,18 @@
             vm.user = user.data[0];
             vm.renderGoals();
           });
-
-        // Get user goals and render on page
       });
 
+      // Get user goals and render on page
       vm.renderGoals = () => {
+        //Note the goals who are currently displaying subgoals
         vm.noteDisplayed();
         GoalFactory.getUserGoals(vm.payload.email)
           .then(goals => {
             goals.data.forEach((goal, index, goalsArr) => {
               goal.subsDisplayed = false;
               goal.addDisplayed = false;
+              //Find parent of a subgoal and give it the necessary properties
               if(goal.GoalId !== null) {
                 goals.data.forEach(parent => {
                   if (parent.id === goal.GoalId) {
@@ -55,6 +56,7 @@
                   }
                 });
               }
+              //Create properties for rendering charts correctly
               goal.dayRange = vm.createDayRange(goal);
               goal.dateRange = vm.createDateRange(goal);
               goal.progressRange = vm.createProgressRange(goal);
@@ -66,6 +68,7 @@
               goal.progress = [amountDone, amountDue];
             });
             vm.goals = goals.data;
+            //Diplays the subgoals for goals that were noted at the beginning of renderGoals
             vm.restoreDisplayed();
           });
       };
@@ -75,6 +78,7 @@
         return [goal.goalName + ' ' + rate + ' ' + goal.units + ' per day'];
       };
 
+      //Make labels according to how many days have passed since a day started
       vm.createDayRange = (goal) => {
         var range = [];
         var day = 1;
@@ -88,6 +92,7 @@
         return range;
       };
 
+      //Make labels according to the date
       vm.createDateRange = (goal) => {
         var range = [];
         var day = 1;
@@ -101,6 +106,7 @@
         return range;
       };
 
+      //Make an array of how much progress was completed on by a certain day.
       vm.createProgressRange = (goal) => {
         var range = [[],[0]];
         var timeLeft = new Date(goal.due) - new Date(goal.start);
@@ -131,6 +137,7 @@
         return range;
       };
 
+      //Grab the goals that are currently displaying their subgoals
       vm.noteDisplayed = () => {
         vm.displayed = vm.goals.reduce(function(memo, goal) {
           if (goal.subsDisplayed) {
@@ -140,6 +147,7 @@
         }, []);
       };
 
+      //Display subgoals that were noted so that user is less affected by rerender
       vm.restoreDisplayed = () => {
         vm.goals.forEach(function(goal) {
           if (vm.displayed.includes(goal.id)) {
