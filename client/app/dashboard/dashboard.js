@@ -21,30 +21,31 @@
       vm.currentDeleteGoal = null;
 
       // Get user details from auth
-      vm.displayLoginButton = () =>
-      localStorage.getItem('id_token') ? false : true;
+      vm.displayLoginButton = function() {
+        localStorage.getItem('id_token') ? false : true;
+      }
 
       lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
         vm.payload = profile;
         UserFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
-          .then(user => {
+          .then(function(user) {
             vm.user = user.data[0];
             vm.renderGoals();
           });
       });
 
       // Get user goals and render on page
-      vm.renderGoals = () => {
+      vm.renderGoals = function() {
         //Note the goals who are currently displaying subgoals
         vm.noteDisplayed();
         GoalFactory.getUserGoals(vm.payload.email)
-          .then(goals => {
-            goals.data.forEach((goal, index, goalsArr) => {
+          .then(function(goals) {
+            goals.data.forEach(function(goal, index, goalsArr) {
               goal.subsDisplayed = false;
               goal.addDisplayed = false;
               //Find parent of a subgoal and give it the necessary properties
               if(goal.GoalId !== null) {
-                goals.data.forEach(parent => {
+                goals.data.forEach(function(parent) {
                   if (parent.id === goal.GoalId) {
                     parent.hasChildren = true;
                     if (!parent.incompleteChildren) {
@@ -79,7 +80,7 @@
       };
 
       //Make labels according to how many days have passed since a day started
-      vm.createDayRange = (goal) => {
+      vm.createDayRange = function(goal) {
         var range = [];
         var day = 1;
         var timeLeft = new Date(goal.due) - new Date(goal.start);
@@ -93,7 +94,7 @@
       };
 
       //Make labels according to the date
-      vm.createDateRange = (goal) => {
+      vm.createDateRange = function(goal) {
         var range = [];
         var day = 1;
         var timeLeft = new Date(goal.due) - new Date(goal.start);
@@ -107,7 +108,7 @@
       };
 
       //Make an array of how much progress was completed on by a certain day.
-      vm.createProgressRange = (goal) => {
+      vm.createProgressRange = function(goal) {
         var range = [[],[0]];
         var timeLeft = new Date(goal.due) - new Date(goal.start);
         var oneDay = 86400000;
@@ -121,7 +122,7 @@
         for (var j = 0; j < range[0].length; j++) {
           range[1].push((j + 1) * (goal.number/(range[0].length - 1)));
         }
-        goal.Progresses.forEach((progress) => {
+        goal.Progresses.forEach(function(progress) {
           var occurred = new Date(progress.date).valueOf();
           for (var index = 0; index < range[0].length; index++) {
             var day = new Date(goal.start).valueOf() + (86400000 * (index));
@@ -138,7 +139,7 @@
       };
 
       //Grab the goals that are currently displaying their subgoals
-      vm.noteDisplayed = () => {
+      vm.noteDisplayed = function() {
         vm.displayed = vm.goals.reduce(function(memo, goal) {
           if (goal.subsDisplayed) {
             return memo.concat([goal.id]);
@@ -148,7 +149,7 @@
       };
 
       //Display subgoals that were noted so that user is less affected by rerender
-      vm.restoreDisplayed = () => {
+      vm.restoreDisplayed = function() {
         vm.goals.forEach(function(goal) {
           if (vm.displayed.includes(goal.id)) {
             goal.subsDisplayed = true;
