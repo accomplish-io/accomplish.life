@@ -66,15 +66,15 @@
       vm.showCollapsible = false;
       vm.currentDeleteGoal = null;
 
-      vm.renderGoals = () => {
+      vm.renderGoals = function() {
         vm.noteDisplayed();
         GoalFactory.getUserGoals(vm.payload.email)
-          .then(goals => {
-            goals.data.forEach((goal, index, goalsArr) => {
+          .then(function(goals) {
+            goals.data.forEach(function(goal, index, goalsArr) {
               goal.subsDisplayed = false;
               goal.addDisplayed = false;
               if(goal.GoalId !== null) {
-                goals.data.forEach(parent => {
+                goals.data.forEach(function(parent) {
                   if (parent.id === goal.GoalId) {
                     parent.hasChildren = true;
                     if (!parent.incompleteChildren) {
@@ -102,13 +102,14 @@
       };
 
       // Get user details from auth
-      vm.displayLoginButton = () =>
-      localStorage.getItem('id_token') ? false : true;
+      vm.displayLoginButton = function() {
+        localStorage.getItem('id_token') ? false : true;
+      }
 
       lock.getProfile(localStorage.getItem('id_token'), function (error, profile) {
         vm.payload = profile;
         UserFactory.findOrCreateUser(vm.payload.name, vm.payload.email)
-          .then(user => {
+          .then(function(user) {
             vm.user = user.data[0];
             vm.renderGoals();
           });
@@ -121,7 +122,7 @@
         return [goal.goalName + ' ' + rate + ' ' + goal.units + ' per day'];
       };
 
-      vm.createDayRange = (goal) => {
+      vm.createDayRange = function(goal) {
         var range = [];
         var day = 1;
         var timeLeft = new Date(goal.due) - new Date(goal.start);
@@ -134,7 +135,7 @@
         return range;
       };
 
-      vm.createDateRange = (goal) => {
+      vm.createDateRange = function(goal) {
         var range = [];
         var day = 1;
         var timeLeft = new Date(goal.due) - new Date(goal.start);
@@ -147,7 +148,7 @@
         return range;
       };
 
-      vm.createProgressRange = (goal) => {
+      vm.createProgressRange = function(goal) {
         var range = [[],[0]];
         var timeLeft = new Date(goal.due) - new Date(goal.start);
         var oneDay = 86400000;
@@ -161,7 +162,7 @@
         for (var j = 0; j < range[0].length; j++) {
           range[1].push((j + 1) * (goal.number/(range[0].length - 1)));
         }
-        goal.Progresses.forEach((progress) => {
+        goal.Progresses.forEach(function(progress) {
           var occurred = new Date(progress.date).valueOf();
           for (var index = 0; index < range[0].length; index++) {
             var day = new Date(goal.start).valueOf() + (86400000 * (index));
@@ -177,7 +178,7 @@
         return range;
       };
 
-      vm.noteDisplayed = () => {
+      vm.noteDisplayed = function() {
         vm.displayed = vm.goals.reduce(function(memo, goal) {
           if (goal.subsDisplayed) {
             return memo.concat([goal.id]);
@@ -186,7 +187,7 @@
         }, []);
       };
 
-      vm.restoreDisplayed = () => {
+      vm.restoreDisplayed = function() {
         vm.goals.forEach(function(goal) {
           if (vm.displayed.includes(goal.id)) {
             goal.subsDisplayed = true;
